@@ -166,6 +166,7 @@ export default {
         target: null,
         color: null,
         checked: null,
+        value: null,
         enabled: false,
       };
 
@@ -180,7 +181,7 @@ export default {
         // fields are present. If they aren't it's just because they haven't been
         // hydrated via the editor yet.
         for (const field in fields) {
-          if (this.deviseForSlice['field']) {
+          if (this.deviseForSlice[field]) {
             // If defaults are set then set them on top of the placeholder missing properties
             if (fields[field].default) {
               this.setDefaults(field, fields[field].default);
@@ -198,6 +199,7 @@ export default {
     },
     setDefaults(property, defaults) {
       // loop through the defaults and apply them to the field
+      console.log(property);
       for (const d in defaults) {
         if (
           typeof this.deviseForSlice[property][d] === 'undefined' ||
