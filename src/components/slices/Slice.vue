@@ -199,7 +199,6 @@ export default {
     },
     setDefaults(property, defaults) {
       // loop through the defaults and apply them to the field
-      console.log(property);
       for (const d in defaults) {
         if (
           typeof this.deviseForSlice[property][d] === 'undefined' ||
