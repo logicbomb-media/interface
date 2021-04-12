@@ -3,7 +3,8 @@
     <div class="dvs-flex dvs-justify-center">
       <div class="dvs-relative dvs-flex dvs-justify-center dvs-items-center dvs-mt-8 dvs-relative">
         <input
-          v-model="searchTerm"
+          v-model.lazy="searchTerm"
+          v-debounce="1000"
           type="text"
           class="dvs-bg-transparent dvs-bg-admin-secondary-bg dvs-px-12 dvs-py-4 dvs-text-admin-fg dvs-outline-none dvs-placeholder-admin-fg dvs-text-center"
           placeholder="Type to begin searching"
@@ -63,22 +64,30 @@
 </template>
 
 <script>
+import debounce from 'v-debounce';
 import { mapActions } from 'vuex';
 import dayjs from 'dayjs';
 
 export default {
   name: 'DeviseWorkflowSearch',
+
+  directives: {
+    debounce,
+  },
+
   components: {
     XIcon: () => import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
     Pagination: () =>
       import(/* webpackChunkName: "devise-utilities" */ '../../utilities/Pagination.vue'),
   },
+
   props: {
     step: {
       type: Object,
       required: true,
     },
   },
+
   data() {
     return {
       searchDelay: 1000,
