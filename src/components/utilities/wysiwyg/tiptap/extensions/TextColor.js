@@ -1,40 +1,50 @@
-/* eslint-disable class-methods-use-this */
-import { Mark } from 'tiptap'
-import { toggleMark } from 'tiptap-commands'
+import { Extension } from '@tiptap/core';
+import '@tiptap/extension-text-style';
 
-export default class TextColor extends Mark {
+const TextColor = Extension.create({
+  name: 'textcolor',
+  defaultOptions: {
+    types: ['textStyle'],
+  },
+  addGlobalAttributes() {
+    return [
+      {
+        types: this.options.types,
+        attributes: {
+          color: {
+            default: null,
+            renderHTML: attributes => {
+              if (!attributes.color) {
+                return {};
+              }
 
-  get name () {
-    return 'textcolor'
-  }
-
-  get defaultOptions () {
-    return {
-      color: ['red'],
-    }
-  }
-
-  get schema () {
-    return {
-      attrs: {
-        color: {
-          default: 'rgba(0,0,0,1)',
+              return {
+                style: `color: ${attributes.color}`,
+              };
+            },
+            parseHTML: element => ({
+              color: element.style.color.replace(/['"]+/g, ''),
+            }),
+          },
         },
       },
-      parseDOM: this.options.color.map(color => ({
-        tag: `span[style="color:${color}"]`,
-        attrs: { color },
-      })),
-      toDOM:
-        node => {
-          return ['span', {
-            style: `color:${node.attrs.color}`
-          }, 0]
-        }
-    }
-  }
+    ];
+  },
+  addCommands() {
+    return {
+      setTextColor: options => ({ chain }) => {
+        return chain()
+          .setMark('textStyle', options)
+          .run();
+      },
+      unsetTextColor: () => ({ chain }) => {
+        chain()
+          .setMark('textStyle', { color: null })
+          .removeEmptyTextStyle()
+          .run();
+      },
+    };
+  },
+});
 
-  commands ({ type }) {
-    return (attrs) => toggleMark(type, attrs)
-  }
-}
+export default TextColor;

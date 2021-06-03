@@ -34,13 +34,19 @@
 
   ul,
   ol {
-    padding-left: 1rem;
+    padding-left: 3rem;
+    margin-bottom: 1rem;
   }
 
-  li > p,
-  li > ol,
-  li > ul {
-    margin: 0;
+  ul {
+    li {
+      @apply dvs-list-disc;
+    }
+  }
+  ol {
+    li {
+      @apply dvs-list-decimal;
+    }
   }
 
   a {
@@ -124,6 +130,10 @@
     cursor: ew-resize;
     cursor: col-resize;
   }
+
+  li {
+    @apply list-disc;
+  }
 }
 
 .ProseMirror-focused {
@@ -132,6 +142,10 @@
 
 .wysiwyg-editor-button {
   @apply dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-900;
+
+  &.active {
+    @apply dvs-bg-admin-highlight-bg dvs-text-admin-highlight-fg;
+  }
 }
 
 .editor__floating-menu {

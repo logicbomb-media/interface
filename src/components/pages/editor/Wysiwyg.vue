@@ -11,18 +11,13 @@
       @change="update"
     >
       <template slot="preview">
-        <span
-          v-if="value.text === null || value.text === ''"
-          class="dvs-italic"
-        >Currently No Value</span>
+        <span v-if="value.text === null || value.text === ''" class="dvs-italic"
+          >Currently No Value</span
+        >
         <div v-html="clipString(value.text, 200, false)"></div>
       </template>
       <template slot="editor">
-        <wysiwyg
-          ref="editor"
-          v-model="text"
-          style="min-height:300px;"
-        ></wysiwyg>
+        <wysiwyg ref="editor" v-model="text" style="min-height:300px;"></wysiwyg>
       </template>
     </field-editor>
   </div>
@@ -50,10 +45,10 @@ export default {
     },
     namekey: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
-  data () {
+  data() {
     return {
       localValue: {},
       originalValue: null,
@@ -62,32 +57,31 @@ export default {
   },
   computed: {
     text: {
-      get () {
+      get() {
         return this.value.text;
       },
-      set (value) {
+      set(value) {
         const valueObj = Object.assign(this.value, { text: value });
         this.$emit('input', valueObj);
         this.$emit('change', valueObj);
       },
     },
   },
-  mounted () {
+  mounted() {
     this.originalValue = Object.assign({}, this.value);
     this.localValue = this.value;
   },
   methods: {
-    toggleEditor () {
+    toggleEditor() {
       this.showEditor = !this.showEditor;
     },
-    cancel () {
+    cancel() {
       this.text = this.originalValue.text;
       this.enabled = this.originalValue.enabled;
     },
-    resetValue () {
-      this.enabled = false;
-      this.$refs.editor.empty();
-    }
+    resetValue() {
+      this.text = '';
+    },
   },
 };
 </script>

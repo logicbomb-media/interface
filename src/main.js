@@ -12,6 +12,7 @@ import Link from './directives/link';
 import Messages from './components/utilities/Messages.vue';
 import routes from './router/route.config';
 import Slices from './components/slices/Slices.vue';
+import VueTippy, { TippyComponent } from 'vue-tippy';
 
 // eslint-disable-next-line no-undef
 window.axios = require('axios');
@@ -83,6 +84,20 @@ const DevisePlugin = {
 
     // Portals to render items outside of their component
     Vue.use(PortalVue);
+
+    // https://www.npmjs.com/package/vue-tippy
+    Vue.use(VueTippy, {
+      directive: 'tippy', // => v-tippy
+      flipDuration: 0,
+      popperOptions: {
+        modifiers: {
+          preventOverflow: {
+            enabled: false,
+          },
+        },
+      },
+    });
+    Vue.component('tippy', TippyComponent);
 
     // Register global components
     Vue.component('devise', Devise);
@@ -234,7 +249,11 @@ const DevisePlugin = {
     // Register Messages
     function toast({ title, message, type, timeout }) {
       if (type === VueNotifications.types.warn) type = 'warning';
-      return iziToast[type]({ title, message, timeout });
+      return iziToast[type]({
+        title,
+        message,
+        timeout,
+      });
     }
 
     const vueNotificationsOptions = {
@@ -294,7 +313,10 @@ const DevisePlugin = {
       methods: {
         // Convienience method to push things into the router from templates
         goToPage(pageName, params) {
-          this.$router.push({ name: pageName, params });
+          this.$router.push({
+            name: pageName,
+            params,
+          });
         },
         href(url) {
           window.open(url, '_self');

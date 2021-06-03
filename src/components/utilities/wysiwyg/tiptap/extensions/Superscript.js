@@ -1,37 +1,38 @@
-import { Mark } from 'tiptap';
-import { toggleMark, markInputRule, markPasteRule } from 'tiptap-commands';
+import { Mark } from '@tiptap/core';
 
-export default class Bold extends Mark {
-  get name() {
-    return 'superscript';
-  }
-
-  get schema() {
+const Superscript = Mark.create({
+  name: 'superscript',
+  defaultOptions: {
+    HTMLAttributes: {},
+  },
+  parseHTML() {
+    return [
+      {
+        tag: 'sup',
+      },
+    ];
+  },
+  renderHTML({ HTMLAttributes }) {
+    return ['sup', HTMLAttributes, 0];
+  },
+  addCommands() {
     return {
-      parseDOM: [
-        {
-          tag: 'sup',
-        },
-      ],
-      toDOM: () => ['sup', 0],
+      setSuperscript: () => ({ commands }) => {
+        return commands.setMark('superscript');
+      },
+      toggleSuperscript: () => ({ commands }) => {
+        return commands.toggleMark('superscript');
+      },
+      unsetSuperscript: () => ({ commands }) => {
+        return commands.unsetMark('superscript');
+      },
     };
-  }
-
-  keys({ type }) {
+  },
+  addKeyboardShortcuts() {
     return {
-      'Mod-b': toggleMark(type),
+      'Mod-Shift-2': () => this.editor.commands.toggleSuperscript(),
     };
-  }
+  },
+});
 
-  commands({ type }) {
-    return () => toggleMark(type);
-  }
-
-  inputRules({ type }) {
-    return [markInputRule(/(?:\*\*|__)([^*_]+)(?:\*\*|__)$/, type)];
-  }
-
-  pasteRules({ type }) {
-    return [markPasteRule(/(?:\*\*|__)([^*_]+)(?:\*\*|__)/g, type)];
-  }
-}
+export default Superscript;
