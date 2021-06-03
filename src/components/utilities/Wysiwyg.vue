@@ -106,7 +106,7 @@
             <form
               v-if="linkMenuIsActive"
               class="menububble__form dvs-bg-admin-bg dvs-text-admin-fg dvs-absolute dvs-p-4 dvs-rounded-sm dvs-shadow dvs-mt-2 dvs-z-10"
-              @submit.prevent="setLinkUrl(commands.link, linkUrl)"
+              @submit.prevent="setLinkUrl(commands.link, linkUrl, linkTarget)"
             >
               <fieldset class="dvs-fieldset">
                 <input
@@ -117,13 +117,28 @@
                   placeholder="https://"
                   @keydown.esc="$emit('hide')"
                 />
-                <button
-                  class="menububble__button dvs-btn dvs-btn-primary"
-                  type="button"
-                  @click="setLinkUrl(commands.link, null)"
-                >
-                  Remove
-                </button>
+                <select class="mt-2" v-model="linkTarget">
+                  <option value="_self">Same Window</option>
+                  <option value="_blank">New Tab / Window</option>
+                  <option value="_parent">Parent</option>
+                  <option value="_top">Top</option>
+                </select>
+                <div class="dvs-flex">
+                  <button
+                    class="menububble__button dvs-btn dvs-btn-secondary dvs-btn-sm dvs-mt-2"
+                    type="button"
+                    @click="setLinkUrl(commands.link, linkUrl, linkTarget)"
+                  >
+                    Done
+                  </button>
+                  <button
+                    class="menububble__button dvs-btn dvs-btn-primary dvs-btn-sm dvs-mt-2"
+                    type="button"
+                    @click="setLinkUrl(commands.link, null, null)"
+                  >
+                    Remove
+                  </button>
+                </div>
               </fieldset>
             </form>
 
@@ -568,6 +583,7 @@ export default {
       showTextColorPicker: false,
       textColor: '#000000',
       linkUrl: null,
+      linkTarget: '_self',
       linkMenuIsActive: false,
     };
   },
@@ -636,8 +652,8 @@ export default {
       this.linkUrl = null;
       this.linkMenuIsActive = false;
     },
-    setLinkUrl(command, url) {
-      command({ href: url });
+    setLinkUrl(command, href, target) {
+      command({ href, target });
       this.hideLinkMenu();
     },
   },
