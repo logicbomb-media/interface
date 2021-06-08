@@ -1,11 +1,27 @@
 module.exports = {
-  parser: 'vue-eslint-parser',
+  root: true,
+  env: {
+    browser: true,
+    node: true,
+    jquery: true,
+  },
   parserOptions: {
     parser: 'babel-eslint',
   },
-  plugins: ['vue'],
-  extends: ['eslint:recommended', 'plugin:vue/recommended', 'prettier', 'prettier/vue'],
-  env: {
-    amd: true,
+  extends: [
+    'plugin:vue/recommended',
+    'prettier',
+    'plugin:prettier/recommended',
+  ],
+  plugins: ['prettier'],
+  // add your custom rules here
+  rules: {
+    'vue/no-v-html': 'off',
+    'vue/no-mutating-props': 'off',
+    'vue/v-slot-style': 'off',
+    'vue/max-attributes-per-line': 'off',
+    'vue/singleline-html-element-content-newline': 'off',
+    'vue/html-self-closing': 'off',
+    'vue/max-attributes-per-line': 'off',
   },
-};
+}

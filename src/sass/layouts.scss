@@ -10,7 +10,7 @@ body.dvs-admin-open {
 
   #dvs-admin-panels {
     > div > div > div {
-      @apply pointer-events-auto;
+      @apply dvs-pointer-events-auto;
     }
   }
 }

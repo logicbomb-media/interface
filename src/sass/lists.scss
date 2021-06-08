@@ -1,6 +1,4 @@
 .dvs-collapsable {
-   @apply dvs-opacity-25
-
   .dvs-switch-sm,
   .dvs-switch {
     @apply dvs-cursor-pointer;
@@ -15,6 +13,8 @@
       @apply dvs-block dvs-h-auto dvs-opacity-100;
     }
   }
+
+  @apply dvs-opacity-25;
 }
 
 .dvs-open {

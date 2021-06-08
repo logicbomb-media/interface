@@ -10,7 +10,7 @@ const funcs = {
 
     const filters = JSON.parse(JSON.stringify(filter));
 
-    Object.keys(filters).forEach(f => {
+    Object.keys(filters).forEach((f) => {
       if (filters[f] === null) {
         delete filters[f];
       }
@@ -184,7 +184,8 @@ const funcs = {
 
     j = (j = i.length) > 3 ? j % 3 : 0; // eslint-disable-line
 
-    return `$${s +
+    return `$${
+      s +
       (j ? i.substr(0, j) + t : '') +
       i.substr(j).replace(/(\d{3})(?=\d)/g, `$1${t}`) +
       (c
@@ -192,7 +193,8 @@ const funcs = {
           Math.abs(n - i)
             .toFixed(c)
             .slice(2)
-        : '')}`;
+        : '')
+    }`;
   },
 
   sanitizeField(field) {
@@ -213,11 +215,11 @@ const funcs = {
       }
     }
 
-    slice.slices.map(s => this.sanitizeSlice(s));
+    slice.slices.map((s) => this.sanitizeSlice(s));
   },
 
   sanitizePageData(data) {
-    return data.slices.map(slice => this.sanitizeSlice(slice));
+    return data.slices.map((slice) => this.sanitizeSlice(slice));
   },
 };
 

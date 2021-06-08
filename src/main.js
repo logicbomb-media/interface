@@ -14,6 +14,8 @@ import routes from './router/route.config';
 import Slices from './components/slices/Slices.vue';
 import VueTippy, { TippyComponent } from 'vue-tippy';
 
+import 'tailwindcss/tailwind.css';
+
 // eslint-disable-next-line no-undef
 window.axios = require('axios');
 
@@ -30,7 +32,7 @@ const DevisePlugin = {
     // Set the devise route to Edit Page for any application routes
     // that aren't setup to take over the admin. This allows us to see the
     // page editor even if you are navigating around the application routes.
-    router.options.routes.map(route => {
+    router.options.routes.map((route) => {
       if (!Object.prototype.hasOwnProperty.call(route, 'components')) {
         route.components = {};
       }
@@ -335,7 +337,7 @@ const DevisePlugin = {
               ? window.deviseSettings.$user.permissions_list
               : [];
             for (let i = 0; i < toCheck.length; i += 1) {
-              const found = allowed.find(perm => perm === toCheck[i]);
+              const found = allowed.find((perm) => perm === toCheck[i]);
 
               if (found) return true;
             }
