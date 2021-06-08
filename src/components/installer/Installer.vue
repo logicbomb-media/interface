@@ -24,8 +24,8 @@
             <p class="dvs-text-xl dvs-mb-16">
               We are very excited that you are giving Devise 2 a spin. We are still in the early
               beta stages of this product but we do believe we have settled on the final structure
-              of things. We encourage you to send us any feedback via Github issues, submit any
-              PR's or just let us know what you think of the project on Twitter @devisephp.
+              of things. We encourage you to send us any feedback via Github issues, submit any PR's
+              or just let us know what you think of the project on Twitter @devisephp.
             </p>
 
             <div class="dvs-mb-16 dvs-flex dvs-flex-wrap">
@@ -33,20 +33,23 @@
                 href="https://devise.gitbook.io/cms/"
                 target="_blank"
                 class="dvs-btn dvs-bg-blue dvs-text-white dvs-m-2"
-                >Documentation</a
               >
+                Documentation
+              </a>
               <a
                 href="https://devisephp.com"
                 target="_blank"
                 class="dvs-btn dvs-bg-blue dvs-text-white dvs-m-2"
-                >Website</a
               >
+                Website
+              </a>
               <a
                 href="https://github.com/devisephp/cms"
                 target="_blank"
                 class="dvs-btn dvs-bg-blue dvs-text-white dvs-m-2"
-                >Github</a
               >
+                Github
+              </a>
             </div>
 
             <div class="dvs-text-left dvs-w-full">
@@ -99,24 +102,20 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex'
 
-const Prism = import(/* webpackChunkName: "devise-installer" */ 'prismjs');
+const Prism = import(/* webpackChunkName: "devise-installer" */ 'prismjs')
 
-import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-clike.min');
-import(
-  /* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-markup-templating.min'
-);
-import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-php.min');
-import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-ini.min');
-import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-javascript.min');
-import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-bash.min');
+import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-clike.min')
+import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-markup-templating.min')
+import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-php.min')
+import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-ini.min')
+import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-javascript.min')
+import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-bash.min')
 import(
   /* webpackChunkName: "devise-installer" */ 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace'
-);
-import(
-  /* webpackChunkName: "devise-installer" */ 'prismjs/plugins/line-numbers/prism-line-numbers'
-);
+)
+import(/* webpackChunkName: "devise-installer" */ 'prismjs/plugins/line-numbers/prism-line-numbers')
 
 export default {
   components: {
@@ -143,53 +142,53 @@ export default {
   },
   computed: {
     ...mapState('devise', {
-      checklist: state => state.checklist,
-      languages: state => state.languages.data,
+      checklist: (state) => state.checklist,
+      languages: (state) => state.languages.data,
     }),
     finished() {
       for (const task in this.checklist) {
         if (this.checklist[task]) {
           if (!this.checklist[task]) {
-            return false;
+            return false
           }
         }
       }
 
-      return true;
+      return true
     },
     finishedStyles() {
       if (this.finished) {
-        return { top: 0 };
+        return { top: 0 }
       }
 
-      return { top: '-200px' };
+      return { top: '-200px' }
     },
     bodyFinishedStyles() {
       if (this.finished) {
-        return { marginTop: '200px' };
+        return { marginTop: '200px' }
       }
 
-      return { marginTop: '0' };
+      return { marginTop: '0' }
     },
   },
   mounted() {
-    this.getLanguages();
-    this.startChecker();
+    this.getLanguages()
+    this.startChecker()
 
     setTimeout(() => {
-      this.codeHighlighting();
-    }, 1000);
+      this.codeHighlighting()
+    }, 1000)
   },
   methods: {
     ...mapActions('devise', ['refreshChecklist', 'getLanguages']),
     startChecker() {
-      this.refreshChecklist();
+      this.refreshChecklist()
       setInterval(() => {
-        this.refreshChecklist();
-      }, 5000);
+        this.refreshChecklist()
+      }, 5000)
     },
     codeHighlighting() {
-      Prism.highlightAll();
+      Prism.highlightAll()
 
       Prism.plugins.NormalizeWhitespace.setDefaults({
         'remove-trailing': true,
@@ -201,10 +200,10 @@ export default {
         'remove-initial-line-feed': false,
         'tabs-to-spaces': 4,
         'spaces-to-tabs': 4 */
-      });
+      })
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>

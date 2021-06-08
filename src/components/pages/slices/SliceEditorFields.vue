@@ -120,17 +120,17 @@ export default {
   props: {
     theFields: {
       required: true,
-      type: Object
+      type: Object,
     },
     value: {
       required: true,
-      type: Object
-    }
+      type: Object,
+    },
   },
   methods: {
-    editField (value, field, key) {
+    editField(value, field, key) {
       // Send out the notification
-      this.$emit('editfield', { value, field, key });
+      this.$emit('editfield', { value, field, key })
     },
   },
 }

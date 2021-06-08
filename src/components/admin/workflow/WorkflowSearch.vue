@@ -6,7 +6,16 @@
           v-model.lazy="searchTerm"
           v-debounce="1000"
           type="text"
-          class="dvs-bg-transparent dvs-bg-admin-secondary-bg dvs-px-12 dvs-py-4 dvs-text-admin-fg dvs-outline-none dvs-placeholder-admin-fg dvs-text-center"
+          class="
+            dvs-bg-transparent
+            dvs-bg-admin-secondary-bg
+            dvs-px-12
+            dvs-py-4
+            dvs-text-admin-fg
+            dvs-outline-none
+            dvs-placeholder-admin-fg
+            dvs-text-center
+          "
           placeholder="Type to begin searching"
         />
         <div
@@ -38,7 +47,11 @@
       <li
         v-for="(suggestion, key) in autosuggest.data"
         :key="key"
-        class="dvs-bg-admin-secondary-bg dvs-text-admin-secondary-fg dvs-shadow hover:dvs-shadow-lg dvs-rounded dvs-my-4 dvs-p-4 dvs-cursor-pointer"
+        class="
+          dvs-bg-admin-secondary-bg dvs-text-admin-secondary-fg dvs-shadow
+          hover:dvs-shadow-lg
+          dvs-rounded dvs-my-4 dvs-p-4 dvs-cursor-pointer
+        "
         @click="selectSuggestion(suggestion)"
       >
         <div class="dvs-text-lg dvs-mb-2 dvs-font-light">{{ suggestion[mainLabelField] }}</div>
@@ -46,7 +59,18 @@
           <li
             v-for="(subField, subkey) in subLabelFields"
             :key="subkey"
-            class="dvs-mr-4 dvs-text-xs dvs-leading-tight dvs-w-1/4 dvs-bg-admin-bg dvs-text-admin-fg dvs-rounded dvs-p-3 dvs-opacity-75 dvs-break-words"
+            class="
+              dvs-mr-4
+              dvs-text-xs
+              dvs-leading-tight
+              dvs-w-1/4
+              dvs-bg-admin-bg
+              dvs-text-admin-fg
+              dvs-rounded
+              dvs-p-3
+              dvs-opacity-75
+              dvs-break-words
+            "
           >
             <div class="dvs-uppercase dvs-text-xs">{{ subField.label }}</div>
             <div>{{ format(subField, suggestion[subField.field]) }}</div>
@@ -64,9 +88,9 @@
 </template>
 
 <script>
-import debounce from 'v-debounce';
-import { mapActions } from 'vuex';
-import dayjs from 'dayjs';
+import debounce from 'v-debounce'
+import { mapActions } from 'vuex'
+import dayjs from 'dayjs'
 
 export default {
   name: 'DeviseWorkflowSearch',
@@ -95,24 +119,24 @@ export default {
       autosuggest: {
         data: [],
       },
-    };
+    }
   },
   computed: {
     options() {
-      return this.step.options;
+      return this.step.options
     },
     mainLabelField() {
-      return this.step.resultsDisplayFields[0].field;
+      return this.step.resultsDisplayFields[0].field
     },
     subLabelFields() {
-      const secondaryFields = JSON.parse(JSON.stringify(this.step.resultsDisplayFields));
-      secondaryFields.shift();
-      return secondaryFields;
+      const secondaryFields = JSON.parse(JSON.stringify(this.step.resultsDisplayFields))
+      secondaryFields.shift()
+      return secondaryFields
     },
   },
   watch: {
     searchTerm(newValue) {
-      this.requestSearch(newValue);
+      this.requestSearch(newValue)
     },
   },
   methods: {
@@ -120,49 +144,49 @@ export default {
     requestSearch(term) {
       if (term !== '') {
         const isApp =
-          this.step.app === true || typeof this.step.app === 'undefined' ? true : this.step.app;
-        const searchData = {};
-        searchData[this.step.searchPropertyName] = term;
+          this.step.app === true || typeof this.step.app === 'undefined' ? true : this.step.app
+        const searchData = {}
+        searchData[this.step.searchPropertyName] = term
 
         this.searchGeneric({
           config: { apiendpoint: this.step.apiendpoint, app: isApp },
           filters: searchData,
-        }).then(results => {
-          this.autosuggest = results.data;
+        }).then((results) => {
+          this.autosuggest = results.data
           if (results.data.length < 1) {
             window.deviseSettings.$bus.$emit('showMessage', {
               title: 'No Suggestions Found',
               message: `We couldn't find any data with the term: "${term}".`,
-            });
+            })
           }
-        });
+        })
       } else {
-        this.autosuggest = Object.assign({}, {});
+        this.autosuggest = Object.assign({}, {})
       }
     },
     requestAll(filters) {
       const isApp =
-        this.step.app === true || typeof this.step.app === 'undefined' ? true : this.step.app;
+        this.step.app === true || typeof this.step.app === 'undefined' ? true : this.step.app
 
       this.searchGeneric({
         config: { apiendpoint: this.step.allRecordsApiendpoint, app: isApp },
         filters,
-      }).then(results => {
-        this.autosuggest = results.data;
-      });
+      }).then((results) => {
+        this.autosuggest = results.data
+      })
     },
     changePage(page) {
-      this.requestAll({ page });
+      this.requestAll({ page })
     },
     selectSuggestion(suggestion) {
-      this.$emit('done', suggestion);
+      this.$emit('done', suggestion)
     },
     format(field, data) {
       if (field.dateFormat) {
-        return dayjs(data).format(field.dateFormat);
+        return dayjs(data).format(field.dateFormat)
       }
-      return data;
+      return data
     },
   },
-};
+}
 </script>

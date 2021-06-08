@@ -9,7 +9,7 @@ export default {
     DeviseWorkflow: () =>
       import(/* webpackChunkName: "devise-administration" */ '../admin/workflow/Workflow'),
   },
-  data () {
+  data() {
     return {
       workflow: [
         {
@@ -41,26 +41,26 @@ export default {
               label: 'Remove a Page',
               nextStep: 'search-for-page',
               stepAfterNext: 'delete-page',
-            }
-          ]
+            },
+          ],
         },
         {
           key: 'create-page',
           component: 'devise-page-create',
           message: 'Fill out the fields below to create the page. All fields are required.',
-          end: true
+          end: true,
         },
         {
           key: 'copy-page',
           component: 'devise-page-copy',
           message: 'Fill out the fields below to create the page. All fields are required.',
-          end: true
+          end: true,
         },
         {
           key: 'translate-page',
           component: 'devise-page-translate',
           message: 'This will create a translated version of the page you selected.',
-          end: true
+          end: true,
         },
         {
           key: 'edit-page-index',
@@ -76,7 +76,7 @@ export default {
               label: 'Manage Versions',
               nextStep: 'edit-page-versions',
               stepAfterNext: 'edit-page-index',
-            }
+            },
           ],
         },
         {
@@ -93,13 +93,15 @@ export default {
         {
           key: 'edit-page-versions',
           component: 'devise-page-versions',
-          message: 'Page versions allow you to work on and publish a new version of a page without interruption.',
+          message:
+            'Page versions allow you to work on and publish a new version of a page without interruption.',
         },
         {
           key: 'delete-page',
           component: 'devise-page-delete',
-          message: 'This will permenenty delete this page from the system. Are you sure you want to do this?',
-          end: true
+          message:
+            'This will permenenty delete this page from the system. Are you sure you want to do this?',
+          end: true,
         },
         {
           key: 'search-for-page',
@@ -112,7 +114,7 @@ export default {
           resultsDisplayFields: [
             {
               label: 'Title',
-              field: 'title'
+              field: 'title',
             },
             {
               label: 'Slug',
@@ -121,12 +123,12 @@ export default {
             {
               label: 'Created At',
               field: 'created_at',
-              dateFormat: 'MMMM D, YYYY @ h:mm a'
+              dateFormat: 'MMMM D, YYYY @ h:mm a',
             },
           ],
-        }
-      ]
+        },
+      ],
     }
-  }
+  },
 }
 </script>

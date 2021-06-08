@@ -1,7 +1,7 @@
 export default {
   methods: {
     historyBack() {
-      this.$router.go(-1);
+      this.$router.go(-1)
     },
   },
-};
+}

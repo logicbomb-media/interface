@@ -6,6 +6,6 @@
 
 <script>
 export default {
-  name: 'DeviseSectionHeader'
+  name: 'DeviseSectionHeader',
 }
 </script>

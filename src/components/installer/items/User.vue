@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 
 export default {
   components: {
@@ -106,15 +106,15 @@ export default {
         password: '',
         password_confirmation: '',
       },
-    };
+    }
   },
   methods: {
     ...mapActions('devise', ['createUser', 'login']),
     attemptCreateUser() {
       this.createUser(this.newUser).then(() => {
-        this.login(this.newUser);
-      });
+        this.login(this.newUser)
+      })
     },
   },
-};
+}
 </script>

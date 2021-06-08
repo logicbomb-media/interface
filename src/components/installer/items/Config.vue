@@ -1,19 +1,16 @@
 <template>
-  <devise-installer-item
-    id="nav-config"
-    :item="item"
-    title="Devise Configuration (Optional)"
-  >
+  <devise-installer-item id="nav-config" :item="item" title="Devise Configuration (Optional)">
     <template slot="instructions">
-      <p>Devise will run with or without a config file in your Laravel config directory. However, you may want to override some default settings. In those cases you'll need to publish the devise config file with the following command.</p>
+      <p>
+        Devise will run with or without a config file in your Laravel config directory. However, you
+        may want to override some default settings. In those cases you'll need to publish the devise
+        config file with the following command.
+      </p>
     </template>
 
     <template slot="example">
       <p>From the root of your project on the command line run the following command</p>
-      <pre
-        class="lang-bash"
-        data-start="1"
-      >
+      <pre class="lang-bash" data-start="1">
           <code>
             php artisan vendor:publish --tag=dvs-config
           </code>
@@ -23,16 +20,15 @@
 </template>
 
 <script>
-
 export default {
   components: {
-    DeviseInstallerItem: () => import(/* webpackChunkName: "devise-installer" */ "../Item.vue"),
+    DeviseInstallerItem: () => import(/* webpackChunkName: "devise-installer" */ '../Item.vue'),
   },
   props: {
     item: {
       type: Boolean,
-      required: false
-    }
-  }
-};
+      required: false,
+    },
+  },
+}
 </script>

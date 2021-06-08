@@ -4,7 +4,7 @@
       <div
         v-show="!showAdmin"
         class="dvs-sidebar-hint dvs-p-3"
-        :class="{ 'opacity-100': !showAdmin }"
+        :class="{ 'dvs-opacity-100': !showAdmin }"
         @click="showAdmin = true"
       >
         <power-icon></power-icon>
@@ -26,7 +26,15 @@
         class="dvs-m-8 dvs-fixed dvs-pin dvs-z-9980 dvs-flex dvs-pointer-events-none"
       >
         <div
-          class="dvs-flex dvs-shadow dvs-flex-col dvs-relative dvs-rounded dvs-bg-admin-bg dvs-pointer-events-auto"
+          class="
+            dvs-flex
+            dvs-shadow
+            dvs-flex-col
+            dvs-relative
+            dvs-rounded
+            dvs-bg-admin-bg
+            dvs-pointer-events-auto
+          "
         >
           <preview-mode />
 
@@ -34,7 +42,9 @@
             <div :key="key" class="dvs-border-b dvs-border-admin-secondary-bg">
               <button
                 :class="checkActivePanelSidebar(menuItem)"
-                class="dvs-outline-none dvs-transitions-hover-slow dvs-cursor-pointer dvs-text-admin-fg"
+                class="
+                  dvs-outline-none dvs-transitions-hover-slow dvs-cursor-pointer dvs-text-admin-fg
+                "
                 @click.prevent="loadAdminPage(menuItem)"
               >
                 <component :is="menuItem.icon" class="dvs-m-4" w="25" h="25"></component>
@@ -49,7 +59,7 @@
             <power-icon class="dvs-m-4" w="25" h="25" />
           </a>
 
-          <form id="dvs-logout-form" action="/logout" method="POST" style="display: none;">
+          <form id="dvs-logout-form" action="/logout" method="POST" style="display: none">
             <input type="hidden" name="_token" :value="csrf_field" />
           </form>
         </div>
@@ -77,9 +87,9 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import { mapState, mapActions } from 'vuex';
-import { setInterval } from 'timers';
+import Vue from 'vue'
+import { mapState, mapActions } from 'vuex'
+import { setInterval } from 'timers'
 
 export default {
   name: 'Administration',
@@ -123,60 +133,60 @@ export default {
       everythingIsLoaded: false,
       hideDeviseRootPortal: true,
       fieldOpen: false,
-    };
+    }
   },
 
   computed: {
     ...mapState('devise', ['adminMenu']),
     allowedAdminMenu() {
       return Object.keys(this.adminMenu)
-        .filter(menuItem => {
+        .filter((menuItem) => {
           if (!this.adminMenu[menuItem].permissions) {
-            return true;
+            return true
           }
-          return this.can(this.adminMenu[menuItem].permissions);
+          return this.can(this.adminMenu[menuItem].permissions)
         })
         .reduce((obj, key) => {
-          obj[key] = this.adminMenu[key];
-          return obj;
-        }, {});
+          obj[key] = this.adminMenu[key]
+          return obj
+        }, {})
     },
     user() {
-      return window.deviseSettings.$user;
+      return window.deviseSettings.$user
     },
     csrf_field() {
-      return window.axios.defaults.headers.common['X-CSRF-TOKEN'];
+      return window.axios.defaults.headers.common['X-CSRF-TOKEN']
     },
   },
   mounted() {
     Vue.component('help', () =>
       import(/* webpackChunkName: "devise-utilities" */ '../utilities/Help')
-    );
+    )
 
     setTimeout(() => {
-      this.everythingIsLoaded = true;
-    }, 2000);
+      this.everythingIsLoaded = true
+    }, 2000)
 
     setInterval(() => {
-      this.pollIfLoggedIn();
-    }, 30000);
+      this.pollIfLoggedIn()
+    }, 30000)
 
     window.deviseSettings.$bus.$on('devise-showing-field-editor', () => {
-      this.fieldOpen = true;
-    });
+      this.fieldOpen = true
+    })
     window.deviseSettings.$bus.$on('devise-hiding-field-editor', () => {
-      this.fieldOpen = false;
-    });
+      this.fieldOpen = false
+    })
   },
   methods: {
     ...mapActions('devise', ['getLanguages']),
     loadAdminPage(menuItem) {
       if (menuItem.routeName === 'media-manager') {
-        window.deviseSettings.$bus.$emit('devise-launch-media-manager', {});
+        window.deviseSettings.$bus.$emit('devise-launch-media-manager', {})
       } else if (typeof menuItem.routeParams !== 'undefined') {
-        this.goToPage(menuItem.routeName, menuItem.routeParams);
+        this.goToPage(menuItem.routeName, menuItem.routeParams)
       } else {
-        this.goToPage(menuItem.routeName);
+        this.goToPage(menuItem.routeName)
       }
     },
     checkActivePanelSidebar(menuItem) {
@@ -186,7 +196,7 @@ export default {
           this.$route.params.pageId === this.currentPage.id &&
           menuItem.routeName === 'devise-pages-view'
         ) {
-          return [' dvs-bg-admin-highlight-bg dvs-text-admin-highlight-fg'];
+          return [' dvs-bg-admin-highlight-bg dvs-text-admin-highlight-fg']
         }
 
         if (
@@ -194,27 +204,27 @@ export default {
           (this.$route.name !== 'devise-pages-view' ||
             this.$route.params.pageId !== this.currentPage.id)
         ) {
-          return [' dvs-bg-admin-highlight-bg dvs-text-admin-highlight-fg'];
+          return [' dvs-bg-admin-highlight-bg dvs-text-admin-highlight-fg']
         }
       }
 
-      return [];
+      return []
     },
     pollIfLoggedIn() {
       this.getLanguages().then(
         () => {},
         () => {
-          window.location.reload(true);
+          window.location.reload(true)
         }
-      );
+      )
     },
     deviseRootPortalContentChanged(content) {
       if (!content.passengers) {
-        this.hideDeviseRootPortal = true;
+        this.hideDeviseRootPortal = true
       } else {
-        this.hideDeviseRootPortal = false;
+        this.hideDeviseRootPortal = false
       }
     },
   },
-};
+}
 </script>

@@ -80,7 +80,7 @@
 
     td,
     th {
-      @apply border-2 border-gray-500;
+      @apply dvs-border-2 dvs-border-gray-500;
 
       min-width: 1em;
       padding: 3px 5px;
@@ -132,7 +132,7 @@
   }
 
   li {
-    @apply list-disc;
+    @apply dvs-list-disc;
   }
 }
 

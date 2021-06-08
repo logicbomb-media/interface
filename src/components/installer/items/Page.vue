@@ -12,11 +12,11 @@
         slices.
       </p>
       <p>
-        <strong>What a Layout Is:</strong> A layout blade file is a file that is intended to be
-        used across many pages. This way you don't have to set the &lt;head&gt;, Javascript
-        includes, style inclues, etc on every single page. Each page that is assigned that layout
-        extends it placing it's content where you see fit. We have provided a boilerplate for you
-        to the right. Copy the contents and save them to "/resources/views/main.blade.php".
+        <strong>What a Layout Is:</strong> A layout blade file is a file that is intended to be used
+        across many pages. This way you don't have to set the &lt;head&gt;, Javascript includes,
+        style inclues, etc on every single page. Each page that is assigned that layout extends it
+        placing it's content where you see fit. We have provided a boilerplate for you to the right.
+        Copy the contents and save them to "/resources/views/main.blade.php".
       </p>
 
       <p>
@@ -53,9 +53,9 @@
         <fieldset v-if="languages.length" class="dvs-fieldset dvs-mb-6">
           <label>Language</label>
           <select v-model="newPage.language_id" :disabled="item">
-            <option v-for="language in languages" :key="language.id" :value="language.id">{{
-              language.code
-            }}</option>
+            <option v-for="language in languages" :key="language.id" :value="language.id">
+              {{ language.code }}
+            </option>
           </select>
         </fieldset>
         <fieldset class="dvs-fieldset dvs-mb-6">
@@ -85,7 +85,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex'
 
 export default {
   components: {
@@ -150,21 +150,21 @@ export default {
           &lt;/body&gt;
         &lt;/html&gt;
         `,
-    };
+    }
   },
   computed: {
     ...mapState('devise', {
-      languages: state => state.languages.data,
+      languages: (state) => state.languages.data,
     }),
     layouts() {
-      return window.deviseSettings.$config.layouts;
+      return window.deviseSettings.$config.layouts
     },
   },
   methods: {
     ...mapActions('devise', ['createPage']),
     attemptCreatePage() {
-      this.createPage(this.newPage);
+      this.createPage(this.newPage)
     },
   },
-};
+}
 </script>

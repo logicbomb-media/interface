@@ -11,21 +11,21 @@
       @change="update"
     >
       <template slot="preview">
-        <span v-if="value.text === null || value.text === ''" class="dvs-italic"
-          >Currently No Value</span
-        >
+        <span v-if="value.text === null || value.text === ''" class="dvs-italic">
+          Currently No Value
+        </span>
         <div v-html="clipString(value.text, 200, false)"></div>
       </template>
       <template slot="editor">
-        <wysiwyg ref="editor" v-model="text" style="min-height:300px;"></wysiwyg>
+        <wysiwyg ref="editor" v-model="text" style="min-height: 300px"></wysiwyg>
       </template>
     </field-editor>
   </div>
 </template>
 
 <script>
-import Strings from '../../../mixins/Strings';
-import Field from '../../../mixins/Field';
+import Strings from '../../../mixins/Strings'
+import Field from '../../../mixins/Field'
 
 export default {
   name: 'WysiwygEditor',
@@ -53,35 +53,35 @@ export default {
       localValue: {},
       originalValue: null,
       showEditor: false,
-    };
+    }
   },
   computed: {
     text: {
       get() {
-        return this.value.text;
+        return this.value.text
       },
       set(value) {
-        const valueObj = Object.assign(this.value, { text: value });
-        this.$emit('input', valueObj);
-        this.$emit('change', valueObj);
+        const valueObj = Object.assign(this.value, { text: value })
+        this.$emit('input', valueObj)
+        this.$emit('change', valueObj)
       },
     },
   },
   mounted() {
-    this.originalValue = Object.assign({}, this.value);
-    this.localValue = this.value;
+    this.originalValue = Object.assign({}, this.value)
+    this.localValue = this.value
   },
   methods: {
     toggleEditor() {
-      this.showEditor = !this.showEditor;
+      this.showEditor = !this.showEditor
     },
     cancel() {
-      this.text = this.originalValue.text;
-      this.enabled = this.originalValue.enabled;
+      this.text = this.originalValue.text
+      this.enabled = this.originalValue.enabled
     },
     resetValue() {
-      this.text = '';
+      this.text = ''
     },
   },
-};
+}
 </script>

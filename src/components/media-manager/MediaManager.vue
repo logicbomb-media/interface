@@ -1,7 +1,16 @@
 <template>
   <div
     v-if="show"
-    class="dvs-min-h-screen dvs-fixed dvs-inset-0 dvs-flex dvs-justify-center dvs-items-center dvs-z-60 dvs-text-gray-500"
+    class="
+      dvs-min-h-screen
+      dvs-fixed
+      dvs-inset-0
+      dvs-flex
+      dvs-justify-center
+      dvs-items-center
+      dvs-z-60
+      dvs-text-gray-500
+    "
   >
     <div class="dvs-blocker dvs-z-30" @click="close"></div>
 
@@ -41,10 +50,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 
 // eslint-disable-next-line no-undef
-const Cookies = require('js-cookie');
+const Cookies = require('js-cookie')
 
 export default {
   components: {
@@ -67,21 +76,21 @@ export default {
       options: null,
       cookieSettings: false,
       imageSettings: {},
-    };
+    }
   },
   computed: {
     ...mapGetters('devise', ['files', 'directories', 'currentDirectory', 'searchableMedia']),
     currentFiles() {
       if (this.searchResults.length > 0) {
-        return this.searchResults;
+        return this.searchResults
       }
-      return this.files;
+      return this.files
     },
     uploadHeaders() {
-      const token = document.head.querySelector('meta[name="csrf-token"]');
+      const token = document.head.querySelector('meta[name="csrf-token"]')
       return {
         'X-CSRF-TOKEN': token.content,
-      };
+      }
     },
   },
   watch: {
@@ -89,41 +98,41 @@ export default {
       if (newValue === true) {
         this.$nextTick(() => {
           if (this.$refs.search) {
-            this.$refs.search.focus();
+            this.$refs.search.focus()
           }
-        });
+        })
       }
     },
-    cookieSettings: newValue => {
+    cookieSettings: (newValue) => {
       if (!newValue) {
-        Cookies.remove('devise-mediamanager-location');
-        Cookies.remove('devise-mediamanager-mode');
+        Cookies.remove('devise-mediamanager-location')
+        Cookies.remove('devise-mediamanager-mode')
       }
     },
     mode(newValue) {
       if (this.cookieSettings) {
-        Cookies.set('devise-mediamanager-mode', newValue);
+        Cookies.set('devise-mediamanager-mode', newValue)
       }
     },
   },
   mounted() {
-    this.startOpenerListener();
+    this.startOpenerListener()
   },
   methods: {
     setValue(value) {
       if (typeof this.target !== 'undefined') {
-        this.target.value = value;
+        this.target.value = value
       }
       if (typeof this.callback !== 'undefined') {
-        this.callback(value);
+        this.callback(value)
       }
-      this.close();
+      this.close()
     },
     selectedFile(file) {
       if (this.defaultImage === null) {
-        this.defaultImage = file;
+        this.defaultImage = file
       }
-      this.selectingFile = false;
+      this.selectingFile = false
 
       this.$nextTick(() => {
         if (
@@ -132,49 +141,49 @@ export default {
           typeof this.options === 'undefined' ||
           !this.options.sizes
         ) {
-          this.setValue(file.url);
+          this.setValue(file.url)
         }
-      });
+      })
     },
     startOpenerListener() {
       window.deviseSettings.$bus.$on(
         'devise-launch-media-manager',
         ({ target, callback, options }) => {
-          this.callback = callback;
-          this.target = target;
-          this.options = options;
+          this.callback = callback
+          this.target = target
+          this.options = options
 
-          this.show = true;
-          this.selectingFile = true;
+          this.show = true
+          this.selectingFile = true
         }
-      );
+      )
 
       window.deviseSettings.$bus.$on(
         'devise-launch-media-editor',
         ({ target, callback, options, image, settings }) => {
-          this.callback = callback;
-          this.target = target;
-          this.options = options;
-          this.imageSettings = settings;
+          this.callback = callback
+          this.target = target
+          this.options = options
+          this.imageSettings = settings
           this.defaultImage = {
             url: image,
             type: 'image',
-          };
+          }
 
-          this.show = true;
+          this.show = true
         }
-      );
+      )
     },
 
     close() {
-      this.selectingFile = false;
-      this.$set(this, 'defaultImage', null);
-      this.imageSettings = Object.assign({});
-      this.show = false;
+      this.selectingFile = false
+      this.$set(this, 'defaultImage', null)
+      this.imageSettings = Object.assign({})
+      this.show = false
     },
     selectSizeImage() {
-      this.selectingFile = true;
+      this.selectingFile = true
     },
   },
-};
+}
 </script>

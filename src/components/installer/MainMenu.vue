@@ -10,21 +10,22 @@
       <li>
         <a
           href="#nav-required"
-          class="dvs-no-underline dvs-text-gray-800 dvs-mb-4  dvs-font-bold dvs-block"
-          >Required</a
+          class="dvs-no-underline dvs-text-gray-800 dvs-mb-4 dvs-font-bold dvs-block"
         >
+          Required
+        </a>
         <ul class="dvs-ml-4">
           <li class="dvs-flex dvs-mb-4">
             <item-check :item="checklist.database" :size="15" class="dvs-mr-2"></item-check>
-            <a href="#nav-database-connection" class="dvs-no-underline dvs-text-gray-800"
-              >Database Connection</a
-            >
+            <a href="#nav-database-connection" class="dvs-no-underline dvs-text-gray-800">
+              Database Connection
+            </a>
           </li>
           <li class="dvs-flex dvs-mb-4">
             <item-check :item="checklist.migrations" :size="15" class="dvs-mr-2"></item-check>
-            <a href="#nav-database-migration" class="dvs-no-underline dvs-text-gray-800"
-              >Database Migration</a
-            >
+            <a href="#nav-database-migration" class="dvs-no-underline dvs-text-gray-800">
+              Database Migration
+            </a>
           </li>
           <li class="dvs-flex dvs-mb-4">
             <item-check :item="checklist.auth" :size="15" class="dvs-mr-2"></item-check>
@@ -48,9 +49,9 @@
           </li>
           <li class="dvs-flex dvs-mb-4">
             <item-check :item="checklist.image_library" :size="15" class="dvs-mr-2"></item-check>
-            <a href="#nav-image-library" class="dvs-no-underline dvs-text-gray-800"
-              >Image Library</a
-            >
+            <a href="#nav-image-library" class="dvs-no-underline dvs-text-gray-800">
+              Image Library
+            </a>
           </li>
         </ul>
       </li>
@@ -58,8 +59,9 @@
         <a
           href="#nav-suggested"
           class="dvs-no-underline dvs-text-gray-800 dvs-font-bold dvs-mb-4 dvs-block"
-          >Suggested</a
         >
+          Suggested
+        </a>
         <ul class="dvs-ml-4">
           <li class="dvs-flex dvs-mb-4">
             <a href="#nav-config" class="dvs-no-underline dvs-text-gray-800">Devise Config</a>
@@ -68,15 +70,17 @@
             <a
               href="#nav-remove-laravel-route"
               class="dvs-no-underline dvs-text-gray-800 dvs-mb-4 dvs-block"
-              >Remove Laravel Routes</a
             >
+              Remove Laravel Routes
+            </a>
           </li>
           <li>
             <a
               href="#nav-image-optimization"
               class="dvs-no-underline dvs-text-gray-800 dvs-mb-4 dvs-block"
-              >Image Optimization</a
             >
+              Image Optimization
+            </a>
             <ul>
               <li class="dvs-flex dvs-mb-4">
                 <item-check
@@ -84,9 +88,9 @@
                   :size="15"
                   class="dvs-mr-2"
                 ></item-check>
-                <a href="#nav-image-optimization" class="dvs-no-underline dvs-text-gray-800"
-                  >Gifsicle</a
-                >
+                <a href="#nav-image-optimization" class="dvs-no-underline dvs-text-gray-800">
+                  Gifsicle
+                </a>
               </li>
               <li class="dvs-flex dvs-mb-4">
                 <item-check
@@ -94,9 +98,9 @@
                   :size="15"
                   class="dvs-mr-2"
                 ></item-check>
-                <a href="#nav-image-optimization" class="dvs-no-underline dvs-text-gray-800"
-                  >Jpegoptim</a
-                >
+                <a href="#nav-image-optimization" class="dvs-no-underline dvs-text-gray-800">
+                  Jpegoptim
+                </a>
               </li>
               <li class="dvs-flex dvs-mb-4">
                 <item-check
@@ -104,9 +108,9 @@
                   :size="15"
                   class="dvs-mr-2"
                 ></item-check>
-                <a href="#nav-image-optimization" class="dvs-no-underline dvs-text-gray-800"
-                  >Optipng</a
-                >
+                <a href="#nav-image-optimization" class="dvs-no-underline dvs-text-gray-800">
+                  Optipng
+                </a>
               </li>
               <li class="dvs-flex dvs-mb-4">
                 <item-check
@@ -114,9 +118,9 @@
                   :size="15"
                   class="dvs-mr-2"
                 ></item-check>
-                <a href="#nav-image-optimization" class="dvs-no-underline dvs-text-gray-800"
-                  >Pngquant</a
-                >
+                <a href="#nav-image-optimization" class="dvs-no-underline dvs-text-gray-800">
+                  Pngquant
+                </a>
               </li>
               <li class="dvs-flex dvs-mb-4">
                 <item-check
@@ -124,9 +128,9 @@
                   :size="15"
                   class="dvs-mr-2"
                 ></item-check>
-                <a href="#nav-image-optimization" class="dvs-no-underline dvs-text-gray-800"
-                  >Svgo</a
-                >
+                <a href="#nav-image-optimization" class="dvs-no-underline dvs-text-gray-800">
+                  Svgo
+                </a>
               </li>
             </ul>
           </li>
@@ -147,5 +151,5 @@ export default {
       required: true,
     },
   },
-};
+}
 </script>

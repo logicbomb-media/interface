@@ -21,11 +21,11 @@
         <div
           v-if="mode === 'contactSheet'"
           class="dvs-overflow-hidden dvs-text-center"
-          style="width:100px;height:105px"
+          style="width: 100px; height: 105px"
         >
           <img
             :src="`/styled/preview/${file.url}?w=100&h=100&fit=crop`"
-            style="min-width:75px;height:75px"
+            style="min-width: 75px; height: 75px"
           />
           <div class="dvs-text-xs dvs-font-bold dvs-px-2">{{ file.name }}</div>
         </div>
@@ -33,9 +33,7 @@
         <!-- Thumbnails Mode -->
         <div v-else-if="mode === 'thumbnails'" class="p-1 flex-grow">
           <div
-            :style="
-              `height: 300px; background-size:cover;background-image:url('${`/styled/preview/${file.url}?w=300&h=300&q=100&sharp=2`}')`
-            "
+            :style="`height: 300px; background-size:cover;background-image:url('${`/styled/preview/${file.url}?w=300&h=300&q=100&sharp=2`}')`"
           ></div>
         </div>
 
@@ -43,7 +41,7 @@
         <div v-else class="dvs-w-full dvs-flex dvs-items-center">
           <img
             :src="`/styled/preview/${file.url}?w=100&h=100`"
-            style="min-width:75px;height:75px"
+            style="min-width: 75px; height: 75px"
           />
           <div class="dvs-px-4 dvs-font-bold">{{ file.name }}</div>
         </div>
@@ -69,20 +67,20 @@ export default {
   computed: {
     indexStyles() {
       if (this.mode === 'thumbnails') {
-        return { minWidth: '300px' };
+        return { minWidth: '300px' }
       }
-      return {};
+      return {}
     },
   },
   methods: {
     openFile(file) {
-      this.$emit('openFile', file);
+      this.$emit('openFile', file)
     },
     selectSourceFile(file) {
-      this.$emit('selectedfile', file);
+      this.$emit('selectedfile', file)
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped></style>

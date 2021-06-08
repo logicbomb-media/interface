@@ -1,31 +1,31 @@
-import Vue from 'vue';
+import Vue from 'vue'
 
 export default {
-  bind (el, binding) {
-    const clickHandler = function clickHandler () {
-      const deviseAdmin = document.querySelector('#devise-admin');
-      const newEl = document.createElement('devise-confirm');
-      const insertedElement = deviseAdmin.parentNode.insertBefore(newEl, deviseAdmin.nextSibling);
+  bind(el, binding) {
+    const clickHandler = function clickHandler() {
+      const deviseAdmin = document.querySelector('#devise-admin')
+      const newEl = document.createElement('devise-confirm')
+      const insertedElement = deviseAdmin.parentNode.insertBefore(newEl, deviseAdmin.nextSibling)
 
       const Confirm = Vue.extend({
-        data () {
+        data() {
           return {
             clicks: 0,
             show: true,
-          };
+          }
         },
         methods: {
-          ok () {
-            binding.value.callback(binding.value.arguments);
-            this.close();
+          ok() {
+            binding.value.callback(binding.value.arguments)
+            this.close()
           },
-          cancel () {
-            this.close();
+          cancel() {
+            this.close()
           },
-          close () {
-            this.show = false;
-            el.removeEventListener('click', clickHandler, true);
-            insertedElement.remove();
+          close() {
+            this.show = false
+            el.removeEventListener('click', clickHandler, true)
+            insertedElement.remove()
           },
         },
         template: `
@@ -41,11 +41,11 @@ export default {
           </div>
         </div>
         `,
-      });
+      })
 
-      new Confirm().$mount(insertedElement);
-    };
+      new Confirm().$mount(insertedElement)
+    }
 
-    el.addEventListener('click', clickHandler);
+    el.addEventListener('click', clickHandler)
   },
-};
+}

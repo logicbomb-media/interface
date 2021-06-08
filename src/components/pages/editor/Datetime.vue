@@ -9,21 +9,23 @@
     @change="update"
   >
     <template slot="preview">
-      <span v-if="value.text === null || value.text === ''" class="dvs-italic">Currently No Value</span>
-      <div>{{value.text}}</div>
+      <span v-if="value.text === null || value.text === ''" class="dvs-italic">
+        Currently No Value
+      </span>
+      <div>{{ value.text }}</div>
     </template>
 
     <template slot="editor">
       <fieldset class="dvs-fieldset">
-        <date-picker ref="datepicker" v-model="text" :settings="settings"/>
+        <date-picker ref="datepicker" v-model="text" :settings="settings" />
       </fieldset>
     </template>
   </field-editor>
 </template>
 
 <script>
-import DatePicker from '../../utilities/DatePicker.vue';
-import Field from '../../../mixins/Field';
+import DatePicker from '../../utilities/DatePicker.vue'
+import Field from '../../../mixins/Field'
 
 export default {
   name: 'DatetimeEditor',
@@ -47,59 +49,58 @@ export default {
       showEditor: false,
       settings: { date: true, time: false },
       originalValue: {},
-    };
+    }
   },
   computed: {
     text: {
       get() {
-        return this.value.text;
+        return this.value.text
       },
       set(value) {
-        const valueObj = Object.assign(this.value, { text: value });
-        this.$emit('input', valueObj);
-        this.$emit('change', valueObj);
+        const valueObj = Object.assign(this.value, { text: value })
+        this.$emit('input', valueObj)
+        this.$emit('change', valueObj)
       },
     },
     getMaxLength() {
       if (typeof this.settings !== 'undefined' && typeof this.settings.maxlength !== 'undefined') {
-        return this.settings.maxlength;
+        return this.settings.maxlength
       }
-      return '';
+      return ''
     },
   },
   mounted() {
-    this.setSettings();
+    this.setSettings()
   },
   methods: {
     setSettings() {
       if (this.options && this.options.settings) {
-        const { settings } = this.options;
+        const { settings } = this.options
         if (settings.date) {
-          this.settings.date = settings.date;
+          this.settings.date = settings.date
         }
 
         if (settings.time) {
-          this.settings.time = settings.time;
+          this.settings.time = settings.time
         }
 
         if (settings.format) {
-          this.settings.format = settings.format;
+          this.settings.format = settings.format
         }
       }
     },
     toggleEditor() {
-      this.originalValue = Object.assign({}, this.value);
-      this.showEditor = !this.showEditor;
+      this.originalValue = Object.assign({}, this.value)
+      this.showEditor = !this.showEditor
     },
     cancel() {
-      this.text = this.originalValue.text;
-      this.enabled = this.originalValue.enabled;
+      this.text = this.originalValue.text
+      this.enabled = this.originalValue.enabled
     },
     resetValue() {
-      this.enabled = false;
-      this.text = null;
+      this.enabled = false
+      this.text = null
     },
   },
-
-};
+}
 </script>

@@ -3,7 +3,18 @@
     <transition name="fast-fade">
       <div
         v-if="file"
-        class="dvs-flex dvs-p-4 dvs-overflow-hidden dvs-fixed dvs-absolute-center dvs-z-50 dvs-bg-white dvs-p-8 dvs-rounded dvs-shadow-lg"
+        class="
+          dvs-flex
+          dvs-p-4
+          dvs-overflow-hidden
+          dvs-fixed
+          dvs-absolute-center
+          dvs-z-50
+          dvs-bg-white
+          dvs-p-8
+          dvs-rounded
+          dvs-shadow-lg
+        "
       >
         <div
           class="dvs-absolute z-10 dvs-top-0 dvs-right-0 dvs-mt-4 dvs-mr-4 dvs-cursor-pointer"
@@ -88,9 +99,9 @@
             <h6 class="dvs-my-2 dvs-text-sm">Appears On</h6>
             <ul>
               <li v-for="field in file.fields" :key="field.id" class="dvs-py-2">
-                <a :href="field.page_slug" target="_blank" class="dvs-btn dvs-btn-sm"
-                  >{{ field.page_title }} - {{ field.field_name }}</a
-                >
+                <a :href="field.page_slug" target="_blank" class="dvs-btn dvs-btn-sm">
+                  {{ field.page_title }} - {{ field.field_name }}
+                </a>
               </li>
             </ul>
           </template>
@@ -101,7 +112,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 
 export default {
   name: 'DeviseOpenMediaFile',
@@ -110,8 +121,7 @@ export default {
       import(/* webpackChunkName: "devise-utilities" */ '../../utilities/LoadingScreen.vue'),
     TrashIcon: () =>
       import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/TrashIcon'),
-    CloseIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
+    CloseIcon: () => import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
     LinkIcon: () =>
       import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/LinkIcon'),
     DownloadIcon: () =>
@@ -126,26 +136,26 @@ export default {
   methods: {
     ...mapActions('devise', ['saveCaption', 'deleteFile']),
     selectSourceFile(file) {
-      this.$emit('selectSourceFile', file);
+      this.$emit('selectSourceFile', file)
     },
     requestSaveCaption(file) {
       const payload = {
         image: file.url,
         alt_text: file.alt,
-      };
-      this.saveCaption(payload);
+      }
+      this.saveCaption(payload)
     },
     confirmedDeleteFile(file) {
       this.deleteFile(file).then(() => {
-        this.$emit('fileDeleted');
-      });
+        this.$emit('fileDeleted')
+      })
     },
     closeFile() {
-      this.$emit('close');
+      this.$emit('close')
     },
     isActive(file) {
-      return file.used_count > 0;
+      return file.used_count > 0
     },
   },
-};
+}
 </script>

@@ -2,8 +2,17 @@
   <div
     id="dvs-admin-content-container"
     ref="admin-route-wrapper"
-    class="dvs-relative dvs-max-w-1/2 dvs-self-center dvs-shadow-lg dvs-bg-admin-bg dvs-text-admin-fg dvs-rounded dvs-pointer-events-auto"
-    style="min-width:400px"
+    class="
+      dvs-relative
+      dvs-max-w-1/2
+      dvs-self-center
+      dvs-shadow-lg
+      dvs-bg-admin-bg
+      dvs-text-admin-fg
+      dvs-rounded
+      dvs-pointer-events-auto
+    "
+    style="min-width: 400px"
   >
     <vue-scrollbar ref="Scrollbar" class="dvs-max-h-screenpad">
       <div>
@@ -54,7 +63,18 @@
                     class="dvs-mr-2"
                   />
                   <button
-                    class="dvs-rounded dvs-btn dvs-btn-primary dvs-btn-sm dvs-flex dvs-justify-center dvs-items-center dvs-uppercase dvs-text-xs dvs-font-bold"
+                    class="
+                      dvs-rounded
+                      dvs-btn
+                      dvs-btn-primary
+                      dvs-btn-sm
+                      dvs-flex
+                      dvs-justify-center
+                      dvs-items-center
+                      dvs-uppercase
+                      dvs-text-xs
+                      dvs-font-bold
+                    "
                     @click="timeTravel"
                   >
                     Go
@@ -104,8 +124,9 @@
                 <label
                   class="dvs-mb-2 dvs-cursor-pointer"
                   @click="additionalSettingsOpen = !additionalSettingsOpen"
-                  >Additional Page Settings</label
                 >
+                  Additional Page Settings
+                </label>
               </fieldset>
 
               <slice-editor-fields
@@ -139,17 +160,48 @@
 
           <div
             v-if="can('manage slices')"
-            class="dvs-absolute dvs-bottom-0 dvs-left-0 dvs-right-0 dvs-mb-3 dvs-flex dvs-justify-around dvs-items-stretch dvs-p-2 dvs-px-8"
+            class="
+              dvs-absolute
+              dvs-bottom-0
+              dvs-left-0
+              dvs-right-0
+              dvs-mb-3
+              dvs-flex
+              dvs-justify-around
+              dvs-items-stretch
+              dvs-p-2
+              dvs-px-8
+            "
           >
             <button
-              class="dvs-btn dvs-btn-sm dvs-btn-primary dvs-w-2/5 dvs-mr-2 dvs-flex dvs-justify-center dvs-items-center"
+              class="
+                dvs-btn
+                dvs-btn-sm
+                dvs-btn-primary
+                dvs-w-2/5
+                dvs-mr-2
+                dvs-flex
+                dvs-justify-center
+                dvs-items-center
+              "
               @click.prevent="requestSavePage()"
             >
               <refresh-icon v-if="saving" w="15" h="15" class="dvs-mr-2 dvs-rotate-ccw" />Save Page
             </button>
 
             <button
-              class="dvs-btn dvs-btn-sm dvs-btn-secondary dvs-w-3/5 dvs-flex dvs-justify-center dvs-items-center dvs-uppercase dvs-font-bold dvs-w-2/5"
+              class="
+                dvs-btn
+                dvs-btn-sm
+                dvs-btn-secondary
+                dvs-w-3/5
+                dvs-flex
+                dvs-justify-center
+                dvs-items-center
+                dvs-uppercase
+                dvs-font-bold
+                dvs-w-2/5
+              "
               @click.prevent="requestAddSlice"
             >
               Add Slice
@@ -162,12 +214,12 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
-import DatePicker from '../utilities/DatePicker.vue';
-import Strings from '../../mixins/Strings';
+import { mapGetters, mapActions } from 'vuex'
+import DatePicker from '../utilities/DatePicker.vue'
+import Strings from '../../mixins/Strings'
 
 // eslint-disable-next-line no-undef
-const queryString = require('query-string');
+const queryString = require('query-string')
 
 export default {
   name: 'PageEditor',
@@ -194,23 +246,23 @@ export default {
       timeTravelDate: null,
       additionalSettingsOpen: false,
       queryString,
-    };
+    }
   },
   computed: {
     ...mapGetters('devise', ['currentPage', 'sliceConfig']),
     currentPageSlices() {
-      return this.currentPage.slices;
+      return this.currentPage.slices
     },
     additionalPageSettings() {
       if (window.deviseSettings.$config.additionalPageSettings) {
         const site = window.deviseSettings.$config.additionalPageSettings.find(
-          s => s.siteId === this.currentPage.site_id
-        );
+          (s) => s.siteId === this.currentPage.site_id
+        )
         if (site) {
-          return site.fields;
+          return site.fields
         }
       }
-      return false;
+      return false
     },
   },
   mounted() {
@@ -219,169 +271,169 @@ export default {
         {},
         this.additionalPageSettings,
         this.currentPage.settings.fields
-      );
+      )
     }
 
     setTimeout(() => {
       this.$watch(
         'currentPage',
         () => {
-          window.onbeforeunload = () => 'Changes you made may not be saved';
+          window.onbeforeunload = () => 'Changes you made may not be saved'
         },
         { deep: true }
-      );
-    }, 1000);
+      )
+    }, 1000)
   },
   methods: {
     ...mapActions('devise', ['savePage', 'setDevMode']),
     requestSavePage() {
-      this.saving = true;
+      this.saving = true
       this.savePage({ page: this.currentPage })
-        .then(response => {
+        .then((response) => {
           // If someone else saved before we saved
           if (response === 480) {
-            window.deviseSettings.$bus.$emit('showForceSave');
+            window.deviseSettings.$bus.$emit('showForceSave')
           } else {
-            window.onbeforeunload = null;
+            window.onbeforeunload = null
           }
         })
         .finally(() => {
-          this.saving = false;
-          this.recalculateScroll();
-        });
+          this.saving = false
+          this.recalculateScroll()
+        })
     },
 
     goToEditPage() {
       this.$router.push({
         name: 'devise-pages-admin',
         params: { workflowKey: 'jumpto-edit-page', pageId: this.currentPage.id },
-      });
+      })
     },
 
     toggleSlice(slice) {
       if (slice.metadata.open) {
-        this.closeSlice(slice);
+        this.closeSlice(slice)
       } else {
-        this.openSlice(slice);
+        this.openSlice(slice)
       }
     },
     openSlice(sliceToOpen) {
-      this.currentPage.slices.map(s => this.closeSlice(s));
-      this.$set(sliceToOpen.metadata, 'open', true);
+      this.currentPage.slices.map((s) => this.closeSlice(s))
+      this.$set(sliceToOpen.metadata, 'open', true)
     },
     closeSlice(slice) {
-      this.$set(slice.metadata, 'open', false);
+      this.$set(slice.metadata, 'open', false)
     },
     requestAddSlice() {
-      this.createSlice = true;
+      this.createSlice = true
     },
     addSlice(newSlice, referenceSlice) {
       if (typeof referenceSlice !== 'undefined') {
-        const config = this.sliceConfig(referenceSlice);
+        const config = this.sliceConfig(referenceSlice)
         if (config.has_child_slot === true) {
           if (typeof referenceSlice.slices === 'undefined') {
-            this.$set(referenceSlice, 'slices', []);
+            this.$set(referenceSlice, 'slices', [])
           }
-          referenceSlice.slices.push(newSlice);
+          referenceSlice.slices.push(newSlice)
         }
       } else {
         if (newSlice.metadata.has_child_slot === true) {
           if (typeof newSlice.slices === 'undefined') {
-            this.$set(newSlice, 'slices', []);
+            this.$set(newSlice, 'slices', [])
           }
         }
-        this.currentPage.slices.push(newSlice);
+        this.currentPage.slices.push(newSlice)
       }
 
-      this.createSlice = false;
+      this.createSlice = false
     },
     findReferenceSliceInSlices(slices, referenceSlice) {
       /* eslint-disable array-callback-return,consistent-return */
-      return slices.find(slice => {
-        if (slice === referenceSlice) return slice;
-        if (slice.slices) return this.findReferenceSliceInSlices(slice.slices, referenceSlice);
-      });
+      return slices.find((slice) => {
+        if (slice === referenceSlice) return slice
+        if (slice.slices) return this.findReferenceSliceInSlices(slice.slices, referenceSlice)
+      })
       // this.currentPage.slices[this.currentPage.slices.indexOf(referenceSlice)]
     },
     editSlice(editedSlice, referenceSlice) {
       if (editedSlice.metadata.has_child_slot) {
-        editedSlice.slices = referenceSlice.slices;
+        editedSlice.slices = referenceSlice.slices
       }
 
       this.currentPage.slices.splice(
         this.currentPage.slices.indexOf(referenceSlice),
         1,
         editedSlice
-      );
+      )
     },
     setSubSliceInstaceToZero(slices) {
       for (let i = 0; i < slices.length; i += 1) {
-        slices[i].metadata.instance_id = 0;
+        slices[i].metadata.instance_id = 0
 
         if (typeof slices[i].slices === 'object' && slices[i].slices.length > 0) {
-          slices[i].slices = this.setSubSliceInstaceToZero(slices[i].slices);
+          slices[i].slices = this.setSubSliceInstaceToZero(slices[i].slices)
         }
       }
 
-      return slices;
+      return slices
     },
     copySlice(sliceToCopy, referenceSlice) {
       if (referenceSlice === null) {
-        referenceSlice = this.currentPage;
+        referenceSlice = this.currentPage
       }
 
-      const newSlice = JSON.parse(JSON.stringify(sliceToCopy));
-      newSlice.metadata.instance_id = 0;
+      const newSlice = JSON.parse(JSON.stringify(sliceToCopy))
+      newSlice.metadata.instance_id = 0
 
       if (typeof newSlice.slices === 'object' && newSlice.slices.length > 0) {
-        newSlice.slices = this.setSubSliceInstaceToZero(newSlice.slices);
+        newSlice.slices = this.setSubSliceInstaceToZero(newSlice.slices)
       }
 
-      referenceSlice.slices.push(newSlice);
+      referenceSlice.slices.push(newSlice)
     },
     removeSlice(deletingSlice, referenceSlice) {
       if (typeof referenceSlice === 'undefined') {
-        referenceSlice = this.currentPage;
+        referenceSlice = this.currentPage
       }
-      referenceSlice.slices.splice(referenceSlice.slices.indexOf(deletingSlice), 1);
+      referenceSlice.slices.splice(referenceSlice.slices.indexOf(deletingSlice), 1)
     },
     selectVersion(e) {
       if (e.target.value === 'timetravel') {
-        this.showTimeTravel = true;
-        return false;
+        this.showTimeTravel = true
+        return false
       }
 
-      const versionId = parseInt(e.target.value, 0);
-      const currentHref = document.location.href;
+      const versionId = parseInt(e.target.value, 0)
+      const currentHref = document.location.href
 
-      let newHref = '';
+      let newHref = ''
 
       if (currentHref.includes('version_id')) {
-        newHref = currentHref.replace(/(version_id=[0-9]*)/g, `version_id=${versionId}`);
-        document.location.href = newHref;
-        return true;
+        newHref = currentHref.replace(/(version_id=[0-9]*)/g, `version_id=${versionId}`)
+        document.location.href = newHref
+        return true
       }
-      newHref = currentHref;
-      newHref = newHref.includes('?') ? `${newHref}&` : `${newHref}?`;
-      document.location.href = `${newHref}version_id=${versionId}`;
-      return true;
+      newHref = currentHref
+      newHref = newHref.includes('?') ? `${newHref}&` : `${newHref}?`
+      document.location.href = `${newHref}version_id=${versionId}`
+      return true
     },
     timeTravel() {
       const travelObj = {
         time_travel_to: this.timeTravelDate,
-      };
-      const stringified = this.queryString.stringify(travelObj);
-      document.location.search = stringified;
-      return true;
+      }
+      const stringified = this.queryString.stringify(travelObj)
+      document.location.search = stringified
+      return true
     },
     recalculateScroll() {
       this.$nextTick(() => {
         if (typeof this.$refs.Scrollbar !== 'undefined') {
-          this.$refs.Scrollbar.calculateSize();
-          this.$refs.Scrollbar.scrollToY(0);
+          this.$refs.Scrollbar.calculateSize()
+          this.$refs.Scrollbar.scrollToY(0)
         }
-      });
+      })
     },
   },
-};
+}
 </script>

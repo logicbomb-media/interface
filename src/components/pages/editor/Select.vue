@@ -9,27 +9,17 @@
     @change="update"
   >
     <template slot="preview">
-      <span
-        v-if="value.value === null || value.value === ''"
-        class="dvs-italic"
-      >Currently No Value</span>
+      <span v-if="value.value === null || value.value === ''" class="dvs-italic">
+        Currently No Value
+      </span>
     </template>
     <template slot="editor">
       <fieldset class="dvs-fieldset">
-        <select
-          ref="focusInput"
-          v-model="selectValue"
-          class="dvs-w-full"
-        >
-          <option
-            v-if="options.allowNull"
-            :value="null"
-          >No Selection</option>
-          <option
-            v-for="(option, key) in options.options"
-            :key="key"
-            :value="key"
-          >{{ option }}</option>
+        <select ref="focusInput" v-model="selectValue" class="dvs-w-full">
+          <option v-if="options.allowNull" :value="null">No Selection</option>
+          <option v-for="(option, key) in options.options" :key="key" :value="key">
+            {{ option }}
+          </option>
         </select>
       </fieldset>
     </template>
@@ -37,8 +27,8 @@
 </template>
 
 <script>
-import Strings from '../../../mixins/Strings';
-import Field from '../../../mixins/Field';
+import Strings from '../../../mixins/Strings'
+import Field from '../../../mixins/Field'
 
 export default {
   name: 'SelectEditor',
@@ -56,7 +46,7 @@ export default {
       required: true,
     },
   },
-  data () {
+  data() {
     return {
       localValue: {
         label: null,
@@ -64,64 +54,64 @@ export default {
       },
       originalValue: null,
       showEditor: false,
-    };
+    }
   },
   computed: {
     label: {
-      get () {
+      get() {
         if (this.selectValue !== null) {
-          return this.options.options[this.selectValue];
+          return this.options.options[this.selectValue]
         }
-        return 'Select';
+        return 'Select'
       },
-      set (value) {
-        const valueObj = Object.assign(this.value, { text: value });
-        this.$emit('input', valueObj);
-        this.$emit('change', valueObj);
+      set(value) {
+        const valueObj = Object.assign(this.value, { text: value })
+        this.$emit('input', valueObj)
+        this.$emit('change', valueObj)
       },
     },
     selectValue: {
-      get () {
+      get() {
         if (this.value.value === '' || !this.value.value) {
-          return null;
+          return null
         }
-        return this.value.value;
+        return this.value.value
       },
-      set (newSelectValue) {
-        const valueObj = Object.assign(this.value, { value: newSelectValue });
-        this.$emit('input', valueObj);
-        this.$emit('change', valueObj);
+      set(newSelectValue) {
+        const valueObj = Object.assign(this.value, { value: newSelectValue })
+        this.$emit('input', valueObj)
+        this.$emit('change', valueObj)
       },
     },
   },
-  mounted () {
-    this.originalValue = Object.assign({}, this.value);
-    this.localValue = this.value;
+  mounted() {
+    this.originalValue = Object.assign({}, this.value)
+    this.localValue = this.value
   },
   methods: {
-    toggleEditor () {
-      this.showEditor = !this.showEditor;
-      this.focusForm();
+    toggleEditor() {
+      this.showEditor = !this.showEditor
+      this.focusForm()
     },
-    focusForm () {
+    focusForm() {
       if (this.showEditor) {
         this.$nextTick(() => {
           setTimeout(() => {
-            this.$refs.focusInput.focus();
-          }, 200);
-        });
+            this.$refs.focusInput.focus()
+          }, 200)
+        })
       }
     },
-    cancel () {
-      this.selectValue = this.originalValue.value;
-      this.label = this.originalValue.label;
-      this.enabled = this.originalValue.enabled;
+    cancel() {
+      this.selectValue = this.originalValue.value
+      this.label = this.originalValue.label
+      this.enabled = this.originalValue.enabled
     },
-    resetValue () {
-      this.enabled = false;
-      this.label = null;
-      this.selectValue = null;
+    resetValue() {
+      this.enabled = false
+      this.label = null
+      this.selectValue = null
     },
   },
-};
+}
 </script>

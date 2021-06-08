@@ -9,27 +9,21 @@
     @change="update"
   >
     <template slot="preview">
-      <span
-        v-if="checked === null || checked === ''"
-        class="dvs-italic"
-      >Currently No Value</span>
+      <span v-if="checked === null || checked === ''" class="dvs-italic"> Currently No Value </span>
       <div>{{ checked ? 'On' : 'Off' }}</div>
     </template>
 
     <template slot="editor">
       <div class="dvs-flex dvs-items-center">
-        <toggle
-          :id="randomString(8)"
-          v-model="checked"
-        ></toggle>
+        <toggle :id="randomString(8)" v-model="checked"></toggle>
       </div>
     </template>
   </field-editor>
 </template>
 
 <script>
-import Strings from '../../../mixins/Strings';
-import Field from '../../../mixins/Field';
+import Strings from '../../../mixins/Strings'
+import Field from '../../../mixins/Field'
 
 export default {
   name: 'CheckboxEditor',
@@ -48,41 +42,41 @@ export default {
       required: true,
     },
   },
-  data () {
+  data() {
     return {
       originalValue: null,
       showEditor: false,
-    };
+    }
   },
   computed: {
     checked: {
-      get () {
+      get() {
         if (this.value) {
-          return this.value.checked;
+          return this.value.checked
         }
         if (this.options && this.options.default) {
-          return this.options.default.checked;
+          return this.options.default.checked
         }
-        return false;
+        return false
       },
-      set (value) {
-        const valueObj = Object.assign({}, this.value, { checked: value });
-        this.$emit('input', valueObj);
-        this.$emit('change', valueObj);
+      set(value) {
+        const valueObj = Object.assign({}, this.value, { checked: value })
+        this.$emit('input', valueObj)
+        this.$emit('change', valueObj)
       },
     },
   },
-  mounted () {
-    this.originalValue = Object.assign({}, this.value);
+  mounted() {
+    this.originalValue = Object.assign({}, this.value)
   },
   methods: {
-    toggleEditor () {
-      this.showEditor = !this.showEditor;
+    toggleEditor() {
+      this.showEditor = !this.showEditor
     },
-    cancel () {
-      this.checked = this.originalValue.checked;
-      this.enabled = this.originalValue.enabled;
+    cancel() {
+      this.checked = this.originalValue.checked
+      this.enabled = this.originalValue.enabled
     },
   },
-};
+}
 </script>

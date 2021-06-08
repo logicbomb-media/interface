@@ -1,7 +1,7 @@
-@import './../../node_modules/flatpickr/dist/flatpickr.min.css';
-@import './../../node_modules/izitoast/dist/css/iziToast.css';
-@import './../../node_modules/cropperjs/dist/cropper.min.css';
-@import './../../node_modules/vue2-scrollbar/dist/style/vue2-scrollbar.css';
+@import '/node_modules/flatpickr/dist/flatpickr.min.css';
+@import '/node_modules/izitoast/dist/css/iziToast.css';
+@import '/node_modules/cropperjs/dist/cropper.min.css';
+@import '/node_modules/vue2-scrollbar/dist/style/vue2-scrollbar.css';
 
 .vue-scrollbar__wrapper {
   @apply dvs-bg-transparent;
@@ -25,8 +25,10 @@
   backface-visibility: hidden;
   -webkit-transform: rotate3d(0, 0, 0, 0);
   transform: rotate3d(0, 0, 0, 0);
-  -webkit-transition: background-color 100ms ease-out, margin 100ms ease-out, height 100ms ease-out;
-  transition: background-color 100ms ease-out, margin 100ms ease-out, height 100ms ease-out;
+  -webkit-transition: background-color 100ms ease-out, margin 100ms ease-out,
+    height 100ms ease-out;
+  transition: background-color 100ms ease-out, margin 100ms ease-out,
+    height 100ms ease-out;
   background-color: rgba(48, 121, 244, 0.1);
   margin: 5px 5px 5px 0;
   border-radius: 20px;

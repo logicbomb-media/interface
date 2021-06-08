@@ -9,9 +9,9 @@
           <fieldset class="dvs-fieldset dvs-mb-4">
             <label>Site to copy to</label>
             <select v-model="siteToCopyTo" class="dvs-w-full" @change="clearSearch">
-              <option v-for="site in sites.data" :key="site.id" :value="site.id">{{
-                site.name
-              }}</option>
+              <option v-for="site in sites.data" :key="site.id" :value="site.id">
+                {{ site.name }}
+              </option>
             </select>
           </fieldset>
 
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'CopySliceToPage',
@@ -75,50 +75,50 @@ export default {
       searchResults: [],
       siteToCopyTo: null,
       pageToCopyTo: {},
-    };
+    }
   },
   computed: {
     ...mapState('devise', ['sites']),
   },
   mounted() {
-    this.siteToCopyTo = this.currentPage.site.id;
+    this.siteToCopyTo = this.currentPage.site.id
   },
   methods: {
     ...mapActions('devise', ['searchPageVersions', 'copyPageSlice']),
     requestSearch() {
       this.searchPageVersions({ term: this.searchTerm, site_id: this.siteToCopyTo }).then(
-        results => {
-          this.searchResults = [];
+        (results) => {
+          this.searchResults = []
           for (const id in results.data) {
             if (results.data[id]) {
-              const result = results.data[id];
+              const result = results.data[id]
               if (result.site_id === this.siteToCopyTo) {
-                this.searchResults.push(result);
+                this.searchResults.push(result)
               }
             }
           }
         }
-      );
+      )
     },
     selectPage(page) {
-      this.pageToCopyTo = Object.assign({}, page);
-      this.clearSearch();
+      this.pageToCopyTo = Object.assign({}, page)
+      this.clearSearch()
     },
     confirmCopy() {
       this.copyPageSlice({
         copy_slice_id: this.slice.metadata.instance_id,
         page_version_id: this.pageToCopyTo.id,
       }).then(() => {
-        this.close();
-      });
+        this.close()
+      })
     },
     clearSearch() {
-      this.searchResults = [];
-      this.searchTerm = '';
+      this.searchResults = []
+      this.searchTerm = ''
     },
     close() {
-      this.$emit('close');
+      this.$emit('close')
     },
   },
-};
+}
 </script>

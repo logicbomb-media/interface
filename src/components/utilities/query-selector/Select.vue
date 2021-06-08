@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 
 export default {
   name: 'DeviseQuerySelectorSelect',
@@ -21,7 +21,7 @@ export default {
     value: {
       type: Object,
       default: () => {
-        return { value: null, label: '' };
+        return { value: null, label: '' }
       },
     },
     modelQuerySettings: {
@@ -32,36 +32,36 @@ export default {
   data() {
     return {
       apiOptions: [],
-    };
+    }
   },
   computed: {
     options() {
       if (this.modelQuerySettings.options) {
-        return this.modelQuerySettings.options;
+        return this.modelQuerySettings.options
       }
-      return this.apiOptions;
+      return this.apiOptions
     },
   },
   mounted() {
     if (this.modelQuerySettings.api) {
-      this.requestOptions();
+      this.requestOptions()
     }
   },
   methods: {
     ...mapActions('devise', ['getGeneric']),
 
     updateValue(e) {
-      const newValue = e.target.value;
-      this.$emit('input', newValue);
+      const newValue = e.target.value
+      this.$emit('input', newValue)
     },
 
     requestOptions() {
       this.getGeneric({
         config: { app: true, apiendpoint: this.modelQuerySettings.api },
-      }).then(results => {
-        this.apiOptions = results.data;
-      });
+      }).then((results) => {
+        this.apiOptions = results.data
+      })
     },
   },
-};
+}
 </script>

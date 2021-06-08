@@ -8,7 +8,18 @@
     ></div>
     <div class="dvs-relative">
       <div
-        class="dvs-cursor-pointer dvs-text-xs dvs-border dvs-rounded dvs-flex dvs-flex-wrap dvs-justify-center dvs-items-center dvs-p-2 dvs-m-1"
+        class="
+          dvs-cursor-pointer
+          dvs-text-xs
+          dvs-border
+          dvs-rounded
+          dvs-flex
+          dvs-flex-wrap
+          dvs-justify-center
+          dvs-items-center
+          dvs-p-2
+          dvs-m-1
+        "
         :class="{ 'dvs-bg-gray-400': showControl }"
         @click="toggleShowControl"
       >
@@ -17,7 +28,7 @@
       <div
         v-if="showControl"
         class="dvs-absolute dvs-text-sm dvs-bg-white dvs-rounded dvs-p-4 dvs-shadow dvs-z-20"
-        style="min-width:200px;"
+        style="min-width: 200px"
       >
         <slot name="control" :toggle-show-control="toggleShowControl"></slot>
       </div>
@@ -37,22 +48,22 @@ export default {
   data() {
     return {
       showControl: false,
-    };
+    }
   },
   computed: {
     edits: {
       get() {
-        return this.value;
+        return this.value
       },
       set(value) {
-        this.$emit('input', value);
+        this.$emit('input', value)
       },
     },
   },
   methods: {
     toggleShowControl() {
-      this.showControl = !this.showControl;
+      this.showControl = !this.showControl
     },
   },
-};
+}
 </script>

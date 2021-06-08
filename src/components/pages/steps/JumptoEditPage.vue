@@ -9,14 +9,14 @@ export default {
   props: {
     step: {
       type: Object,
-      required: true
+      required: true,
     },
     values: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
-  mounted () {
+  mounted() {
     if (this.step.jumpedTo) {
       this.requestPage()
     } else {
@@ -24,14 +24,12 @@ export default {
     }
   },
   methods: {
-    ...mapActions('devise', [
-      'getPage',
-    ]),
-    requestPage () {
-      this.getPage(this.step.jumpedToParams.pageId).then(response => {
+    ...mapActions('devise', ['getPage']),
+    requestPage() {
+      this.getPage(this.step.jumpedToParams.pageId).then((response) => {
         this.$emit('done', response.data.page)
       })
-    }
+    },
   },
 }
 </script>

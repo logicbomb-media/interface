@@ -3,12 +3,10 @@
     <fieldset class="dvs-fieldset">
       <label for="querykey">Data Set Query</label>
       <select id="querykey" v-model="query" name="querykey" class="w-full">
-        <option :value="null" disabled>
-          Please Select a Data Set Query
+        <option :value="null" disabled>Please Select a Data Set Query</option>
+        <option v-for="mq in modelQueries" :key="mq.key" :value="mq.key">
+          {{ mq.description }}
         </option>
-        <option v-for="mq in modelQueries" :key="mq.key" :value="mq.key">{{
-          mq.description
-        }}</option>
       </select>
     </fieldset>
 
@@ -50,7 +48,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from 'vuex'
 
 export default {
   name: 'QuerySelector',
@@ -71,22 +69,22 @@ export default {
     return {
       query: '',
       params: [],
-    };
+    }
   },
 
   computed: {
     ...mapState('devise', ['modelQueries']),
     finalModelQuery: {
       get() {
-        return this.value;
+        return this.value
       },
       set(newValue) {
-        this.$emit('input', newValue);
+        this.$emit('input', newValue)
       },
       deep: true,
     },
     selectedModelQuery() {
-      return this.modelQueries.find(mq => mq.key === this.query);
+      return this.modelQueries.find((mq) => mq.key === this.query)
     },
   },
 
@@ -95,9 +93,9 @@ export default {
       handler(newValue) {
         newValue.params.forEach(() => {
           // may have to change the push data type based on param.type
-          this.finalModelQuery.params.push('');
-        });
-        this.finalModelQuery.key = newValue.key;
+          this.finalModelQuery.params.push('')
+        })
+        this.finalModelQuery.key = newValue.key
       },
       deep: true,
     },
@@ -105,24 +103,24 @@ export default {
 
   mounted() {
     if (this.value && this.value.key) {
-      this.loadPreviousState();
-      this.loadPreviousParams();
+      this.loadPreviousState()
+      this.loadPreviousParams()
     }
   },
   methods: {
     loadPreviousState() {
-      this.$set(this, 'query', this.value.key);
-      this.params = Object.assign({}, this.value.params);
+      this.$set(this, 'query', this.value.key)
+      this.params = Object.assign({}, this.value.params)
     },
     loadPreviousParams() {
-      const params = [];
+      const params = []
       this.selectedModelQuery.params.forEach((p, key) => {
-        const param = Object.assign({}, p);
-        this.$set(param, 'value', this.params[key]);
-        this.selectedModelQuery.params[key] = Object.assign({}, param);
-      });
-      return params;
+        const param = Object.assign({}, p)
+        this.$set(param, 'value', this.params[key])
+        this.selectedModelQuery.params[key] = Object.assign({}, param)
+      })
+      return params
     },
   },
-};
+}
 </script>

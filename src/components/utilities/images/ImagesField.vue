@@ -14,7 +14,15 @@
         class="dvs-w-1/5 dvs-max-w-1/4 dvs-pr-4 dvs-pb-4 dvs-flex"
       >
         <div
-          class="dvs-p-4 dvs-bg-admin-secondary-bg dvs-text-admin-secondary-fg dvs-text-xs dvs-overflow-hidden dvs-bg-admin-bg dvs-text-admin-fg"
+          class="
+            dvs-p-4
+            dvs-bg-admin-secondary-bg
+            dvs-text-admin-secondary-fg
+            dvs-text-xs
+            dvs-overflow-hidden
+            dvs-bg-admin-bg
+            dvs-text-admin-fg
+          "
         >
           <div
             class="dvs-flex dvs-justify-center dvs-bg-cover dvs-rounded-lg dvs-relative"
@@ -32,8 +40,9 @@
               href="#"
               class="dvs-btn dvs-btn-primary dvs-btn-ghost dvs-btn-sm dvs-mt-1 dvs-block"
               @click.prevent="removeImage(key)"
-              >Remove</a
             >
+              Remove
+            </a>
           </p>
         </div>
       </div>
@@ -53,7 +62,17 @@
         <div
           v-for="(image, key) in images"
           :key="key"
-          class="dvs-modal dvs-fixed dvs-bottom-0 dvs-right-0 dvs-mx-8 dvs-mb-8 dvs-z-40 dvs-bg-admin-bg dvs-text-admin-fg"
+          class="
+            dvs-modal
+            dvs-fixed
+            dvs-bottom-0
+            dvs-right-0
+            dvs-mx-8
+            dvs-mb-8
+            dvs-z-40
+            dvs-bg-admin-bg
+            dvs-text-admin-fg
+          "
         >
           <img :src="previewImagePath" />
           <h6 class="dvs-text-base dvs-mb-4 dvs-mt-4">
@@ -91,7 +110,7 @@ export default {
     value: {
       type: Array,
       default: () => {
-        return [];
+        return []
       },
     },
     label: {
@@ -108,20 +127,20 @@ export default {
       showPreview: false,
       previewImageName: '',
       previewImagePath: '',
-    };
+    }
   },
   computed: {
     images: {
       get() {
-        return this.value;
+        return this.value
       },
       set(newValue) {
-        this.$emit('input', newValue);
-        this.$emit('change', newValue);
+        this.$emit('input', newValue)
+        this.$emit('change', newValue)
       },
     },
     labelText() {
-      return this.label ? this.label : 'Images';
+      return this.label ? this.label : 'Images'
     },
   },
   methods: {
@@ -131,43 +150,43 @@ export default {
         options: {
           sizes: this.sizes,
         },
-      });
+      })
     },
 
     mediaSelected(imagesAndSettings) {
-      const value = {};
+      const value = {}
 
       if (typeof imagesAndSettings === 'object') {
-        value.alt = imagesAndSettings.images.alt;
-        value.url = imagesAndSettings.images.defaultImage;
-        value.defaultImage = imagesAndSettings.images.defaultImage;
-        value.media = imagesAndSettings.images.media;
-        value.settings = imagesAndSettings.settings;
+        value.alt = imagesAndSettings.images.alt
+        value.url = imagesAndSettings.images.defaultImage
+        value.defaultImage = imagesAndSettings.images.defaultImage
+        value.media = imagesAndSettings.images.media
+        value.settings = imagesAndSettings.settings
       } else {
-        value.url = imagesAndSettings;
+        value.url = imagesAndSettings
       }
-      this.images.push(value);
+      this.images.push(value)
     },
     removeImage(index) {
-      this.images.splice(index, 1);
+      this.images.splice(index, 1)
     },
     getName(image) {
       if (image.url) {
-        const parts = image.url.split('/');
-        return parts[parts.length - 1];
+        const parts = image.url.split('/')
+        return parts[parts.length - 1]
       }
 
-      return '';
+      return ''
     },
     loadPreview(image) {
-      this.showPreview = true;
-      this.previewImageName = this.getName(image);
-      this.previewImagePath = this.getPreviewImage(image);
+      this.showPreview = true
+      this.previewImageName = this.getName(image)
+      this.previewImagePath = this.getPreviewImage(image)
     },
 
     getPreviewImage(image) {
-      return image.url;
+      return image.url
     },
   },
-};
+}
 </script>

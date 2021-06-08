@@ -149,8 +149,8 @@
 
 <script>
 // eslint-disable-next-line no-undef
-const Chrome = require(/* webpackChunkName: "vue-color" */ 'vue-color/src/components/Chrome.vue')
-  .default;
+const Chrome =
+  require(/* webpackChunkName: "vue-color" */ 'vue-color/src/components/Chrome.vue').default
 
 export default {
   name: 'DeviseSliceSettingsSection',
@@ -179,80 +179,80 @@ export default {
     return {
       showBackgroundColor: false,
       showTextColor: false,
-    };
+    }
   },
   computed: {
     settings: {
       get() {
-        return this.value;
+        return this.value
       },
       set(settings) {
-        this.$emit('input', settings);
+        this.$emit('input', settings)
       },
     },
     bg: {
       get() {
-        return this.backgroundColor;
+        return this.backgroundColor
       },
       set(color) {
-        this.$emit('setbackground', color);
+        this.$emit('setbackground', color)
       },
     },
     textColor: {
       get() {
-        return this.color;
+        return this.color
       },
       set(color) {
-        this.$emit('setforeground', color);
+        this.$emit('setforeground', color)
       },
     },
     theId: {
       get() {
-        return this.id;
+        return this.id
       },
       set(newId) {
-        this.$emit('setId', newId);
+        this.$emit('setId', newId)
       },
     },
   },
   methods: {
     setMargin(position, event) {
-      const { value } = event.target;
+      const { value } = event.target
       this.$emit('setmarginpadding', {
         responsiveMode: this.responsiveMode,
         type: 'margin',
         position,
         value,
-      });
+      })
     },
     setPadding(position, event) {
-      const { value } = event.target;
+      const { value } = event.target
       this.$emit('setmarginpadding', {
         responsiveMode: this.responsiveMode,
         type: 'padding',
         position,
         value,
-      });
+      })
     },
 
     getStyle(type, position) {
       if (type === 'margin' || type === 'padding') {
-        let prefix = '';
+        let prefix = ''
         if (this.responsiveMode !== 'desktop') {
-          prefix = `${this.responsiveMode}_`;
+          prefix = `${this.responsiveMode}_`
         }
 
         if (typeof this.value[prefix + type] !== 'undefined') {
           if (typeof this.value[prefix + type][position] !== 'undefined') {
-            return this.value[prefix + type][position];
+            return this.value[prefix + type][position]
           }
         }
       }
-      return 0;
+      return 0
     },
     resetStyles() {
-      this.$emit('resetstyles', this.responsiveMode);
+      this.$emit('resetstyles', this.responsiveMode)
     },
   },
-};
+}
 </script>

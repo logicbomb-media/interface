@@ -1,5 +1,5 @@
-import { Extension } from '@tiptap/core';
-import '@tiptap/extension-text-style';
+import { Extension } from '@tiptap/core'
+import '@tiptap/extension-text-style'
 
 const TextColor = Extension.create({
   name: 'textcolor',
@@ -13,38 +13,37 @@ const TextColor = Extension.create({
         attributes: {
           color: {
             default: null,
-            renderHTML: attributes => {
+            renderHTML: (attributes) => {
               if (!attributes.color) {
-                return {};
+                return {}
               }
 
               return {
                 style: `color: ${attributes.color}`,
-              };
+              }
             },
-            parseHTML: element => ({
+            parseHTML: (element) => ({
               color: element.style.color.replace(/['"]+/g, ''),
             }),
           },
         },
       },
-    ];
+    ]
   },
   addCommands() {
     return {
-      setTextColor: options => ({ chain }) => {
-        return chain()
-          .setMark('textStyle', options)
-          .run();
-      },
-      unsetTextColor: () => ({ chain }) => {
-        chain()
-          .setMark('textStyle', { color: null })
-          .removeEmptyTextStyle()
-          .run();
-      },
-    };
+      setTextColor:
+        (options) =>
+        ({ chain }) => {
+          return chain().setMark('textStyle', options).run()
+        },
+      unsetTextColor:
+        () =>
+        ({ chain }) => {
+          chain().setMark('textStyle', { color: null }).removeEmptyTextStyle().run()
+        },
+    }
   },
-});
+})
 
-export default TextColor;
+export default TextColor

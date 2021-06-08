@@ -1,11 +1,10 @@
 <template>
-  <devise-installer-item
-    id="nav-slices"
-    :item="item"
-    title="Your First Slice (required)"
-  >
+  <devise-installer-item id="nav-slices" :item="item" title="Your First Slice (required)">
     <template slot="instructions">
-      <p>Devise pages are made up of slices and they live inside /resources/views/slices directory. Make this directory and you'll be on your way.</p>
+      <p>
+        Devise pages are made up of slices and they live inside /resources/views/slices directory.
+        Make this directory and you'll be on your way.
+      </p>
     </template>
 
     <template slot="example">
@@ -14,12 +13,9 @@
         Save the following to
         <span class="dvs-font-mono">/resource/views/slices/test/first-slice.blade.php</span>
       </p>
-      <p class="dvs-mb-4">
-        <div class="dvs-mb-8">
-          <pre
-            v-pre
-            class="lang-javascript line-numbers"
-          >
+      <p class="dvs-mb-4"></p>
+      <div class="dvs-mb-8">
+        <pre v-pre class="lang-javascript line-numbers">
           <code>
             &#64;section('template')
             <div>
@@ -46,23 +42,21 @@
             &#64;endsection
           </code>
         </pre>
-        </div>
+      </div>
     </template>
-
   </devise-installer-item>
 </template>
 
 <script>
-
 export default {
   components: {
-    DeviseInstallerItem: () => import(/* webpackChunkName: "devise-installer" */ "../Item.vue"),
+    DeviseInstallerItem: () => import(/* webpackChunkName: "devise-installer" */ '../Item.vue'),
   },
   props: {
     item: {
       type: Boolean,
-      required: true
-    }
-  }
-};
+      required: true,
+    },
+  },
+}
 </script>

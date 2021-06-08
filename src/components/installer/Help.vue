@@ -1,6 +1,17 @@
 <template>
   <div
-    class="dvs-mb-8 dvs-relative dvs-bg-green-100 dvs-p-6 dvs-pl-16 dvs-relative dvs-border dvs-rounded dvs-border-green-500 dvs-text-green"
+    class="
+      dvs-mb-8
+      dvs-relative
+      dvs-bg-green-100
+      dvs-p-6
+      dvs-pl-16
+      dvs-relative
+      dvs-border
+      dvs-rounded
+      dvs-border-green-500
+      dvs-text-green
+    "
   >
     <alert-icon
       w="40"

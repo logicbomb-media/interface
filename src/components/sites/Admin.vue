@@ -9,14 +9,14 @@ export default {
     DeviseWorkflow: () =>
       import(/* webpackChunkName: "devise-administration" */ '../admin/workflow/Workflow'),
   },
-  data () {
+  data() {
     return {
       workflow: [
         {
           index: true,
           key: 'pages-main-menu',
           component: 'workflow-menu',
-          message: 'Managing <strong>Sites</strong>?! That\'s exciting! Two sites at the same time!',
+          message: "Managing <strong>Sites</strong>?! That's exciting! Two sites at the same time!",
           options: [
             {
               label: 'Manage a Site',
@@ -32,25 +32,26 @@ export default {
               nextStep: 'search-for-site',
               stepAfterNext: 'create-site',
             },
-          ]
+          ],
         },
         {
           key: 'create-site',
           component: 'devise-site-create',
           message: 'Fill out the fields below to create the site. All fields are required.',
-          end: true
+          end: true,
         },
         {
           key: 'edit-site',
           component: 'devise-site-edit',
           message: 'Manage the site settings using the fields below.',
-          end: true
+          end: true,
         },
         {
           key: 'delete-site',
           component: 'devise-site-delete',
-          message: 'Are you sure you want to delete this site? This will delete all related information and cannot be undone.',
-          end: true
+          message:
+            'Are you sure you want to delete this site? This will delete all related information and cannot be undone.',
+          end: true,
         },
         {
           key: 'search-for-site',
@@ -62,7 +63,7 @@ export default {
           resultsDisplayFields: [
             {
               label: 'Name',
-              field: 'name'
+              field: 'name',
             },
             {
               label: 'Domain',
@@ -71,12 +72,12 @@ export default {
             {
               label: 'Created At',
               field: 'created_at',
-              dateFormat: 'MMMM D, YYYY @ h:mm a'
+              dateFormat: 'MMMM D, YYYY @ h:mm a',
             },
           ],
-        }
-      ]
+        },
+      ],
     }
-  }
+  },
 }
 </script>

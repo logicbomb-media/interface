@@ -3,10 +3,10 @@
     <div
       v-show="$refs.upload && $refs.upload.dropActive"
       class="dvs-fixed dvs-inset-0"
-      style="z-index:9999"
+      style="z-index: 9999"
     >
       <div class="dvs-blocker"></div>
-      <div class="dvs-flex dvs-justify-center dvs-items-center dvs-relative" style="z-index:9999">
+      <div class="dvs-flex dvs-justify-center dvs-items-center dvs-relative" style="z-index: 9999">
         <div class="dvs-bg-black dvs-p-8 dvs-rounded dvs-shadow">
           <h3 class="dvs-text-white">Drop files to upload</h3>
         </div>
@@ -17,15 +17,26 @@
       <vue-upload
         ref="upload"
         v-model="uploadingFiles"
-        class="dvs-w-full dvs-bg-gray-100 dvs-p-4 dvs-py-6 dvs-shadow dvs-rounded-sm dvs-font-bold dvs-uppercase dvs-text-xs"
+        class="
+          dvs-w-full
+          dvs-bg-gray-100
+          dvs-p-4
+          dvs-py-6
+          dvs-shadow
+          dvs-rounded-sm
+          dvs-font-bold
+          dvs-uppercase
+          dvs-text-xs
+        "
         :post-action="`/api/devise/media?directory=${currentDirectory}`"
         :headers="uploadHeaders"
         :drop="true"
         :multiple="true"
         @input-file="inputFile"
         @input-filter="inputFilter"
-        >Upload New Files</vue-upload
       >
+        Upload New Files
+      </vue-upload>
     </div>
 
     <div v-show="uploadingFiles.length" class="dvs-w-full dvs-flex dvs-justify-center">
@@ -70,11 +81,11 @@
           </div>
           <div
             class="dvs-bg-gray-500dvs-w-full dvs-mt-4 dvs-flex dvs-items-center"
-            style="height:5px;"
+            style="height: 5px"
           >
             <div
               class="dvs-bg-highlight-bg"
-              style="height:3px;"
+              style="height: 3px"
               :style="{ width: `${file.progress}%` }"
             ></div>
           </div>
@@ -86,12 +97,11 @@
 
 <script>
 // eslint-disable-next-line no-undef
-const VueUpload = require('vue-upload-component');
+const VueUpload = require('vue-upload-component')
 
 export default {
   components: {
-    CloseIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
+    CloseIcon: () => import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
     VueUpload,
   },
   props: {
@@ -103,14 +113,14 @@ export default {
   data() {
     return {
       uploadingFiles: [],
-    };
+    }
   },
   computed: {
     uploadHeaders() {
-      const token = document.head.querySelector('meta[name="csrf-token"]');
+      const token = document.head.querySelector('meta[name="csrf-token"]')
       return {
         'X-CSRF-TOKEN': token.content,
-      };
+      }
     },
   },
   methods: {
@@ -126,14 +136,14 @@ export default {
         if (newFile.xhr) {
           //  Get the response status code
           if (newFile.xhr.status === 200) {
-            this.removeFileFromQueue(newFile);
+            this.removeFileFromQueue(newFile)
 
             if (this.uploadingFiles.length < 1) {
               window.deviseSettings.$bus.$emit('showMessage', {
                 title: 'Upload Complete',
                 message: 'Your upload has been successfully completed',
-              });
-              this.$emit('all-files-uploaded', newFile);
+              })
+              this.$emit('all-files-uploaded', newFile)
             }
           }
         }
@@ -148,21 +158,21 @@ export default {
      */
     inputFilter(newFile) {
       // Create a blob field
-      newFile.blob = '';
-      const URL = window.URL || window.webkitURL;
+      newFile.blob = ''
+      const URL = window.URL || window.webkitURL
       if (URL && URL.createObjectURL) {
-        newFile.blob = URL.createObjectURL(newFile.file);
+        newFile.blob = URL.createObjectURL(newFile.file)
       }
 
       // Thumbnails
-      newFile.thumb = '';
+      newFile.thumb = ''
       if (newFile.blob && newFile.type.substr(0, 6) === 'image/') {
-        newFile.thumb = newFile.blob;
+        newFile.thumb = newFile.blob
       }
     },
     removeFileFromQueue(file) {
-      this.uploadingFiles.splice(this.uploadingFiles.indexOf(file), 1);
+      this.uploadingFiles.splice(this.uploadingFiles.indexOf(file), 1)
     },
   },
-};
+}
 </script>

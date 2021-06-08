@@ -13,7 +13,9 @@
     </div>
 
     <div
-      class="dvs-w-1/2 dvs-text-sm dvs-bg-black dvs-text-white dvs-px-8 dvs-pb-16 dvs-leading-normal"
+      class="
+        dvs-w-1/2 dvs-text-sm dvs-bg-black dvs-text-white dvs-px-8 dvs-pb-16 dvs-leading-normal
+      "
     >
       <slot name="example"></slot>
     </div>
@@ -36,5 +38,5 @@ export default {
       type: String,
     },
   },
-};
+}
 </script>

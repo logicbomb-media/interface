@@ -2,20 +2,22 @@
   <div class="dvs-bg-white dvs-rounded dvs-relative">
     <div
       v-if="editor"
-      class="dvs-wysiwyg-editor dvs-bg-gray-400 dvs-flex dvs-flex-wrap dvs-items-center dvs-rounded dvs-rounded-b-none"
+      class="
+        dvs-wysiwyg-editor
+        dvs-bg-gray-400
+        dvs-flex
+        dvs-flex-wrap
+        dvs-items-center
+        dvs-rounded
+        dvs-rounded-b-none
+      "
     >
       <button
         v-tippy="{ placement: 'top', arrow: true }"
         content="Bold"
         class="dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-900"
         :class="{ 'dvs-border-b-2': editor.isActive('bold') }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleBold()
-            .run()
-        "
+        @click="editor.chain().focus().toggleBold().run()"
       >
         <bold-icon />
       </button>
@@ -24,13 +26,7 @@
         content="Italics"
         class="dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-900"
         :class="{ 'dvs-border-b-2': editor.isActive('italic') }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleItalic()
-            .run()
-        "
+        @click="editor.chain().focus().toggleItalic().run()"
       >
         <italic-icon />
       </button>
@@ -39,13 +35,7 @@
         content="Strikethrough"
         class="dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-900"
         :class="{ 'dvs-border-b-2': editor.isActive('strike') }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleStrike()
-            .run()
-        "
+        @click="editor.chain().focus().toggleStrike().run()"
       >
         <strike-icon />
       </button>
@@ -56,13 +46,7 @@
         :class="{
           'dvs-border-b-2': editor.isActive('underline'),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleUnderline()
-            .run()
-        "
+        @click="editor.chain().focus().toggleUnderline().run()"
       >
         <underline-icon />
       </button>
@@ -94,7 +78,17 @@
 
       <form
         v-if="linkMenuIsActive"
-        class="menububble__form dvs-bg-admin-bg dvs-text-admin-fg dvs-absolute dvs-p-4 dvs-rounded-sm dvs-shadow dvs-mt-2 dvs-z-10"
+        class="
+          menububble__form
+          dvs-bg-admin-bg
+          dvs-text-admin-fg
+          dvs-absolute
+          dvs-p-4
+          dvs-rounded-sm
+          dvs-shadow
+          dvs-mt-2
+          dvs-z-10
+        "
         @submit.prevent="setLinkUrl(commands.link, linkUrl, linkTarget)"
       >
         <fieldset class="dvs-fieldset">
@@ -106,7 +100,7 @@
             placeholder="https://"
             @keydown.esc="$emit('hide')"
           />
-          <select class="mt-2" v-model="linkTarget">
+          <select v-model="linkTarget" class="mt-2">
             <option value="_self">Same Window</option>
             <option value="_blank">New Tab / Window</option>
             <option value="_parent">Parent</option>
@@ -149,13 +143,7 @@
         :class="{
           'dvs-border-b-2': editor.isActive('textAlign'),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .setTextAlign('left')
-            .run()
-        "
+        @click="editor.chain().focus().setTextAlign('left').run()"
       >
         <align-left-icon></align-left-icon>
       </button>
@@ -166,13 +154,7 @@
         :class="{
           'dvs-border-b-2': editor.isActive('textAlign'),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .setTextAlign('center')
-            .run()
-        "
+        @click="editor.chain().focus().setTextAlign('center').run()"
       >
         <align-center-icon></align-center-icon>
       </button>
@@ -185,13 +167,7 @@
             'text-align': 'right',
           }),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .setTextAlign('right')
-            .run()
-        "
+        @click="editor.chain().focus().setTextAlign('right').run()"
       >
         <align-right-icon></align-right-icon>
       </button>
@@ -203,13 +179,7 @@
         :class="{
           'dvs-border-b-2': editor.isActive('paragraph'),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .setParagraph()
-            .run()
-        "
+        @click="editor.chain().focus().setParagraph().run()"
       >
         P
       </button>
@@ -222,13 +192,7 @@
             level: 1,
           }),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleHeading({ level: 1 })
-            .run()
-        "
+        @click="editor.chain().focus().toggleHeading({ level: 1 }).run()"
       >
         h1
       </button>
@@ -241,13 +205,7 @@
             level: 2,
           }),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleHeading({ level: 2 })
-            .run()
-        "
+        @click="editor.chain().focus().toggleHeading({ level: 2 }).run()"
       >
         h2
       </button>
@@ -260,13 +218,7 @@
             level: 3,
           }),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleHeading({ level: 3 })
-            .run()
-        "
+        @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
       >
         h3
       </button>
@@ -278,20 +230,23 @@
         :class="{
           'dvs-border-b-2': editor.isActive('superscript'),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleSuperscript()
-            .run()
-        "
+        @click="editor.chain().focus().toggleSuperscript().run()"
       >
         <sup>2</sup>
       </button>
 
       <div
         v-if="showTextColorPicker"
-        class="dvs-absolute dvs-z-10 dvs-top-0 dvs--mt-8 dvs-bg-gray-300 dvs-p-4 dvs-rounded dvs-shadow-lg"
+        class="
+          dvs-absolute
+          dvs-z-10
+          dvs-top-0
+          dvs--mt-8
+          dvs-bg-gray-300
+          dvs-p-4
+          dvs-rounded
+          dvs-shadow-lg
+        "
       >
         <color-picker v-model="textColor" class="dvs-mb-2" @cancel="showTextColorPicker = false" />
 
@@ -327,13 +282,7 @@
         :class="{
           'dvs-border-b-2': editor.isActive('bulletList'),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleBulletList()
-            .run()
-        "
+        @click="editor.chain().focus().toggleBulletList().run()"
       >
         <menu-icon />
       </button>
@@ -344,13 +293,7 @@
         :class="{
           'dvs-border-b-2': editor.isActive('orderedList'),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleOrderedList()
-            .run()
-        "
+        @click="editor.chain().focus().toggleOrderedList().run()"
       >
         <list-icon />
       </button>
@@ -362,13 +305,7 @@
         :class="{
           'dvs-border-b-2': editor.isActive('code'),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleCode()
-            .run()
-        "
+        @click="editor.chain().focus().toggleCode().run()"
       >
         <code-icon />
       </button>
@@ -379,13 +316,7 @@
         :class="{
           'dvs-border-b-2': editor.isActive('codeBlock'),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleCodeBlock()
-            .run()
-        "
+        @click="editor.chain().focus().toggleCodeBlock().run()"
       >
         <svg
           class="w-5 h-5"
@@ -409,13 +340,7 @@
         :class="{
           'dvs-border-b-2': editor.isActive('blockquote'),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleBlockquote()
-            .run()
-        "
+        @click="editor.chain().focus().toggleBlockquote().run()"
       >
         &quot;
       </button>
@@ -423,13 +348,7 @@
         v-tippy="{ placement: 'top', arrow: true }"
         content="Line Break"
         class="dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-900"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .setHorizontalRule()
-            .run()
-        "
+        @click="editor.chain().focus().setHorizontalRule().run()"
       >
         <minus-icon />
       </button>
@@ -437,13 +356,7 @@
         v-tippy="{ placement: 'top', arrow: true }"
         content="Hard Return"
         class="dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-900"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .setHardBreak()
-            .run()
-        "
+        @click="editor.chain().focus().setHardBreak().run()"
       >
         <arrow-down-circle-icon />
       </button>
@@ -451,13 +364,7 @@
         v-tippy="{ placement: 'top', arrow: true }"
         content="Undo"
         class="dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-900"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .undo()
-            .run()
-        "
+        @click="editor.chain().focus().undo().run()"
       >
         <corner-up-left-icon />
       </button>
@@ -465,13 +372,7 @@
         v-tippy="{ placement: 'top', arrow: true }"
         content="Redo"
         class="dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-900"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .redo()
-            .run()
-        "
+        @click="editor.chain().focus().redo().run()"
       >
         <corner-up-right-icon />
       </button>
@@ -479,14 +380,7 @@
         v-tippy="{ placement: 'top', arrow: true }"
         content="Clear formatting"
         class="dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-900"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .unsetAllMarks()
-            .clearNodes()
-            .run()
-        "
+        @click="editor.chain().focus().unsetAllMarks().clearNodes().run()"
       >
         <svg
           class="w-5 h-5"
@@ -510,13 +404,7 @@
         :class="{
           'dvs-border-b-2': editor.isActive('table'),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .insertTable()
-            .run()
-        "
+        @click="editor.chain().focus().insertTable().run()"
       >
         <table-icon />
       </button>
@@ -553,13 +441,7 @@
         content="Bold"
         class="active dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-300"
         :class="{ 'dvs-border-b-2': editor.isActive('bold') }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleBold()
-            .run()
-        "
+        @click="editor.chain().focus().toggleBold().run()"
       >
         <bold-icon />
       </button>
@@ -568,13 +450,7 @@
         content="Italics"
         class="active dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-300"
         :class="{ 'dvs-border-b-2': editor.isActive('italic') }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleItalic()
-            .run()
-        "
+        @click="editor.chain().focus().toggleItalic().run()"
       >
         <italic-icon />
       </button>
@@ -583,13 +459,7 @@
         content="Strikethrough"
         class="active dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-300"
         :class="{ 'dvs-border-b-2': editor.isActive('strike') }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleStrike()
-            .run()
-        "
+        @click="editor.chain().focus().toggleStrike().run()"
       >
         <strike-icon />
       </button>
@@ -600,13 +470,7 @@
         :class="{
           'dvs-border-b-2': editor.isActive('underline'),
         }"
-        @click="
-          editor
-            .chain()
-            .focus()
-            .toggleUnderline()
-            .run()
-        "
+        @click="editor.chain().focus().toggleUnderline().run()"
       >
         <underline-icon />
       </button>
@@ -653,13 +517,7 @@
           content="Add column before"
           class="active dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-300"
           :disabled="!editor.can().addColumnBefore()"
-          @click="
-            editor
-              .chain()
-              .focus()
-              .addColumnBefore()
-              .run()
-          "
+          @click="editor.chain().focus().addColumnBefore().run()"
         >
           <add-col-before-icon />
         </button>
@@ -668,13 +526,7 @@
           content="Add column after"
           class="active dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-300"
           :disabled="!editor.can().addColumnAfter()"
-          @click="
-            editor
-              .chain()
-              .focus()
-              .addColumnAfter()
-              .run()
-          "
+          @click="editor.chain().focus().addColumnAfter().run()"
         >
           <add-col-after-icon />
         </button>
@@ -683,13 +535,7 @@
           content="Delete Column"
           class="active dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-300"
           :disabled="!editor.can().deleteColumn()"
-          @click="
-            editor
-              .chain()
-              .focus()
-              .deleteColumn()
-              .run()
-          "
+          @click="editor.chain().focus().deleteColumn().run()"
         >
           <delete-col-icon />
         </button>
@@ -698,13 +544,7 @@
           content="Add Row Before"
           class="active dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-300"
           :disabled="!editor.can().addRowBefore()"
-          @click="
-            editor
-              .chain()
-              .focus()
-              .addRowBefore()
-              .run()
-          "
+          @click="editor.chain().focus().addRowBefore().run()"
         >
           <add-row-before-icon />
         </button>
@@ -713,13 +553,7 @@
           content="Add Row After"
           class="active dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-300"
           :disabled="!editor.can().addRowAfter()"
-          @click="
-            editor
-              .chain()
-              .focus()
-              .addRowAfter()
-              .run()
-          "
+          @click="editor.chain().focus().addRowAfter().run()"
         >
           <add-row-after-icon />
         </button>
@@ -728,13 +562,7 @@
           content="Delete Row"
           class="active dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-300"
           :disabled="!editor.can().deleteRow()"
-          @click="
-            editor
-              .chain()
-              .focus()
-              .deleteRow()
-              .run()
-          "
+          @click="editor.chain().focus().deleteRow().run()"
         >
           <delete-row-icon />
         </button>
@@ -743,13 +571,7 @@
           content="Delete Table"
           class="active dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-300"
           :disabled="!editor.can().deleteTable()"
-          @click="
-            editor
-              .chain()
-              .focus()
-              .deleteTable()
-              .run()
-          "
+          @click="editor.chain().focus().deleteTable().run()"
         >
           <delete-table-icon />
         </button>
@@ -758,13 +580,7 @@
           content="Merge Cells"
           class="active dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-300"
           :disabled="!editor.can().mergeCells()"
-          @click="
-            editor
-              .chain()
-              .focus()
-              .mergeCells()
-              .run()
-          "
+          @click="editor.chain().focus().mergeCells().run()"
         >
           <combine-cells-icon />
         </button>
@@ -773,7 +589,7 @@
 
     <editor-content
       v-if="!showSource"
-      style="max-height:50vh"
+      style="max-height: 50vh"
       class="dvs-overflow-y-scroll"
       :editor="editor"
     />
@@ -781,13 +597,15 @@
       v-if="showSource"
       v-model="value"
       class="dvs-h-full dvs-p-8 dvs-w-full dvs-font-mono dvs-text-sm dvs-text-gray-800"
-      style="height:300px"
+      style="height: 300px"
     >
     </textarea>
 
     <div
       v-if="imageToManage !== null"
-      class="dvs-absolute dvs-absolute-center dvs-shadow-lg dvs-p-8 dvs-rounded dvs-z-50 dvs-bg-white"
+      class="
+        dvs-absolute dvs-absolute-center dvs-shadow-lg dvs-p-8 dvs-rounded dvs-z-50 dvs-bg-white
+      "
     >
       <h4 class="dvs-pb-4">Image Positioning:</h4>
 
@@ -833,23 +651,23 @@
 </template>
 
 <script>
-import { Editor, EditorContent, BubbleMenu } from '@tiptap/vue-2';
-import StarterKit from '@tiptap/starter-kit';
-import Underline from '@tiptap/extension-underline';
-import TextAlign from '@tiptap/extension-text-align';
-import Image from '@tiptap/extension-image';
-import Link from '@tiptap/extension-link';
-import TextStyle from '@tiptap/extension-text-style';
-import Superscript from './wysiwyg/tiptap/extensions/Superscript';
-import TextColor from './wysiwyg/tiptap/extensions/TextColor';
-import Table from '@tiptap/extension-table';
-import TableRow from '@tiptap/extension-table-row';
-import TableCell from '@tiptap/extension-table-cell';
-import TableHeader from '@tiptap/extension-table-header';
+import { Editor, EditorContent, BubbleMenu } from '@tiptap/vue-2'
+import StarterKit from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
+import TextAlign from '@tiptap/extension-text-align'
+import Image from '@tiptap/extension-image'
+import Link from '@tiptap/extension-link'
+import TextStyle from '@tiptap/extension-text-style'
+import Superscript from './wysiwyg/tiptap/extensions/Superscript'
+import TextColor from './wysiwyg/tiptap/extensions/TextColor'
+import Table from '@tiptap/extension-table'
+import TableRow from '@tiptap/extension-table-row'
+import TableCell from '@tiptap/extension-table-cell'
+import TableHeader from '@tiptap/extension-table-header'
 
 // eslint-disable-next-line no-undef
-const Chrome = require(/* webpackChunkName: "vue-color" */ 'vue-color/src/components/Chrome.vue')
-  .default;
+const Chrome =
+  require(/* webpackChunkName: "vue-color" */ 'vue-color/src/components/Chrome.vue').default
 
 export default {
   components: {
@@ -890,15 +708,12 @@ export default {
     LinkIcon: () =>
       import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/LinkIcon'),
     TableIcon: () => import(/* webpackChunkName: "devise-icons" */ './icons/TableIcon'),
-    DeleteTableIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ './icons/DeleteTableIcon'),
-    AddColAfterIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ './icons/AddColAfterIcon'),
+    DeleteTableIcon: () => import(/* webpackChunkName: "devise-icons" */ './icons/DeleteTableIcon'),
+    AddColAfterIcon: () => import(/* webpackChunkName: "devise-icons" */ './icons/AddColAfterIcon'),
     AddColBeforeIcon: () =>
       import(/* webpackChunkName: "devise-icons" */ './icons/AddColBeforeIcon'),
     DeleteColIcon: () => import(/* webpackChunkName: "devise-icons" */ './icons/DeleteColIcon'),
-    AddRowAfterIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ './icons/AddRowAfterIcon'),
+    AddRowAfterIcon: () => import(/* webpackChunkName: "devise-icons" */ './icons/AddRowAfterIcon'),
     AddRowBeforeIcon: () =>
       import(/* webpackChunkName: "devise-icons" */ './icons/AddRowBeforeIcon'),
     DeleteRowIcon: () => import(/* webpackChunkName: "devise-icons" */ './icons/DeleteRowIcon'),
@@ -923,22 +738,22 @@ export default {
       linkUrl: null,
       linkTarget: '_self',
       linkMenuIsActive: false,
-    };
+    }
   },
 
   watch: {
     value(value) {
       // HTML
-      const isSame = this.editor.getHTML() === value;
+      const isSame = this.editor.getHTML() === value
 
       // JSON
       // const isSame = this.editor.getJSON().toString() === value.toString()
 
       if (isSame) {
-        return;
+        return
       }
 
-      this.editor.commands.setContent(this.value, false);
+      this.editor.commands.setContent(this.value, false)
     },
   },
 
@@ -963,66 +778,54 @@ export default {
       ],
       onUpdate: () => {
         // HTML
-        this.$emit('input', this.editor.getHTML());
+        this.$emit('input', this.editor.getHTML())
       },
       autoFocus: false,
-    });
+    })
   },
 
   beforeDestroy() {
-    this.editor.destroy();
+    this.editor.destroy()
   },
 
   methods: {
     launchMediaManager() {
       window.deviseSettings.$bus.$emit('devise-launch-media-manager', {
         callback: this.mediaSelected,
-      });
+      })
     },
     mediaSelected(imagesAndSettings) {
       if (typeof imagesAndSettings === 'object') {
-        this.editor
-          .chain()
-          .focus()
-          .setImage({ src: imagesAndSettings.images.media.custom })
-          .run();
+        this.editor.chain().focus().setImage({ src: imagesAndSettings.images.media.custom }).run()
       } else {
-        this.editor
-          .chain()
-          .focus()
-          .setImage({ src: imagesAndSettings })
-          .run();
+        this.editor.chain().focus().setImage({ src: imagesAndSettings }).run()
       }
     },
     applyTextColor() {
-      const { r, g, b, a } = this.textColor.rgba;
+      const { r, g, b, a } = this.textColor.rgba
       this.editor
         .chain()
         .focus()
         .setTextColor({ color: `rgba(${r},${g},${b},${a})` })
-        .run();
-      this.showTextColorPicker = false;
+        .run()
+      this.showTextColorPicker = false
     },
     showLinkMenu(attrs) {
-      this.linkUrl = attrs.href;
-      this.target = attrs.target;
-      this.linkMenuIsActive = true;
+      this.linkUrl = attrs.href
+      this.target = attrs.target
+      this.linkMenuIsActive = true
       this.$nextTick(() => {
-        this.$refs.linkInput.focus();
-      });
+        this.$refs.linkInput.focus()
+      })
     },
     hideLinkMenu() {
-      this.linkUrl = null;
-      this.linkMenuIsActive = false;
+      this.linkUrl = null
+      this.linkMenuIsActive = false
     },
     setLinkUrl(href, target) {
-      this.editor
-        .chain()
-        .focus()
-        .setLink({ href, target })
-        .run();
-      this.hideLinkMenu();
+      this.editor.chain().focus().setLink({ href, target }).run()
+      this.hideLinkMenu()
     },
   },
-};
+}
 </script>

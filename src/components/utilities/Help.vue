@@ -9,12 +9,20 @@
       }"
     >
       <div
-        class="dvs-text-admin-highlight-bg dvs-bg-admin-highlight-fg dvs-flex dvs-items-center dvs-justify-center dvs-px-4 dvs-text-xl "
+        class="
+          dvs-text-admin-highlight-bg
+          dvs-bg-admin-highlight-fg
+          dvs-flex
+          dvs-items-center
+          dvs-justify-center
+          dvs-px-4
+          dvs-text-xl
+        "
       >
         <help-circle-icon></help-circle-icon>
       </div>
 
-      <div class=" dvs-p-4 ">
+      <div class="dvs-p-4">
         <p>
           <slot></slot>
         </p>
@@ -32,8 +40,24 @@
       </span>
       <div
         v-show="showHelp || keepHelp"
-        class="dvs-not-italic dvs-normal-case dvs-font-normal dvs-text-xl dvs-fixed dvs-bottom-0 dvs-left-0 dvs-ml-4 dvs-mb-4 dvs-z-30 dvs-text-admin-highlight-fg dvs-bg-admin-highlight-bg dvs-p-8 dvs-rounded dvs-shadow-lg"
-        style="width:400px;"
+        class="
+          dvs-not-italic
+          dvs-normal-case
+          dvs-font-normal
+          dvs-text-xl
+          dvs-fixed
+          dvs-bottom-0
+          dvs-left-0
+          dvs-ml-4
+          dvs-mb-4
+          dvs-z-30
+          dvs-text-admin-highlight-fg
+          dvs-bg-admin-highlight-bg
+          dvs-p-8
+          dvs-rounded
+          dvs-shadow-lg
+        "
+        style="width: 400px"
       >
         <p>
           <slot></slot>
@@ -68,12 +92,12 @@ export default {
     return {
       showHelp: false,
       keepHelp: false,
-    };
+    }
   },
   methods: {
     toggleKeepHelp() {
-      this.keepHelp = !this.keepHelp;
+      this.keepHelp = !this.keepHelp
     },
   },
-};
+}
 </script>

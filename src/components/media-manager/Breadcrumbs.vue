@@ -28,26 +28,26 @@ export default {
   },
   computed: {
     directoriesObj() {
-      const directoriesObj = {};
-      let directoriesStr = '';
-      const directoriesArr = this.currentDirectory.split('.');
+      const directoriesObj = {}
+      let directoriesStr = ''
+      const directoriesArr = this.currentDirectory.split('.')
 
       for (let i = 0; i < directoriesArr.length; i += 1) {
-        directoriesStr += directoriesArr[i];
-        directoriesObj[directoriesStr] = directoriesArr[i];
-        directoriesStr += '.';
+        directoriesStr += directoriesArr[i]
+        directoriesObj[directoriesStr] = directoriesArr[i]
+        directoriesStr += '.'
       }
 
-      return directoriesObj;
+      return directoriesObj
     },
   },
   methods: {
     chooseDirectory(directory) {
-      this.$emit('chooseDirectory', directory);
+      this.$emit('chooseDirectory', directory)
     },
     goToHome() {
-      this.chooseDirectory('');
+      this.chooseDirectory('')
     },
   },
-};
+}
 </script>

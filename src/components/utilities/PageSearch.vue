@@ -22,9 +22,9 @@
 </template>
 
 <script>
-import debounce from 'v-debounce';
+import debounce from 'v-debounce'
 
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 
 export default {
   name: 'PageSearch',
@@ -52,40 +52,40 @@ export default {
       autosuggest: {
         data: [],
       },
-    };
+    }
   },
   watch: {
     searchTerm(newValue) {
-      this.requestSearch(newValue);
+      this.requestSearch(newValue)
     },
   },
   methods: {
     ...mapActions('devise', ['searchPages']),
     updateValue(i, id, title) {
-      this.searchTerm = '';
-      this.autosuggest.data = [];
+      this.searchTerm = ''
+      this.autosuggest.data = []
       this.$emit('selected', {
         index: i,
         id,
         title,
-      });
+      })
     },
     requestSearch(term) {
-      const self = this;
+      const self = this
       if (term !== '') {
-        this.searchPages({ term, 'multi-site': this.multisite }).then(data => {
-          self.autosuggest = data;
+        this.searchPages({ term, 'multi-site': this.multisite }).then((data) => {
+          self.autosuggest = data
           if (data.data.length < 1) {
             window.deviseSettings.$bus.$emit('showMessage', {
               title: 'No Suggestions Found',
               message: `We couldn't find any values with the term: "${term}".`,
-            });
+            })
           }
-        });
+        })
       } else {
-        this.autosuggest = Object.assign({}, {});
+        this.autosuggest = Object.assign({}, {})
       }
     },
   },
-};
+}
 </script>

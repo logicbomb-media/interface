@@ -19,11 +19,11 @@
       </div>
 
       <div class="dvs-mb-2">
-        <help v-if="anyNewMetaPopulated"
-          >&lt;meta {{ newMeta.attribute_name }}="{{ newMeta.attribute_value }}" content="{{
+        <help v-if="anyNewMetaPopulated">
+          &lt;meta {{ newMeta.attribute_name }}="{{ newMeta.attribute_value }}" content="{{
             newMeta.content
-          }}"&gt;</help
-        >
+          }}"&gt;
+        </help>
       </div>
 
       <button
@@ -50,13 +50,17 @@
         class="dvs-flex dvs-justify-between dvs-items-center dvs-mb-2"
       >
         <div
-          class="dvs-font-mono dvs-p-4 leading-loose dvs-text-sm dvs-bg-admin-fg dvs-text-admin-bg dvs-rounded dvs-shadow dvs-flex-grow"
+          class="
+            dvs-font-mono dvs-p-4
+            leading-loose
+            dvs-text-sm dvs-bg-admin-fg dvs-text-admin-bg dvs-rounded dvs-shadow dvs-flex-grow
+          "
         >
-          <template
-            >&lt;meta {{ meta.attribute_name }}="{{ meta.attribute_value }}" content="{{
+          <template>
+            &lt;meta {{ meta.attribute_name }}="{{ meta.attribute_value }}" content="{{
               meta.content
-            }}"&gt;</template
-          >
+            }}"&gt;
+          </template>
         </div>
 
         <div class="dvs-flex dvs-justify-between dvs-items-center">
@@ -113,7 +117,7 @@ export default {
         attribute_value: null,
         content: null,
       },
-    };
+    }
   },
   computed: {
     isInvalid() {
@@ -121,27 +125,27 @@ export default {
         this.newMeta.attribute_name === null ||
         this.newMeta.attribute_value === null ||
         this.newMeta.content === null
-      );
+      )
     },
     anyNewMetaPopulated() {
       return (
         this.newMeta.attribute_name !== null ||
         this.newMeta.attribute_value !== null ||
         this.newMeta.content !== null
-      );
+      )
     },
   },
   mounted() {
-    this.newMeta.site_id = window.deviseSettings.$page.site_id;
+    this.newMeta.site_id = window.deviseSettings.$page.site_id
   },
   methods: {
     requestCreateMeta() {
-      this.$emit('request-create-meta', this.newMeta);
-      this.newMeta = Object.assign({}, this.newMeta);
+      this.$emit('request-create-meta', this.newMeta)
+      this.newMeta = Object.assign({}, this.newMeta)
     },
     requestDeleteMeta(meta) {
-      this.$emit('request-delete-meta', meta);
+      this.$emit('request-delete-meta', meta)
     },
   },
-};
+}
 </script>

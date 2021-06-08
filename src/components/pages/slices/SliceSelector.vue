@@ -1,23 +1,31 @@
 <template>
   <div class="dvs-relative dvs-mb-8">
-    <div class="dvs-flex dvs-justify-center dvs-p-4 dvs-pb-8  dvs-text-admin-fg  dvs-w-full">
+    <div class="dvs-flex dvs-justify-center dvs-p-4 dvs-pb-8 dvs-text-admin-fg dvs-w-full">
       <input
         ref="filter"
         v-model="filter"
         type="text"
-        class="dvs-bg-transparent dvs-border-b-2 dvs-px-12 dvs-py-2 dvs-text-admin-fg dvs-outline-none dvs-placeholder-admin-fg dvs-text-center"
+        class="
+          dvs-bg-transparent
+          dvs-border-b-2
+          dvs-px-12
+          dvs-py-2
+          dvs-text-admin-fg
+          dvs-outline-none
+          dvs-placeholder-admin-fg
+          dvs-text-center
+        "
         placeholder="Type to begin searching"
-      >
+      />
       <div
         class="dvs-cursor-pointer"
-        :class="{'dvs-opacity-50': filter === ''}"
+        :class="{ 'dvs-opacity-50': filter === '' }"
         @click="filter = ''"
       >
         <x-icon></x-icon>
       </div>
     </div>
     <div v-if="allDirectories.length > 0">
-
       <div>
         <slice-selector-directory
           v-for="(directory, n) in allDirectories"
@@ -34,8 +42,8 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
-import SliceSelectorDirectory from './SliceSelectorDirectory.vue';
+import { mapGetters, mapState } from 'vuex'
+import SliceSelectorDirectory from './SliceSelectorDirectory.vue'
 
 export default {
   components: {
@@ -45,105 +53,105 @@ export default {
   props: {
     value: {
       type: Object,
-      default: () => { }
+      default: () => {},
     },
     modelQuery: {
       type: Object,
-      default: () => { }
-    }
+      default: () => {},
+    },
   },
-  data () {
+  data() {
     return {
       directoryStack: [],
       filter: null,
-    };
+    }
   },
   computed: {
     ...mapState('devise', ['modelQueries']),
     ...mapGetters('devise', ['slicesDirectories']),
-    allDirectories () {
+    allDirectories() {
       if (this.filter !== null && this.filter !== '') {
-        return this.filteredDirectories;
+        return this.filteredDirectories
       }
       if (this.slicesDirectories.directories && this.slicesDirectories.directories.length > 0) {
         return this.getDirectories(
           JSON.parse(JSON.stringify(this.slicesDirectories.directories)),
           0
-        );
+        )
       }
-      return [];
+      return []
     },
-    allowedViews () {
+    allowedViews() {
       if (this.modelQuery && this.modelQuery.key !== null) {
-        const mqc = this.modelQueries.find(mq => {
+        const mqc = this.modelQueries.find((mq) => {
           return mq.key === this.modelQuery.key
         })
         return mqc.views
       }
-      return null;
+      return null
     },
-    filteredDirectories () {
-      const filters = this.filter.toLowerCase().split(' ');
+    filteredDirectories() {
+      const filters = this.filter.toLowerCase().split(' ')
       const directories = this.getDirectories(
         JSON.parse(JSON.stringify(this.slicesDirectories.directories)),
         0
-      ).filter(directory => {
+      ).filter((directory) => {
         if (
-          filters.every(filter => {
-            return directory.path.toLowerCase().includes(filter);
+          filters.every((filter) => {
+            return directory.path.toLowerCase().includes(filter)
           })
         ) {
-          return true;
+          return true
         }
-        let { files } = directory;
-        files = files.filter(file => {
-          return filters.every(filter => {
-            return file.value.toLowerCase().includes(filter);
-          });
-        });
+        let { files } = directory
+        files = files.filter((file) => {
+          return filters.every((filter) => {
+            return file.value.toLowerCase().includes(filter)
+          })
+        })
         if (files.length) {
-          directory.files = files;
-          return true;
+          directory.files = files
+          return true
         }
-        return false;
-      });
-      return directories;
+        return false
+      })
+      return directories
     },
   },
-  mounted () {
-    this.$refs.filter.focus();
+  mounted() {
+    this.$refs.filter.focus()
   },
   methods: {
-    getDirectoryFiles (directories, directory) {
-      directory = directories.find(dir => dir.dirName === directory);
-      return directory;
+    getDirectoryFiles(directories, directory) {
+      directory = directories.find((dir) => dir.dirName === directory)
+      return directory
     },
-    getDirectories (directories) {
-      let dirs = [];
+    getDirectories(directories) {
+      let dirs = []
 
-      directories.map(dir => {
-        dirs.push(dir);
+      directories.map((dir) => {
+        dirs.push(dir)
 
         if (dir.directories && dir.directories.length > 0) {
-          dirs = dirs.concat(this.getDirectories(dir.directories));
+          dirs = dirs.concat(this.getDirectories(dir.directories))
         }
-        return dir;
-      });
+        return dir
+      })
 
-      return dirs;
+      return dirs
     },
-    filteredFiles (directory) {
-      const filter = this.filter.toLowerCase();
-      return directory.files.filter(file => {
+    filteredFiles(directory) {
+      const filter = this.filter.toLowerCase()
+      return directory.files.filter((file) => {
         if (file.name.toLowerCase().includes(filter)) {
-          return true;
+          return true
         }
-        return false;
-      });
+        return false
+      })
     },
-    update (newValue) {
-      this.$emit('input', newValue);
+    update(newValue) {
+      this.$emit('input', newValue)
     },
   },
-};
+}
 </script>

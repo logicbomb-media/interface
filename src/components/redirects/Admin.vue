@@ -9,7 +9,7 @@ export default {
     DeviseWorkflow: () =>
       import(/* webpackChunkName: "devise-administration" */ '../admin/workflow/Workflow'),
   },
-  data () {
+  data() {
     return {
       workflow: [
         {
@@ -32,25 +32,26 @@ export default {
               nextStep: 'search-for-redirect',
               stepAfterNext: 'delete-redirect',
             },
-          ]
+          ],
         },
         {
           key: 'create-redirect',
           component: 'devise-redirect-create',
           message: 'Fill out the fields below to create the redirect. All fields are required.',
-          end: true
+          end: true,
         },
         {
           key: 'edit-redirect',
           component: 'devise-redirect-edit',
           message: 'Manage the redirect settings using the fields below.',
-          end: true
+          end: true,
         },
         {
           key: 'delete-redirect',
           component: 'devise-redirect-delete',
-          message: 'Are you sure you want to delete this redirect? This will delete all related information and cannot be undone.',
-          end: true
+          message:
+            'Are you sure you want to delete this redirect? This will delete all related information and cannot be undone.',
+          end: true,
         },
         {
           key: 'search-for-redirect',
@@ -63,7 +64,7 @@ export default {
           resultsDisplayFields: [
             {
               label: 'From URL',
-              field: 'from_url'
+              field: 'from_url',
             },
             {
               label: 'To URL',
@@ -72,12 +73,12 @@ export default {
             {
               label: 'Created At',
               field: 'created_at',
-              dateFormat: 'MMMM D, YYYY @ h:mm a'
+              dateFormat: 'MMMM D, YYYY @ h:mm a',
             },
           ],
-        }
-      ]
+        },
+      ],
     }
-  }
+  },
 }
 </script>

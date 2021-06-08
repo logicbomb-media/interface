@@ -1,6 +1,6 @@
-const purgecss = require('@fullhuman/postcss-purgecss');
-const glob = require('glob-all');
-const path = require('path');
+const purgecss = require('@fullhuman/postcss-purgecss')
+const glob = require('glob-all')
+const path = require('path')
 
 module.exports = {
   plugins: [
@@ -13,7 +13,7 @@ module.exports = {
             {
               extractor: class {
                 static extract(content) {
-                  return content.match(/[a-zA-Z0-9-:_/]+/g) || [];
+                  return content.match(/[a-zA-Z0-9-:_/]+/g) || []
                 }
               },
               extensions: ['vue', 'html', 'php'],
@@ -53,4 +53,4 @@ module.exports = {
         })
       : '',
   ],
-};
+}

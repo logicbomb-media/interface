@@ -1,12 +1,12 @@
 <template>
   <div>
     <fieldset class="dvs-fieldset">
-      <label>{{value.label}}</label>
+      <label>{{ value.label }}</label>
       <date-picker
         ref="datepicker"
         :settings="{
           date: true,
-          time: true  
+          time: true,
         }"
         @change="updateValue"
       />
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'DeviseQuerySelectorText',
   components: {
@@ -24,15 +23,15 @@ export default {
   props: {
     value: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
-    updateValue (value) {
+    updateValue(value) {
       const newValue = this.value
       newValue.value = value
       this.$emit('input', newValue)
     },
-  }
+  },
 }
 </script>

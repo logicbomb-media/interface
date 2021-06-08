@@ -7,17 +7,12 @@
         type="text"
         placeholder="Title of the Page"
         class="w-full"
-      >
+      />
     </fieldset>
 
     <fieldset class="dvs-fieldset dvs-mb-4">
       <label>Slug</label>
-      <input
-        v-model="localValue.slug"
-        type="text"
-        placeholder="Url of the Page"
-        class="w-full"
-      >
+      <input v-model="localValue.slug" type="text" placeholder="Url of the Page" class="w-full" />
     </fieldset>
 
     <fieldset class="dvs-fieldset dvs-mb-4">
@@ -27,25 +22,25 @@
         type="text"
         placeholder="Meta title of the Page"
         class="w-full"
-      >
+      />
     </fieldset>
 
     <fieldset class="dvs-fieldset dvs-mb-8">
       <label>
         Canonical
-        <help :compact="true">The canonical link element helps webmasters make clear to the search engines which page should be credited as the original.<br><br>
+        <help :compact="true">
+          The canonical link element helps webmasters make clear to the search engines which page
+          should be credited as the original.<br /><br />
           <a
             href="https://en.wikipedia.org/wiki/Canonical_link_element"
             target="_blank"
             class="dvs-underline dvs-text-admin-highlight-fg dvs-font-bold"
-          >Wikipedia Entry</a></help>
+          >
+            Wikipedia Entry
+          </a>
+        </help>
       </label>
-      <input
-        v-model="localValue.canonical"
-        type="text"
-        placeholder="Canonical"
-        class="w-full"
-      >
+      <input v-model="localValue.canonical" type="text" placeholder="Canonical" class="w-full" />
     </fieldset>
 
     <fieldset class="dvs-fieldset dvs-mb-8">
@@ -62,32 +57,28 @@
     <fieldset class="dvs-fieldset dvs-mb-8">
       <label>
         Additional code in &lt;head&gt;
-        <help :compact="true">Code will be output exactly as you place it in here so you need to wrap JavaScript with &lg;script&gt; tags.</help>
+        <help :compact="true">
+          Code will be output exactly as you place it in here so you need to wrap JavaScript with
+          &lg;script&gt; tags.
+        </help>
       </label>
-      <textarea
-        v-model="localValue.head"
-        class="dvs-w-full"
-      ></textarea>
+      <textarea v-model="localValue.head" class="dvs-w-full"></textarea>
     </fieldset>
 
     <fieldset class="dvs-fieldset dvs-mb-8">
       <label>
         Additional code at the bottom of the page code?
-        <help :compact="true">Code will be output exactly as you place it in here so you need to wrap JavaScript with &lg;script&gt; tags.</help>
+        <help :compact="true">
+          Code will be output exactly as you place it in here so you need to wrap JavaScript with
+          &lg;script&gt; tags.
+        </help>
       </label>
-      <textarea
-        v-model="localValue.footer"
-        class="dvs-w-full"
-      ></textarea>
+      <textarea v-model="localValue.footer" class="dvs-w-full"></textarea>
     </fieldset>
 
     <fieldset class="dvs-fieldset dvs-mb-4">
       <label>Middleware</label>
-      <input
-        v-model="localValue.middleware"
-        type="text"
-        class="dvs-w-full"
-      >
+      <input v-model="localValue.middleware" type="text" class="dvs-w-full" />
     </fieldset>
 
     <!-- <fieldset class="dvs-fieldset dvs-mb-8">
@@ -102,82 +93,82 @@
       class="dvs-btn dvs-btn-primary dvs-text-xs mr-4"
       :disabled="editInvalid"
       @click="requestEditPage"
-    >Edit Page</button>
-    <button
-      class="dvs-btn dvs-btn-secondary dvs-text-xs"
-      @click="cancel"
-    >Cancel</button>
+    >
+      Edit Page
+    </button>
+    <button class="dvs-btn dvs-btn-secondary dvs-text-xs" @click="cancel">Cancel</button>
   </form>
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'DevisePagesEditSettings',
   components: {
     MetaForm: () => import(/* webpackChunkName: "devise-meta" */ '../../meta/MetaForm'),
-    Help: () => import(
-      // eslint-disable-next-line max-len
-      /* webpackChunkName: "devise-utilities" */ '../../utilities/Help.vue'),
+    Help: () =>
+      import(
+        // eslint-disable-next-line max-len
+        /* webpackChunkName: "devise-utilities" */ '../../utilities/Help.vue'
+      ),
   },
   props: {
     values: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
-  data () {
+  data() {
     return {
       localValue: {},
       showPassword: false,
-    };
+    }
   },
   computed: {
     ...mapState('devise', ['languages']),
-    editInvalid () {
+    editInvalid() {
       return (
         this.localValue.name === null ||
         this.localValue.email === null ||
         this.localValue.password === null ||
         this.localValue.password_confirmation === null ||
         this.localValue.password !== this.localValue.password_confirmation
-      );
+      )
     },
-    layouts () {
-      return window.deviseSettings.$config.layouts;
+    layouts() {
+      return window.deviseSettings.$config.layouts
     },
   },
-  mounted () {
+  mounted() {
     this.localValue = { ...this.values }
   },
   methods: {
     ...mapActions('devise', ['updateGeneric']),
-    requestEditPage () {
+    requestEditPage() {
       this.updateGeneric({
         config: {
           apiendpoint: 'pages',
-          recordLabel: 'title'
+          recordLabel: 'title',
         },
-        record: this.localValue
+        record: this.localValue,
       }).then((results) => {
         this.localValue = Object.assign({}, results.data.data)
         this.$emit('done')
-      });
+      })
     },
-    requestCreateMeta (newMeta) {
-      this.localValue.meta.push(newMeta);
+    requestCreateMeta(newMeta) {
+      this.localValue.meta.push(newMeta)
     },
-    requestUpdateMeta (meta) {
-      meta.edit = false;
+    requestUpdateMeta(meta) {
+      meta.edit = false
     },
-    requestDeleteMeta (meta) {
-      this.localValue.meta.splice(this.localValue.meta.indexOf(meta), 1);
+    requestDeleteMeta(meta) {
+      this.localValue.meta.splice(this.localValue.meta.indexOf(meta), 1)
     },
-    cancel () {
+    cancel() {
       this.$emit('cancel')
-    }
+    },
   },
-
-};
+}
 </script>

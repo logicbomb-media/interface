@@ -1,11 +1,8 @@
 <template>
-  <div
-    v-if="image"
-    class="dvs-text-2xs"
-  >
+  <div v-if="image" class="dvs-text-2xs">
     <div
       class="dvs-bg-cover dvs-bg-center dvs-mb-2"
-      :style="{width: `100px`, height: `100px`, backgroundImage: `url(${image.src})`}"
+      :style="{ width: `100px`, height: `100px`, backgroundImage: `url(${image.src})` }"
     ></div>
     <div class="dvs-text-lg dvs-font-bold dvs-mb-1">{{ formattedName }}</div>
     <div class="mb-1">{{ dimensions }}</div>
@@ -20,59 +17,59 @@ export default {
   props: {
     src: {
       type: String,
-      required: true
+      required: true,
     },
     name: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
-  data () {
+  data() {
     return {
       image: null,
       width: null,
       height: null,
-      filesize: null
+      filesize: null,
     }
   },
   computed: {
-    dimensions () {
-      return `${this.width} x ${this.height}`;
+    dimensions() {
+      return `${this.width} x ${this.height}`
     },
-    formattedFilesize () {
+    formattedFilesize() {
       return filesize(this.filesize)
     },
-    formattedName () {
-      if (this.name === "orig_optimized") {
-        return "optimized"
+    formattedName() {
+      if (this.name === 'orig_optimized') {
+        return 'optimized'
       }
       return this.name
-    }
+    },
   },
   watch: {
-    src () {
+    src() {
       this.initialize()
-    }
+    },
   },
-  mounted () {
+  mounted() {
     this.initialize()
   },
   methods: {
-    initialize () {
+    initialize() {
       this.loadImage()
       this.getFileSize()
     },
-    getImage (path) {
-      const img = new Image();
+    getImage(path) {
+      const img = new Image()
       img.src = path
 
       this.loadImage(img).then(() => {
         return img
       })
     },
-    loadImage () {
-      this.image = new Image();
-      this.image.src = this.src;
+    loadImage() {
+      this.image = new Image()
+      this.image.src = this.src
 
       this.image.onload = () => {
         this.$nextTick(() => {
@@ -80,22 +77,22 @@ export default {
         })
       }
     },
-    getDimensions () {
+    getDimensions() {
       this.width = this.image.naturalWidth
       this.height = this.image.naturalHeight
     },
-    getFileSize () {
-      const xhr = new XMLHttpRequest();
-      xhr.open('HEAD', this.src, true);
+    getFileSize() {
+      const xhr = new XMLHttpRequest()
+      xhr.open('HEAD', this.src, true)
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             this.filesize = xhr.getResponseHeader('Content-Length')
           }
         }
-      };
-      xhr.send(null);
-    }
-  }
+      }
+      xhr.send(null)
+    },
+  },
 }
 </script>

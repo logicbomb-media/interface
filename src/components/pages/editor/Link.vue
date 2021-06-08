@@ -9,9 +9,9 @@
     @change="update"
   >
     <template slot="preview">
-      <span v-if="value.text === null || value.text === ''" class="dvs-italic"
-        >Currently No Value</span
-      >
+      <span v-if="value.text === null || value.text === ''" class="dvs-italic">
+        Currently No Value
+      </span>
       <div>
         <a :href="value.href" :target="value.target">{{ value.text }}</a>
       </div>
@@ -50,9 +50,9 @@
           <label>Page</label>
           <select v-model="routeName" class="dvs-w-full" @change="selectPage()">
             <option :value="null" disabled>Select a Page</option>
-            <option v-for="page in pagesList.data" :key="page.id" :value="page.route_name">{{
-              page.title
-            }}</option>
+            <option v-for="page in pagesList.data" :key="page.id" :value="page.route_name">
+              {{ page.title }}
+            </option>
           </select>
         </fieldset>
       </template>
@@ -84,8 +84,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import Field from '../../../mixins/Field';
+import { mapActions, mapGetters } from 'vuex'
+import Field from '../../../mixins/Field'
 
 export default {
   name: 'LinkEditor',
@@ -106,149 +106,149 @@ export default {
   data() {
     return {
       showEditor: false,
-    };
+    }
   },
 
   computed: {
     ...mapGetters('devise', ['pagesList']),
     url: {
       get() {
-        return this.value.url;
+        return this.value.url
       },
       set(value) {
-        const valueObj = Object.assign(this.value, { href: value, url: value });
-        this.$emit('input', valueObj);
-        this.$emit('change', valueObj);
+        const valueObj = Object.assign(this.value, { href: value, url: value })
+        this.$emit('input', valueObj)
+        this.$emit('change', valueObj)
       },
     },
     text: {
       get() {
-        return this.value.text;
+        return this.value.text
       },
       set(value) {
-        const valueObj = Object.assign(this.value, { text: value });
-        this.$emit('input', valueObj);
-        this.$emit('change', valueObj);
+        const valueObj = Object.assign(this.value, { text: value })
+        this.$emit('input', valueObj)
+        this.$emit('change', valueObj)
       },
     },
     target: {
       get() {
         if (!this.value.target) {
-          const valueObj = Object.assign(this.value, { target: '_self' });
-          this.$emit('input', valueObj);
-          this.$emit('change', valueObj);
+          const valueObj = Object.assign(this.value, { target: '_self' })
+          this.$emit('input', valueObj)
+          this.$emit('change', valueObj)
         }
-        return this.value.target;
+        return this.value.target
       },
       set(value) {
-        const valueObj = Object.assign(this.value, { target: value });
-        this.$emit('input', valueObj);
-        this.$emit('change', valueObj);
+        const valueObj = Object.assign(this.value, { target: value })
+        this.$emit('input', valueObj)
+        this.$emit('change', valueObj)
       },
     },
     rel: {
       get() {
         if (!this.value.rel) {
-          return null;
+          return null
         }
-        return this.value.rel;
+        return this.value.rel
       },
       set(value) {
-        const valueObj = Object.assign(this.value, { rel: value });
-        this.$emit('input', valueObj);
-        this.$emit('change', valueObj);
+        const valueObj = Object.assign(this.value, { rel: value })
+        this.$emit('input', valueObj)
+        this.$emit('change', valueObj)
       },
     },
     routeName: {
       get() {
-        return this.value.routeName;
+        return this.value.routeName
       },
       set(value) {
-        const valueObj = Object.assign(this.value, { routeName: value });
-        this.$emit('input', valueObj);
-        this.$emit('change', valueObj);
+        const valueObj = Object.assign(this.value, { routeName: value })
+        this.$emit('input', valueObj)
+        this.$emit('change', valueObj)
       },
     },
     mode: {
       get() {
         if (this.value.mode) {
-          return this.value.mode;
+          return this.value.mode
         }
-        return 'page';
+        return 'page'
       },
       set(value) {
         if (value === 'page') {
-          this.url = null;
+          this.url = null
         } else {
-          this.routeName = null;
+          this.routeName = null
         }
 
-        const valueObj = Object.assign(this.value, { mode: value });
-        this.$emit('input', valueObj);
-        this.$emit('change', valueObj);
+        const valueObj = Object.assign(this.value, { mode: value })
+        this.$emit('input', valueObj)
+        this.$emit('change', valueObj)
       },
     },
   },
 
   mounted() {
     if (!this.value.mode) {
-      const valueObj = Object.assign(this.value, { mode: 'page' });
-      this.$emit('input', valueObj);
-      this.$emit('change', valueObj);
+      const valueObj = Object.assign(this.value, { mode: 'page' })
+      this.$emit('input', valueObj)
+      this.$emit('change', valueObj)
     }
-    this.originalValue = Object.assign({}, this.value);
-    this.retrieveAllPagesList();
+    this.originalValue = Object.assign({}, this.value)
+    this.retrieveAllPagesList()
   },
 
   methods: {
     ...mapActions('devise', ['getPagesList']),
     toggleEditor() {
-      this.showEditor = !this.showEditor;
-      this.focusForm();
+      this.showEditor = !this.showEditor
+      this.focusForm()
     },
     focusForm() {
       if (this.showEditor) {
         this.$nextTick(() => {
           setTimeout(() => {
-            this.$refs.focusInput.focus();
-          }, 200);
-        });
+            this.$refs.focusInput.focus()
+          }, 200)
+        })
       }
     },
     retrieveAllPagesList(loadbar = true) {
-      const filters = { language_id: window.deviseSettings.$page.language.id };
+      const filters = { language_id: window.deviseSettings.$page.language.id }
       this.getPagesList(filters).then(() => {
         if (loadbar) {
-          window.deviseSettings.$bus.$emit('incrementLoadbar', this.modulesToLoad);
+          window.deviseSettings.$bus.$emit('incrementLoadbar', this.modulesToLoad)
         }
-      });
+      })
     },
     selectPage() {
-      const page = this.pagesList.data.find(p => p.route_name === this.routeName);
+      const page = this.pagesList.data.find((p) => p.route_name === this.routeName)
       if (page) {
-        this.url = page.url;
+        this.url = page.url
       }
     },
     cancel() {
-      this.mode = this.originalValue.mode;
-      this.text = this.originalValue.text;
-      this.url = this.originalValue.url;
-      this.href = this.originalValue.href;
-      this.target = this.originalValue.target;
-      this.rel = this.originalValue.rel;
-      this.routeName = this.originalValue.routeName;
-      this.enabled = this.originalValue.enabled;
+      this.mode = this.originalValue.mode
+      this.text = this.originalValue.text
+      this.url = this.originalValue.url
+      this.href = this.originalValue.href
+      this.target = this.originalValue.target
+      this.rel = this.originalValue.rel
+      this.routeName = this.originalValue.routeName
+      this.enabled = this.originalValue.enabled
     },
     resetValue() {
-      this.enabled = false;
-      this.target = null;
-      this.rel = null;
-      this.url = null;
-      this.href = null;
-      this.mode = 'page';
-      this.text = null;
-      this.routeName = null;
+      this.enabled = false
+      this.target = null
+      this.rel = null
+      this.url = null
+      this.href = null
+      this.mode = 'page'
+      this.text = null
+      this.routeName = null
     },
   },
-};
+}
 </script>

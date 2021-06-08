@@ -9,7 +9,14 @@
         <li v-for="menuItem in currentMenuItems" :key="menuItem.id" class="dvs-py-6 dvs-mr-8">
           <div
             v-if="menuItem.routeName"
-            class="dvs-block dvs-switch-sm dvs-flex dvs-justify-between dvs-items-center dvs-cursor-pointer"
+            class="
+              dvs-block
+              dvs-switch-sm
+              dvs-flex
+              dvs-justify-between
+              dvs-items-center
+              dvs-cursor-pointer
+            "
             @click="goToPage(menuItem.routeName, menuItem.parameters)"
           >
             {{ menuItem.label }}
@@ -25,7 +32,14 @@
             >
               <div
                 v-if="childMenuItem.routeName"
-                class="dvs-block dvs-switch-sm dvs-flex dvs-justify-between dvs-items-center dvs-cursor-pointer"
+                class="
+                  dvs-block
+                  dvs-switch-sm
+                  dvs-flex
+                  dvs-justify-between
+                  dvs-items-center
+                  dvs-cursor-pointer
+                "
                 @click="goToPage(childMenuItem.routeName, childMenuItem.parameters)"
               >
                 {{ childMenuItem.label }}
@@ -39,7 +53,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from 'vuex'
 
 export default {
   name: 'DeviseIndex',
@@ -51,47 +65,47 @@ export default {
   computed: {
     ...mapState('devise', ['adminMenu']),
     currentMenu() {
-      return this.findMenu(this.adminMenu);
+      return this.findMenu(this.adminMenu)
     },
     currentMenuItems() {
-      return this.currentMenu.menu.filter(menuItem => {
+      return this.currentMenu.menu.filter((menuItem) => {
         if (!menuItem.permissions) {
-          return true;
+          return true
         }
-        return this.can(menuItem.permissions);
-      });
+        return this.can(menuItem.permissions)
+      })
     },
   },
 
   methods: {
     filteredMenu(subMenu) {
-      return subMenu.filter(menuItem => {
+      return subMenu.filter((menuItem) => {
         if (!menuItem.permissions) {
-          return true;
+          return true
         }
-        return this.can(menuItem.permissions);
-      });
+        return this.can(menuItem.permissions)
+      })
     },
     findMenu(menu) {
-      let safeMenu = menu;
+      let safeMenu = menu
       if (typeof menu === 'object') {
-        safeMenu = Object.keys(menu).map(i => menu[i]);
+        safeMenu = Object.keys(menu).map((i) => menu[i])
       }
 
       for (let i = 0; i < safeMenu.length; i += 1) {
-        const m = safeMenu[i];
+        const m = safeMenu[i]
         if (m.routeName === this.$route.name) {
-          return m;
+          return m
         }
         if (m.menu) {
-          const foundMenu = this.findMenu(m.menu);
+          const foundMenu = this.findMenu(m.menu)
           if (foundMenu) {
-            return foundMenu;
+            return foundMenu
           }
         }
       }
-      return false;
+      return false
     },
   },
-};
+}
 </script>

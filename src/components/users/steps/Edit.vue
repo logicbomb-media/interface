@@ -7,7 +7,7 @@
         type="text"
         autocomplete="off"
         placeholder="Name of the User"
-      >
+      />
     </fieldset>
 
     <fieldset class="dvs-fieldset dvs-mb-4">
@@ -17,36 +17,24 @@
         type="text"
         autocomplete="off"
         placeholder="Email of the User"
-      >
+      />
     </fieldset>
 
-    <fieldset
-      v-if="!showPassword"
-      class="dvs-fieldset dvs-mb-4"
-    >
-      <button
-        class="dvs-btn dvs-btn-secondary "
-        @click="showPassword = !showPassword"
-      >Edit Password</button>
+    <fieldset v-if="!showPassword" class="dvs-fieldset dvs-mb-4">
+      <button class="dvs-btn dvs-btn-secondary" @click="showPassword = !showPassword">
+        Edit Password
+      </button>
     </fieldset>
 
     <template v-if="showPassword">
       <fieldset class="dvs-fieldset dvs-mb-4">
         <label>Password</label>
-        <input
-          v-model="localValue.password"
-          type="password"
-          autocomplete="off"
-        >
+        <input v-model="localValue.password" type="password" autocomplete="off" />
       </fieldset>
 
       <fieldset class="dvs-fieldset dvs-mb-4">
         <label>Password Confirm</label>
-        <input
-          v-model="localValue.password_confirmation"
-          type="password"
-          autocomplete="off"
-        >
+        <input v-model="localValue.password_confirmation" type="password" autocomplete="off" />
       </fieldset>
     </template>
 
@@ -54,64 +42,62 @@
       class="dvs-btn dvs-btn-primary dvs-text-xs mr-2"
       :disabled="editInvalid"
       @click="requestEditUser"
-    >Edit User</button>
-    <button
-      class="dvs-btn dvs-btn-secondary dvs-text-xs"
-      @click="cancel"
-    >Cancel</button>
+    >
+      Edit User
+    </button>
+    <button class="dvs-btn dvs-btn-secondary dvs-text-xs" @click="cancel">Cancel</button>
   </form>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions } from 'vuex'
 
 export default {
   name: 'DeviseUsersEdit',
   props: {
     values: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
-  data () {
+  data() {
     return {
       localValue: {},
       showPassword: false,
-    };
+    }
   },
-  
+
   computed: {
-    editInvalid () {
+    editInvalid() {
       return (
         this.localValue.name === null ||
         this.localValue.email === null ||
         this.localValue.password === null ||
         this.localValue.password_confirmation === null ||
         this.localValue.password !== this.localValue.password_confirmation
-      );
+      )
     },
   },
 
-  mounted () {
+  mounted() {
     this.localValue = { ...this.values }
   },
   methods: {
     ...mapActions('devise', ['updateGeneric']),
-    requestEditUser () {
+    requestEditUser() {
       this.updateGeneric({
         config: {
           apiendpoint: 'users',
-          recordLabel: 'name'
+          recordLabel: 'name',
         },
-        record: this.localValue
+        record: this.localValue,
       }).then(() => {
         this.$emit('done')
-      });
+      })
     },
-    cancel () {
+    cancel() {
       this.$emit('cancel')
-    }
+    },
   },
-
-};
+}
 </script>

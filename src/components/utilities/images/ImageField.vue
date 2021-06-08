@@ -25,9 +25,17 @@
           <div
             v-for="(media, size) in image.media"
             :key="size"
-            class="dvs-uppercase dvs-text-center dvs-mr-4 dvs-mb-4 dvs-p-4 dvs-bg-admin-bg dvs-text-admin-fg"
+            class="
+              dvs-uppercase
+              dvs-text-center
+              dvs-mr-4
+              dvs-mb-4
+              dvs-p-4
+              dvs-bg-admin-bg
+              dvs-text-admin-fg
+            "
           >
-            <img :src="media" class="mb-2" style="width:100px; height:auto" />
+            <img :src="media" class="mb-2" style="width: 100px; height: auto" />
             <div class="dvs-text-xs">{{ getSizeName(size) }} {{ getDimensions(size) }}</div>
           </div>
         </div>
@@ -42,7 +50,18 @@
           @click="showPreview = false"
         ></div>
         <div
-          class="dvs-modal dvs-fixed dvs-bottom-0 dvs-right-0 dvs-mx-8 dvs-mb-8 dvs-z-40 dvs-w-1/2 dvs-bg-admin-bg dvs-text-admin-fg"
+          class="
+            dvs-modal
+            dvs-fixed
+            dvs-bottom-0
+            dvs-right-0
+            dvs-mx-8
+            dvs-mb-8
+            dvs-z-40
+            dvs-w-1/2
+            dvs-bg-admin-bg
+            dvs-text-admin-fg
+          "
         >
           <img :src="imageUrl" />
           <h6 class="dvs-text-base dvs-mb-4 dvs-mt-4">
@@ -86,7 +105,7 @@ export default {
           media: {},
           settings: {},
           url: '',
-        };
+        }
       },
     },
     sizes: {
@@ -97,7 +116,7 @@ export default {
   data() {
     return {
       showPreview: false,
-    };
+    }
   },
   computed: {
     image: {
@@ -112,55 +131,55 @@ export default {
               url: '',
             },
             this.value
-          );
+          )
           if (this.sizes) {
-            mergedValue.sizes = this.sizes;
+            mergedValue.sizes = this.sizes
           }
-          return mergedValue;
+          return mergedValue
         }
 
         // The man just wants an image.
         if (typeof this.value === 'undefined' || this.value === null) {
-          return '';
+          return ''
         }
 
         // Just gave him what he gave us
-        return this.value;
+        return this.value
       },
       set(newValue) {
         if (typeof newValue === 'object') {
-          newValue.sizes = this.sizes;
+          newValue.sizes = this.sizes
           // Expects an object
-          this.$emit('input', newValue);
-          this.$emit('change', newValue);
+          this.$emit('input', newValue)
+          this.$emit('change', newValue)
         } else {
           // Expects just the string
-          this.$emit('input', newValue);
-          this.$emit('change', newValue);
+          this.$emit('input', newValue)
+          this.$emit('change', newValue)
         }
       },
     },
     hasMedia() {
       if (this.image && this.image.media) {
-        return Object.keys(this.image.media).length > 0;
+        return Object.keys(this.image.media).length > 0
       }
-      return false;
+      return false
     },
     imageUrl() {
       if (!this.image) {
-        return '';
+        return ''
       }
       if (typeof this.image === 'object') {
-        return this.image.url;
+        return this.image.url
       }
-      return this.image;
+      return this.image
     },
     fileName() {
-      const parts = this.imageUrl.split('/');
-      return parts[parts.length - 1];
+      const parts = this.imageUrl.split('/')
+      return parts[parts.length - 1]
     },
     previewEnabled() {
-      return this.imageUrl !== '' && this.imageUrl !== null;
+      return this.imageUrl !== '' && this.imageUrl !== null
     },
   },
   methods: {
@@ -170,50 +189,50 @@ export default {
         options: {
           sizes: this.sizes,
         },
-      });
+      })
     },
     mediaSelected(imagesAndSettings) {
       if (typeof this.image !== 'object') {
-        this.image = imagesAndSettings.images.defaultImage;
-        return imagesAndSettings.images.defaultImage;
+        this.image = imagesAndSettings.images.defaultImage
+        return imagesAndSettings.images.defaultImage
       }
 
       const value = {
         url: imagesAndSettings.images.defaultImage,
-      };
-
-      if (typeof imagesAndSettings === 'object') {
-        value.alt = imagesAndSettings.images.alt;
-        value.url = imagesAndSettings.images.defaultImage;
-        value.defaultImage = imagesAndSettings.images.defaultImage;
-        value.media = imagesAndSettings.images.media;
-        value.settings = imagesAndSettings.settings;
-      } else {
-        value.url = imagesAndSettings;
       }
 
-      this.image = Object.assign({}, value);
-      return this.image;
+      if (typeof imagesAndSettings === 'object') {
+        value.alt = imagesAndSettings.images.alt
+        value.url = imagesAndSettings.images.defaultImage
+        value.defaultImage = imagesAndSettings.images.defaultImage
+        value.media = imagesAndSettings.images.media
+        value.settings = imagesAndSettings.settings
+      } else {
+        value.url = imagesAndSettings
+      }
+
+      this.image = Object.assign({}, value)
+      return this.image
     },
     getSizeName(size) {
-      if (size === 'orig_optimized') return `Optimized`;
+      if (size === 'orig_optimized') return `Optimized`
 
-      return size;
+      return size
     },
     getDimensions(size) {
       if (this.image.sizes && this.image.sizes[size])
-        return `(${this.image.sizes[size].w} x ${this.image.sizes[size].h})`;
+        return `(${this.image.sizes[size].w} x ${this.image.sizes[size].h})`
 
-      if (this.sizes && this.sizes[size]) return `(${this.sizes[size].w} x ${this.sizes[size].h})`;
+      if (this.sizes && this.sizes[size]) return `(${this.sizes[size].w} x ${this.sizes[size].h})`
 
       if (size !== 'original' && this.image.settings.w)
-        return `(${this.image.settings.w} x ${this.image.settings.h})`;
+        return `(${this.image.settings.w} x ${this.image.settings.h})`
 
-      return null;
+      return null
     },
     loadPreview() {
-      if (this.previewEnabled) this.showPreview = true;
+      if (this.previewEnabled) this.showPreview = true
     },
   },
-};
+}
 </script>

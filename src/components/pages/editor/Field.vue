@@ -13,7 +13,16 @@
           @click="toggleEnabled"
         ></div>
         <div
-          class="dvs-flex dvs-items-center dvs-justify-stretch dvs-w-3/4 dvs-bg-admin-secondary-bg dvs-text-admin-secondary-fg dvs-px-4 dvs-rounded"
+          class="
+            dvs-flex
+            dvs-items-center
+            dvs-justify-stretch
+            dvs-w-3/4
+            dvs-bg-admin-secondary-bg
+            dvs-text-admin-secondary-fg
+            dvs-px-4
+            dvs-rounded
+          "
           @click="toggleShowEditor"
         >
           {{ devLabel }} {{ options.label }}
@@ -30,7 +39,18 @@
         ></div>
         <panel
           id="field-panel"
-          class="dvs-fixed dvs-bottom-0 dvs-right-0 dvs-mx-8 dvs-mb-8 dvs-z-40 dvs-max-w-full dvs-bg-admin-bg dvs-text-admin-fg dvs-rounded"
+          class="
+            dvs-fixed
+            dvs-bottom-0
+            dvs-right-0
+            dvs-mx-8
+            dvs-mb-8
+            dvs-z-40
+            dvs-max-w-full
+            dvs-bg-admin-bg
+            dvs-text-admin-fg
+            dvs-rounded
+          "
         >
           <div class="dvs-p-8 dvs-flex dvs-flex-col">
             <h6 class="dvs-text-base dvs-mb-2 dvs-w-full uppercase">
@@ -48,7 +68,7 @@
             <div class="dvs-flex dvs-items-center dvs-mt-4 dvs-mb-4 dvs-justify-between">
               <div
                 class="dvs-flex dvs-items-center dvs-w-full dvs-text-xs"
-                style="max-width:300px;"
+                style="max-width: 300px"
               >
                 <button
                   class="dvs-btn dvs-btn-primary dvs-mr-2 dvs-w-1/2"
@@ -63,7 +83,7 @@
               <div
                 v-if="options.enabler"
                 class="dvs-flex dvs-items-center dvs-justify-between"
-                style="min-width:175px;"
+                style="min-width: 175px"
               >
                 <label class="dvs-mr-2">Field Enabled</label>
                 <toggle :id="randomString(8)" v-model="enabled"></toggle>
@@ -71,8 +91,20 @@
             </div>
             <div
               v-if="!showErase && !noReset"
-              class="dvs-absolute dvs-bottom-0 dvs-left-0 dvs-right-0 dvs-uppercase dvs-text-center dvs-text-xs dvs-p-2 dvs-cursor-pointer dvs-bg-admin-highlight-bg dvs-text-admin-highlight-fg"
-              style="height:30px;"
+              class="
+                dvs-absolute
+                dvs-bottom-0
+                dvs-left-0
+                dvs-right-0
+                dvs-uppercase
+                dvs-text-center
+                dvs-text-xs
+                dvs-p-2
+                dvs-cursor-pointer
+                dvs-bg-admin-highlight-bg
+                dvs-text-admin-highlight-fg
+              "
+              style="height: 30px"
               @click="showErase = true"
             >
               reset
@@ -90,9 +122,9 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import Strings from '../../../mixins/Strings';
-import Field from '../../../mixins/Field';
+import { mapState } from 'vuex'
+import Strings from '../../../mixins/Strings'
+import Field from '../../../mixins/Field'
 
 export default {
   name: 'FieldEditor',
@@ -124,7 +156,7 @@ export default {
   data() {
     return {
       showErase: false,
-    };
+    }
   },
   computed: {
     ...mapState('devise', ['devMode']),

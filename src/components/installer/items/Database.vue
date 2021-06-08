@@ -8,15 +8,14 @@
     <template slot="instructions">
       <p>
         Your application will need to connect to a database. You can do this by editing your
-        <span class="dvs-font-monospace">.env</span> file in the root of your project and ensuring the following values are set:
+        <span class="dvs-font-monospace">.env</span> file in the root of your project and ensuring
+        the following values are set:
       </p>
     </template>
 
-    <template slot="example">In your .env file
-      <pre
-        class="lang-ini line-numbers"
-        data-start="1"
-      >
+    <template slot="example">
+      In your .env file
+      <pre class="lang-ini line-numbers" data-start="1">
           <code>
             DB_CONNECTION=mysql
             <br>DB_HOST=127.0.0.1
@@ -34,13 +33,13 @@
 <script>
 export default {
   components: {
-    DeviseInstallerItem: () => import(/* webpackChunkName: "devise-installer" */ "../Item.vue"),
+    DeviseInstallerItem: () => import(/* webpackChunkName: "devise-installer" */ '../Item.vue'),
   },
   props: {
     item: {
       type: Boolean,
-      required: true
-    }
-  }
-};
+      required: true,
+    },
+  },
+}
 </script>

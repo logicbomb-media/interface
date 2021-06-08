@@ -1,1 +1,1 @@
-import './sass/devise.scss';
+import './sass/devise.scss'

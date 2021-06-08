@@ -9,27 +9,22 @@
     @change="update"
   >
     <template slot="preview">
-      <span
-        v-if="value.text === null || value.text === ''"
-        class="dvs-italic"
-      >Currently No Value</span>
-      <div>{{value.text}}</div>
+      <span v-if="value.text === null || value.text === ''" class="dvs-italic">
+        Currently No Value
+      </span>
+      <div>{{ value.text }}</div>
     </template>
 
     <template slot="editor">
       <fieldset class="dvs-fieldset">
-        <input
-          ref="focusInput"
-          v-model="text"
-          type="number"
-        >
+        <input ref="focusInput" v-model="text" type="number" />
       </fieldset>
     </template>
   </field-editor>
 </template>
 
 <script>
-import Field from '../../../mixins/Field';
+import Field from '../../../mixins/Field'
 
 export default {
   name: 'NumberEditor',
@@ -47,49 +42,49 @@ export default {
       required: true,
     },
   },
-  data () {
+  data() {
     return {
       originalValue: {},
       showEditor: false,
-    };
+    }
   },
   computed: {
     text: {
-      get () {
-        return this.value.text;
+      get() {
+        return this.value.text
       },
-      set (value) {
-        const valueObj = Object.assign(this.value, { text: parseInt(value) });
-        this.$emit('input', valueObj);
-        this.$emit('change', valueObj);
+      set(value) {
+        const valueObj = Object.assign(this.value, { text: parseInt(value) })
+        this.$emit('input', valueObj)
+        this.$emit('change', valueObj)
       },
     },
   },
-  mounted () {
-    this.originalValue = Object.assign({}, this.value);
+  mounted() {
+    this.originalValue = Object.assign({}, this.value)
   },
   methods: {
-    toggleEditor () {
-      this.showEditor = !this.showEditor;
-      this.focusForm();
+    toggleEditor() {
+      this.showEditor = !this.showEditor
+      this.focusForm()
     },
-    focusForm () {
+    focusForm() {
       if (this.showEditor) {
         this.$nextTick(() => {
           setTimeout(() => {
-            this.$refs.focusInput.focus();
-          }, 200);
-        });
+            this.$refs.focusInput.focus()
+          }, 200)
+        })
       }
     },
-    cancel () {
-      this.text = this.originalValue.text;
-      this.enabled = this.originalValue.enabled;
+    cancel() {
+      this.text = this.originalValue.text
+      this.enabled = this.originalValue.enabled
     },
-    resetValue () {
-      this.enabled = false;
-      this.text = null;
+    resetValue() {
+      this.enabled = false
+      this.text = null
     },
   },
-};
+}
 </script>

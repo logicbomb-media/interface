@@ -63,18 +63,18 @@ export default {
   methods: {
     changePage(page) {
       if (page > 0 && page <= this.meta.last_page) {
-        this.$emit('changePage', page);
+        this.$emit('changePage', page)
       }
     },
     isCurrentPage(page) {
-      return page === this.meta.current_page;
+      return page === this.meta.current_page
     },
     decideStyle(page) {
       if (this.isCurrentPage(page)) {
-        return this.theme.actionButton;
+        return this.theme.actionButton
       }
-      return this.theme.actionButtonGhost;
+      return this.theme.actionButtonGhost
     },
   },
-};
+}
 </script>

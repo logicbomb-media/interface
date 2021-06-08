@@ -1,7 +1,16 @@
 <template>
   <div
     v-if="show"
-    class="dvs-h-screen dvs-fixed dvs-inset-0 dvs-flex dvs-justify-center dvs-items-center dvs-z-60 dvs-text-gray-800"
+    class="
+      dvs-h-screen
+      dvs-fixed
+      dvs-inset-0
+      dvs-flex
+      dvs-justify-center
+      dvs-items-center
+      dvs-z-60
+      dvs-text-gray-800
+    "
   >
     <div class="dvs-blocker dvs-z-30" @click="show = false"></div>
 
@@ -31,7 +40,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'DeviseForceSave',
@@ -44,7 +53,7 @@ export default {
   data() {
     return {
       show: false,
-    };
+    }
   },
 
   computed: {
@@ -53,19 +62,19 @@ export default {
 
   mounted() {
     window.deviseSettings.$bus.$on('showForceSave', () => {
-      this.show = true;
-    });
+      this.show = true
+    })
   },
   methods: {
     ...mapActions('devise', ['savePage']),
     forceSavePage() {
       this.savePage({ page: this.currentPage, forceSave: true }).then(() => {
-        this.show = false;
-      });
+        this.show = false
+      })
     },
     refreshPage() {
-      window.location.reload();
+      window.location.reload()
     },
   },
-};
+}
 </script>

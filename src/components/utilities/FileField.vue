@@ -60,30 +60,30 @@ export default {
   data() {
     return {
       showPreview: false,
-    };
+    }
   },
   computed: {
     file: {
       get() {
-        return this.value;
+        return this.value
       },
       set(newValue) {
-        this.$emit('input', newValue);
-        this.$emit('change', newValue);
+        this.$emit('input', newValue)
+        this.$emit('change', newValue)
       },
     },
     fileName() {
-      const parts = this.value.split('/');
-      return parts[parts.length - 1];
+      const parts = this.value.split('/')
+      return parts[parts.length - 1]
     },
     previewEnabled() {
-      return this.value !== '' && this.value !== null;
+      return this.value !== '' && this.value !== null
     },
     getMaxLength() {
       if (typeof this.settings !== 'undefined' && typeof this.settings.maxlength !== 'undefined') {
-        return this.settings.maxlength;
+        return this.settings.maxlength
       }
-      return '';
+      return ''
     },
   },
   methods: {
@@ -93,14 +93,14 @@ export default {
         options: {
           type: 'file',
         },
-      });
+      })
     },
     mediaSelected(url) {
-      this.file = url;
+      this.file = url
     },
     loadPreview() {
-      if (this.previewEnabled) this.showPreview = true;
+      if (this.previewEnabled) this.showPreview = true
     },
   },
-};
+}
 </script>

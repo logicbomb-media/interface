@@ -1,13 +1,30 @@
 <template>
-  <div class="media-manager-interface dvs-text-gray-800" style="max-width:95vw">
+  <div class="media-manager-interface dvs-text-gray-800" style="max-width: 95vw">
     <div
-      style="min-height:70px;"
-      class="dvs-py-4 dvs-px-8 dvs-rounded-tl dvs-rounded-tr dvs-flex dvs-justify-between dvs-items-center dvs-bg-gray-300 dvs-relative"
+      style="min-height: 70px"
+      class="
+        dvs-py-4
+        dvs-px-8
+        dvs-rounded-tl
+        dvs-rounded-tr
+        dvs-flex
+        dvs-justify-between
+        dvs-items-center
+        dvs-bg-gray-300
+        dvs-relative
+      "
     >
       <div class="pr-16">
         <div
           v-if="currentDirectory !== ''"
-          class="dvs-flex dvs-justify-between dvs-items-center dvs-font-bold dvs-text-sm dvs-tracking-tight"
+          class="
+            dvs-flex
+            dvs-justify-between
+            dvs-items-center
+            dvs-font-bold
+            dvs-text-sm
+            dvs-tracking-tight
+          "
         >
           <breadcrumbs
             :current-directory="currentDirectory"
@@ -48,10 +65,19 @@
       </div>
     </div>
 
-    <div class="dvs-flex dvs-items-stretch" style="max-height:80vh">
-      <div class="dvs-relative dvs-max-h-full dvs-flex" style="min-width:300px;">
+    <div class="dvs-flex dvs-items-stretch" style="max-height: 80vh">
+      <div class="dvs-relative dvs-max-h-full dvs-flex" style="min-width: 300px">
         <div
-          class="dvs-h-full dvs-p-8 dvs-bg-gray-400est dvs-flex dvs-flex-col dvs-justify-start dvs-border-r dvs-border-lighter"
+          class="
+            dvs-h-full
+            dvs-p-8
+            dvs-bg-gray-400est
+            dvs-flex
+            dvs-flex-col
+            dvs-justify-start
+            dvs-border-r
+            dvs-border-lighter
+          "
         >
           <form @submit.prevent="search">
             <div class="dvs-mb-8 flex">
@@ -147,13 +173,24 @@
           <div
             v-if="
               !loadingDirectory &&
-                currentFiles.length < 1 &&
-                directories.length < 1 &&
-                currentDirectory !== ''
+              currentFiles.length < 1 &&
+              directories.length < 1 &&
+              currentDirectory !== ''
             "
           >
             <div
-              class=" dvs-bg-gray-100 dvs-text-gray-600 dvs-rounded dvs-p-8 dvs-text-center dvs-shadow dvs-cursor-pointer dvs-flex dvs-justify-center dvs-items-center"
+              class="
+                dvs-bg-gray-100
+                dvs-text-gray-600
+                dvs-rounded
+                dvs-p-8
+                dvs-text-center
+                dvs-shadow
+                dvs-cursor-pointer
+                dvs-flex
+                dvs-justify-center
+                dvs-items-center
+              "
               @click="requestDeleteDirectory()"
             >
               <trash-icon h="60" w="60" class="dvs-mr-2" />
@@ -196,10 +233,10 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions } from 'vuex'
 
 // eslint-disable-next-line no-undef
-const Cookies = require('js-cookie');
+const Cookies = require('js-cookie')
 
 export default {
   components: {
@@ -215,8 +252,7 @@ export default {
       import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/FolderIcon'),
     TrashIcon: () =>
       import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/TrashIcon'),
-    CloseIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
+    CloseIcon: () => import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
     VueScrollbar: () => import(/* webpackChunkName: "devise-administration" */ 'vue2-scrollbar'),
   },
   data() {
@@ -229,42 +265,42 @@ export default {
       currentlyOpenFile: null,
       cookieSettings: false,
       loadingDirectory: false,
-    };
+    }
   },
   computed: {
     ...mapGetters('devise', ['files', 'directories', 'currentDirectory', 'searchableMedia']),
     currentFiles() {
       if (this.searchResults.length > 0) {
-        return this.searchResults;
+        return this.searchResults
       }
-      return this.files;
+      return this.files
     },
     uploadHeaders() {
-      const token = document.head.querySelector('meta[name="csrf-token"]');
+      const token = document.head.querySelector('meta[name="csrf-token"]')
       return {
         'X-CSRF-TOKEN': token.content,
-      };
+      }
     },
   },
   watch: {
-    cookieSettings: newValue => {
+    cookieSettings: (newValue) => {
       if (!newValue) {
-        Cookies.remove('devise-mediamanager-location');
+        Cookies.remove('devise-mediamanager-location')
       }
     },
     mode(newValue) {
-      Cookies.set('devise-mediamanager-mode', newValue);
+      Cookies.set('devise-mediamanager-mode', newValue)
     },
     directories() {
       if (typeof this.$refs.Scrollbar !== 'undefined') {
-        this.$refs.Scrollbar.calculateSize();
-        this.$refs.Scrollbar.scrollToY(0);
+        this.$refs.Scrollbar.calculateSize()
+        this.$refs.Scrollbar.scrollToY(0)
       }
     },
   },
   mounted() {
-    this.loadInitialLocation();
-    this.loadInitialMode();
+    this.loadInitialLocation()
+    this.loadInitialMode()
   },
   methods: {
     ...mapActions('devise', [
@@ -278,111 +314,111 @@ export default {
       'deleteDirectory',
     ]),
     loadInitialLocation() {
-      const cookieLocation = Cookies.get('devise-mediamanager-location');
+      const cookieLocation = Cookies.get('devise-mediamanager-location')
       if (cookieLocation) {
-        this.changeDirectories(cookieLocation);
-        this.cookieSettings = true;
+        this.changeDirectories(cookieLocation)
+        this.cookieSettings = true
       } else {
-        this.changeDirectories('');
+        this.changeDirectories('')
       }
     },
     loadInitialMode() {
-      const cookieMode = Cookies.get('devise-mediamanager-mode');
+      const cookieMode = Cookies.get('devise-mediamanager-mode')
       if (cookieMode) {
-        this.mode = cookieMode;
+        this.mode = cookieMode
       }
     },
     changeDirectories(directory) {
-      this.loadingDirectory = true;
-      this.searchTerms = null;
-      this.$set(this, 'searchResults', []);
+      this.loadingDirectory = true
+      this.searchTerms = null
+      this.$set(this, 'searchResults', [])
 
       this.setCurrentDirectory(directory).then(() => {
         this.getCurrentFiles(this.options).then(() => {
           this.getCurrentDirectories().then(() => {
-            this.loadingDirectory = false;
+            this.loadingDirectory = false
             if (this.cookieSettings) {
-              Cookies.set('devise-mediamanager-location', directory);
+              Cookies.set('devise-mediamanager-location', directory)
             }
-          });
-        });
-      });
+          })
+        })
+      })
     },
     refreshDirectory() {
-      this.changeDirectories(this.currentDirectory);
+      this.changeDirectories(this.currentDirectory)
     },
     uploadError() {
       window.deviseSettings.$bus.$emit('showError', {
         title: 'Upload Error',
         message:
           'There was a problem uploading your file. The file may be too large to be uploaded.',
-      });
+      })
     },
     getUrlParam(paramName) {
-      const reParam = new RegExp(`(?:[?&]|&)${paramName}=([^&]+)`, 'i');
-      const match = window.location.search.match(reParam);
+      const reParam = new RegExp(`(?:[?&]|&)${paramName}=([^&]+)`, 'i')
+      const match = window.location.search.match(reParam)
 
-      return match && match.length > 1 ? match[1] : null;
+      return match && match.length > 1 ? match[1] : null
     },
     openFile(file) {
       if (!this.currentlyOpenFile || file.url !== this.currentlyOpenFile.url) {
-        this.$set(this, 'currentlyOpenFile', file);
-        this.$set(this.currentlyOpenFile, 'loaded', false);
+        this.$set(this, 'currentlyOpenFile', file)
+        this.$set(this.currentlyOpenFile, 'loaded', false)
       }
     },
     closeFile() {
-      this.$set(this, 'currentlyOpenFile', {});
+      this.$set(this, 'currentlyOpenFile', {})
     },
     selectSourceFile(file) {
-      this.$emit('selectSourceFile', file);
+      this.$emit('selectSourceFile', file)
     },
     requestCreateDirectory() {
-      const self = this;
+      const self = this
 
       // check to see if the directory already exists in the current location
-      const existingMatches = this.directories.filter(dir => dir.name === self.directoryToCreate);
+      const existingMatches = this.directories.filter((dir) => dir.name === self.directoryToCreate)
 
       if (existingMatches.length === 0) {
         this.createDirectory({
           directory: self.currentDirectory,
           name: self.directoryToCreate,
         }).then(() => {
-          self.changeDirectories(self.currentDirectory);
-          self.directoryToCreate = '';
-        });
+          self.changeDirectories(self.currentDirectory)
+          self.directoryToCreate = ''
+        })
       } else {
         window.deviseSettings.$bus.$emit('showError', {
           title: 'Duplicate Name',
           message: 'There was already a directory with this name created in the current location.',
-        });
+        })
       }
     },
     requestDeleteDirectory() {
-      const self = this;
+      const self = this
       this.deleteDirectory(self.currentDirectory).then(() => {
-        self.changeDirectories('');
-      });
+        self.changeDirectories('')
+      })
     },
     search() {
-      this.mediaSearch(this.searchTerms).then(results => {
-        this.searchResults = results;
+      this.mediaSearch(this.searchTerms).then((results) => {
+        this.searchResults = results
         if (results.length < 1) {
           window.deviseSettings.$bus.$emit('showError', {
             title: 'Hey there',
             message: `No search results for "${this.searchTerms}"`,
-          });
+          })
         }
-      });
+      })
     },
     closeSearch() {
-      this.searchTerms = null;
-      this.$set(this, 'searchResults', []);
+      this.searchTerms = null
+      this.$set(this, 'searchResults', [])
     },
     close() {
-      this.show = false;
-      this.imageSettings = Object.assign({});
-      this.$set(this, 'selectedFile', null);
+      this.show = false
+      this.imageSettings = Object.assign({})
+      this.$set(this, 'selectedFile', null)
     },
   },
-};
+}
 </script>
