@@ -26,7 +26,7 @@
 export default {
   name: 'DeviseInstallerItem',
   components: {
-    ItemCheck: () => import(/* webpackChunkName: "devise-installer" */ './ItemCheck.vue'),
+    ItemCheck: () => import('./ItemCheck.vue'),
   },
   props: {
     item: {

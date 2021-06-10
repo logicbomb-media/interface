@@ -46,8 +46,7 @@ export default {
   name: 'DeviseForceSave',
 
   components: {
-    AdminContainer: () =>
-      import(/* webpackChunkName: "devise-utilities" */ '../admin/ui/AdminContainer.vue'),
+    AdminContainer: () => import('../admin/ui/AdminContainer.vue'),
   },
 
   data() {

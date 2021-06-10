@@ -95,8 +95,7 @@ import Cropper from 'cropperjs'
 export default {
   name: 'MediaEditorPreview',
   components: {
-    LoadingScreen: () =>
-      import(/* webpackChunkName: "devise-utilities" */ '../utilities/LoadingScreen.vue'),
+    LoadingScreen: () => import('../utilities/LoadingScreen.vue'),
   },
   props: {
     sizes: {

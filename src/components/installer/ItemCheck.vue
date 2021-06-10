@@ -12,10 +12,8 @@ export default {
   name: 'DeviseItemCheck',
 
   components: {
-    CheckmarkIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/CheckCircleIcon'),
-    CloseCircleIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/CircleIcon'),
+    CheckmarkIcon: () => import('vue-feather-icons/icons/CheckCircleIcon'),
+    CloseCircleIcon: () => import('vue-feather-icons/icons/CircleIcon'),
   },
 
   props: {

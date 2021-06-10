@@ -48,7 +48,7 @@ import SliceSelectorDirectory from './SliceSelectorDirectory.vue'
 export default {
   components: {
     SliceSelectorDirectory,
-    XIcon: () => import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
+    XIcon: () => import('vue-feather-icons/icons/XIcon'),
   },
   props: {
     value: {

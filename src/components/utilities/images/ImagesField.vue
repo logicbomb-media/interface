@@ -100,11 +100,9 @@
 export default {
   name: 'ImagesField',
   components: {
-    ImagesIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/CameraIcon'),
-    SearchIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/SearchIcon'),
-    Help: () => import(/* webpackChunkName: "devise-utilities" */ '../Help'),
+    ImagesIcon: () => import('vue-feather-icons/icons/CameraIcon'),
+    SearchIcon: () => import('vue-feather-icons/icons/SearchIcon'),
+    Help: () => import('../Help'),
   },
   props: {
     value: {

@@ -1,16 +1,41 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700');
 
-#devise-admin {
-  h1,h2,h3,h4,h5,h6 { @apply dvs-font-sans}
+#devise-administration {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply dvs-font-sans dvs-normal-case dvs-font-medium dvs-tracking-normal #{!important};
+  }
 
-  h1 { @apply dvs-text-4xl }
-  h2 { @apply dvs-text-3xl }
-  h3 { @apply dvs-text-xl }
-  h4 { @apply dvs-text-xl }
-  h5 { @apply dvs-text-lg; }
-  h6 { @apply dvs-text-xs; }
+  h1 {
+    @apply dvs-text-xl #{!important};
+  }
+  h2 {
+    @apply dvs-text-lg #{!important};
+  }
+  h3 {
+    @apply dvs-text-base #{!important};
+  }
+  h4 {
+    @apply dvs-text-sm #{!important};
+  }
+  h5 {
+    @apply dvs-text-xs #{!important};
+  }
+  h6 {
+    @apply dvs-text-2xs #{!important};
+  }
 
-  p, ol, ul, blockquote, pre, code {
+  p,
+  ol,
+  ul,
+  blockquote,
+  pre,
+  code {
+    @apply dvs-mb-0 #{!important};
     line-height: 1.4em;
   }
 
@@ -22,23 +47,11 @@
     }
   }
 
-  p {
-    @apply dvs-pb-4 dvs-leading-normal;
-
-    &:last-child {
-      @apply dvs-pb-0;
-    }
-  }
-
   small {
     @apply dvs-text-xs;
   }
 
   .strikethrough {
-    text-decoration:dvs-line-through;
+    text-decoration: dvs-line-through;
   }
-
 }
-
-
-

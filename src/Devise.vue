@@ -51,6 +51,19 @@
           ></slot>
           <slot name="on-bottom"></slot>
         </div>
+
+        <div
+          v-if="typeof currentPage !== 'undefined' && !isPreviewFrame && isLoggedIn"
+          id="devise-iframe-editor"
+        >
+          <!-- Preview mode in editor -->
+          <iframe
+            v-if="currentPage.previewMode !== 'desktop' && isLoggedIn"
+            id="devise-responsive-preview"
+            :src="currentUrl"
+            :class="[currentPage.previewMode]"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -64,10 +77,7 @@ export default {
   name: 'Devise',
 
   components: {
-    Administration: () =>
-      import(
-        /* webpackChunkName: "devise-administration" */ './components/admin/Administration.vue'
-      ),
+    Administration: () => import('./components/admin/Administration.vue'),
   },
 
   data() {

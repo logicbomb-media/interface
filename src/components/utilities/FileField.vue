@@ -46,10 +46,8 @@
 export default {
   name: 'ImageField',
   components: {
-    DocumentIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/ClipboardIcon'),
-    SearchIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/SearchIcon'),
+    DocumentIcon: () => import('vue-feather-icons/icons/ClipboardIcon'),
+    SearchIcon: () => import('vue-feather-icons/icons/SearchIcon'),
   },
   props: {
     value: {

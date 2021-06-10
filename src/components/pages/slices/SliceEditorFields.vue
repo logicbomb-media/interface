@@ -105,17 +105,17 @@
 export default {
   name: 'SliceEditorFields',
   components: {
-    CheckboxEditor: () => import(/* webpackChunkName: "devise-editors" */ '../editor/Checkbox'),
-    ColorEditor: () => import(/* webpackChunkName: "devise-editors" */ '../editor/Color'),
-    DatetimeEditor: () => import(/* webpackChunkName: "devise-editors" */ '../editor/Datetime'),
-    FileEditor: () => import(/* webpackChunkName: "devise-editors" */ '../editor/File'),
-    ImageEditor: () => import(/* webpackChunkName: "devise-editors" */ '../editor/Image'),
-    LinkEditor: () => import(/* webpackChunkName: "devise-editors" */ '../editor/Link'),
-    NumberEditor: () => import(/* webpackChunkName: "devise-editors" */ '../editor/Number'),
-    SelectEditor: () => import(/* webpackChunkName: "devise-editors" */ '../editor/Select'),
-    TextareaEditor: () => import(/* webpackChunkName: "devise-editors" */ '../editor/Textarea'),
-    TextEditor: () => import(/* webpackChunkName: "devise-editors" */ '../editor/Text'),
-    WysiwygEditor: () => import(/* webpackChunkName: "devise-wysiwyg" */ '../editor/Wysiwyg'),
+    CheckboxEditor: () => import('../editor/Checkbox'),
+    ColorEditor: () => import('../editor/Color'),
+    DatetimeEditor: () => import('../editor/Datetime'),
+    FileEditor: () => import('../editor/File'),
+    ImageEditor: () => import('../editor/Image'),
+    LinkEditor: () => import('../editor/Link'),
+    NumberEditor: () => import('../editor/Number'),
+    SelectEditor: () => import('../editor/Select'),
+    TextareaEditor: () => import('../editor/Textarea'),
+    TextEditor: () => import('../editor/Text'),
+    WysiwygEditor: () => import('../editor/Wysiwyg'),
   },
   props: {
     theFields: {

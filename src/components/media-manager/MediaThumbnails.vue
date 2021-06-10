@@ -95,11 +95,9 @@
 export default {
   name: 'MediaEditorThumbnails',
   components: {
-    DeviseModal: () => import(/* webpackChunkName: "devise-utilities" */ '../utilities/Modal'),
-    LoadingScreen: () =>
-      import(/* webpackChunkName: "devise-utilities" */ '../utilities/LoadingScreen.vue'),
-    AlertTriangleIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/AlertTriangleIcon'),
+    DeviseModal: () => import('../utilities/Modal'),
+    LoadingScreen: () => import('../utilities/LoadingScreen.vue'),
+    AlertTriangleIcon: () => import('vue-feather-icons/icons/AlertTriangleIcon'),
   },
   props: {
     defaultImage: {

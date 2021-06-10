@@ -259,37 +259,26 @@
 import { mapMutations, mapState } from 'vuex'
 
 // eslint-disable-next-line no-undef
-const Chrome =
-  require(/* webpackChunkName: "vue-color" */ 'vue-color/src/components/Chrome.vue').default
+const Chrome = require('vue-color/src/components/Chrome.vue').default
 // eslint-disable-next-line no-undef
-const tinycolor = require(/* webpackChunkName: "tinycolor" */ 'tinycolor2')
+const tinycolor = require('tinycolor2')
 
 export default {
   name: 'MediaEditorControls',
   components: {
     'color-picker': Chrome,
-    EditorControl: () => import(/* webpackChunkName: "devise-media" */ './EditorControl'),
-    CropIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/CropIcon'),
-    LockIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/LockIcon'),
-    UnlockIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/UnlockIcon'),
-    StarIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/StarIcon'),
-    ApertureIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/ApertureIcon'),
-    RotationIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/RotateCwIcon'),
-    FlipIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/ColumnsIcon'),
-    ZapIcon: () => import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/ZapIcon'),
-    SlidersIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/SlidersIcon'),
-    ImageIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/ImageIcon'),
-    MaximizeIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/MaximizeIcon'),
+    EditorControl: () => import('./EditorControl'),
+    CropIcon: () => import('vue-feather-icons/icons/CropIcon'),
+    LockIcon: () => import('vue-feather-icons/icons/LockIcon'),
+    UnlockIcon: () => import('vue-feather-icons/icons/UnlockIcon'),
+    StarIcon: () => import('vue-feather-icons/icons/StarIcon'),
+    ApertureIcon: () => import('vue-feather-icons/icons/ApertureIcon'),
+    RotationIcon: () => import('vue-feather-icons/icons/RotateCwIcon'),
+    FlipIcon: () => import('vue-feather-icons/icons/ColumnsIcon'),
+    ZapIcon: () => import('vue-feather-icons/icons/ZapIcon'),
+    SlidersIcon: () => import('vue-feather-icons/icons/SlidersIcon'),
+    ImageIcon: () => import('vue-feather-icons/icons/ImageIcon'),
+    MaximizeIcon: () => import('vue-feather-icons/icons/MaximizeIcon'),
   },
   props: {
     value: {

@@ -29,7 +29,7 @@ import Field from '../../../mixins/Field'
 export default {
   name: 'NumberEditor',
   components: {
-    FieldEditor: () => import(/* webpackChunkName: "devise-editors" */ './Field'),
+    FieldEditor: () => import('./Field'),
   },
   mixins: [Field],
   props: {

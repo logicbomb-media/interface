@@ -90,10 +90,8 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'LanguagesManage',
   components: {
-    CreateIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/EditIcon'),
-    AdminContainer: () =>
-      import(/* webpackChunkName: "devise-administration" */ '../admin/ui/AdminContainer'),
+    CreateIcon: () => import('vue-feather-icons/icons/EditIcon'),
+    AdminContainer: () => import('../admin/ui/AdminContainer'),
   },
 
   data() {

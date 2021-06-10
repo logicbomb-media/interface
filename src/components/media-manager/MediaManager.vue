@@ -57,8 +57,8 @@ const Cookies = require('js-cookie')
 
 export default {
   components: {
-    MediaEditor: () => import(/* webpackChunkName: "devise-media" */ './MediaEditor.vue'),
-    MediaSelector: () => import(/* webpackChunkName: "devise-media" */ './MediaSelector.vue'),
+    MediaEditor: () => import('./MediaEditor.vue'),
+    MediaSelector: () => import('./MediaSelector.vue'),
   },
   data() {
     return {

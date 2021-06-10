@@ -28,14 +28,11 @@
 export default {
   name: 'DeviseWorkflow',
   components: {
-    AdminContainer: () =>
-      import(/* webpackChunkName: "devise-administration" */ '../ui/AdminContainer'),
-    ArrowLeftCircleIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/ArrowLeftCircleIcon'),
-    WorkflowIndex: () => import(/* webpackChunkName: "devise-administration" */ './WorkflowIndex'),
-    WorkflowMenu: () => import(/* webpackChunkName: "devise-administration" */ './WorkflowMenu'),
-    WorkflowSearch: () =>
-      import(/* webpackChunkName: "devise-administration" */ './WorkflowSearch'),
+    AdminContainer: () => import('../ui/AdminContainer'),
+    ArrowLeftCircleIcon: () => import('vue-feather-icons/icons/ArrowLeftCircleIcon'),
+    WorkflowIndex: () => import('./WorkflowIndex'),
+    WorkflowMenu: () => import('./WorkflowMenu'),
+    WorkflowSearch: () => import('./WorkflowSearch'),
   },
   props: {
     workflow: {

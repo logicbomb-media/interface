@@ -83,7 +83,7 @@ import ImagePreview from './ImagePreview.vue'
 export default {
   name: 'ImageEditor',
   components: {
-    FieldEditor: () => import(/* webpackChunkName: "devise-editors" */ './Field'),
+    FieldEditor: () => import('./Field'),
     ImagePreview,
   },
   mixins: [Field],

@@ -1,56 +1,89 @@
 <template>
   <div
-    id="dvs-admin-content-container"
     ref="admin-route-wrapper"
     class="
       dvs-relative
       dvs-max-w-1/2
       dvs-self-center
       dvs-shadow-lg
-      dvs-bg-admin-bg
-      dvs-text-admin-fg
-      dvs-rounded
       dvs-pointer-events-auto
+      dvs-bg-white
+      dvs-h-full
     "
-    style="min-width: 400px"
+    style="max-width: 400px"
   >
-    <vue-scrollbar ref="Scrollbar" class="dvs-max-h-screenpad">
-      <div>
+    <div class="h-full">
+      <div class="divide-y divide-gray-200 flex flex-col justify-between h-full">
         <div>
-          <div v-if="can('manage slices')" class="dvs-pt-8 dvs-pb-16 dvs-relative">
-            <div class="dvs-absolute dvs-top-0 dvs-right-0 dvs-mt-4 dvs-mr-4">
-              <toggle :id="randomString(8)" :mini="true" @change="setDevMode"></toggle>
-            </div>
-
-            <div class="dvs-px-8 dvs-mb-8 dvs-text-xl dvs-font-sans">
-              <div class="dvs-cursor-pointer dvs-flex dvs-items-center" @click="goToEditPage()">
-                <span class="dvs-text-xs dvs-mr-2">
-                  <edit-icon></edit-icon>
-                </span>
-                {{ currentPage.title }}
+          <div v-if="can('manage slices')" class="dvs-pb-16 dvs-relative">
+            <div class="py-6 px-4 bg-indigo-700 sm:px-6 mb-8">
+              <div class="flex items-center justify-between">
+                <h2 class="flex dvs-text-lg dvs-font-medium dvs-text-white" id="slide-over-title">
+                  <svg
+                    class="dvs-w-6 dvs-h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                    ></path>
+                  </svg>
+                  <span class="dvs-ml-2">{{ currentPage.title }}</span>
+                </h2>
+                <div class="ml-3 h-7 flex items-center">
+                  <button
+                    class="
+                      bg-indigo-700
+                      rounded-md
+                      text-indigo-200
+                      hover:text-white
+                      focus:outline-none focus:ring-2 focus:ring-white
+                    "
+                  >
+                    <span class="sr-only">Close panel</span>
+                    <!-- Heroicon name: outline/x -->
+                    <svg
+                      class="h-6 w-6"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="mt-1">
+                <p class="text-sm text-indigo-300">
+                  Click on the edit icon above to edit this page's meta information. Below are the
+                  slices used in this page's presentation.
+                </p>
               </div>
             </div>
 
             <div class="dvs-p-8 dvs-pt-0">
               <fieldset v-if="!showTimeTravel" class="dvs-fieldset">
                 <div class="flex flex-col items-stretch">
-                  <label class="dvs-opacity-75">Page Version</label>
-                  <select
-                    class="dvs-small dvs-bg-admin-secondary-bg dvs-text-admin-secondary-fg"
+                  <div class="dvs-font-medium dvs-mb-2 text-gray-700 dvs-text-sm">Page Version</div>
+                  <devise-select
+                    :selected="currentVersion.id"
+                    :options="versionOptions"
                     @change="selectVersion"
                   >
-                    <option
-                      v-for="version in currentPage.versions"
-                      :key="version.id"
-                      :value="version.id"
-                      :selected="version.current"
-                    >
-                      {{ version.name }}
-                      <template v-if="version.current">(Currently Viewing)</template>
-                      <template v-if="version.is_live"> (Live)</template>
-                    </option>
-                    <option value="timetravel">Time Travel Preview</option>
-                  </select>
+                    {{ currentVersion.name }}
+                  </devise-select>
                 </div>
               </fieldset>
               <fieldset v-else class="dvs-fieldset">
@@ -82,43 +115,77 @@
                 </div>
               </fieldset>
             </div>
-
             <div class="dvs-px-8">
-              <fieldset class="dvs-fieldset">
-                <label class="dvs-opacity-75">Page Slices</label>
-              </fieldset>
+              <div class="dvs-font-medium dvs-mb-2 text-gray-700 dvs-text-sm">Page Slices</div>
             </div>
-
-            <div class="dvs-flex dvs-flex-col dvs-items-center">
-              <draggable
-                v-bind="{
-                  group: { name: 'slices' },
-                  animation: 200,
-                  ghostClass: 'dvs-ghost',
-                  handle: '.handle',
-                  dragClass: 'dvs-chosen-drag-slice',
-                  emptyInsertThreshold: 10,
-                  removeCloneOnHide: false,
-                }"
-                :list="currentPageSlices"
-                tag="ul"
-                class="dvs-w-full dvs-px-4"
+            <draggable
+              v-bind="{
+                group: { name: 'slices' },
+                animation: 200,
+                ghostClass: 'dvs-ghost',
+                handle: '.handle',
+                dragClass: 'dvs-chosen-drag-slice',
+                emptyInsertThreshold: 10,
+                removeCloneOnHide: false,
+              }"
+              :list="currentPageSlices"
+              tag="ul"
+              class="dvs-w-full dvs-px-4 dvs-space-y-1.5"
+            >
+              <template v-for="(slice, key) in currentPageSlices">
+                <slice-editor
+                  :key="randomString(8, key)"
+                  v-model="currentPageSlices[key]"
+                  :depth="1"
+                  @opened="openSlice(slice)"
+                  @addSlice="addSlice"
+                  @editSlice="editSlice"
+                  @removeSlice="removeSlice"
+                  @copySlice="copySlice"
+                />
+              </template>
+            </draggable>
+            <div class="dvs-mt-1 dvs-ml-4 dvs-mr-4">
+              <button
+                class="
+                  dvs-w-full
+                  dvs-inline-flex
+                  dvs-items-center
+                  dvs-px-4
+                  dvs-py-3
+                  dvs-border
+                  dvs-border-transparent
+                  dvs-text-xs
+                  dvs-font-medium
+                  dvs-rounded
+                  dvs-shadow-sm
+                  dvs-text-indigo-900
+                  dvs-bg-indigo-50
+                  hover:dvs-bg-indigo-200
+                  focus:dvs-outline-none
+                  focus:dvs-ring-2
+                  focus:dvs-ring-offset-2
+                  focus:dvs-ring-indigo-500
+                "
+                @click.prevent="requestAddSlice"
               >
-                <template v-for="(slice, key) in currentPageSlices">
-                  <slice-editor
-                    :key="randomString(8, key)"
-                    v-model="currentPageSlices[key]"
-                    :depth="1"
-                    @opened="openSlice(slice)"
-                    @addSlice="addSlice"
-                    @editSlice="editSlice"
-                    @removeSlice="removeSlice"
-                    @copySlice="copySlice"
-                  />
-                </template>
-              </draggable>
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                  ></path>
+                </svg>
+                Add Slice
+              </button>
             </div>
-
             <div v-if="additionalPageSettings" class="dvs-px-8">
               <fieldset class="dvs-fieldset dvs-mb-2">
                 <label
@@ -128,14 +195,12 @@
                   Additional Page Settings
                 </label>
               </fieldset>
-
               <slice-editor-fields
                 v-show="additionalSettingsOpen"
                 v-model="currentPage.settings.fields"
                 :the-fields="additionalPageSettings"
               />
             </div>
-
             <div class="dvs-relative dvs-flex dvs-flex-col dvs-items-center dvs-px-8">
               <manage-slice
                 v-if="createSlice === true"
@@ -146,7 +211,6 @@
               />
             </div>
           </div>
-
           <div v-else>
             <div class="dvs-p-8">
               <fieldset class="dvs-fieldset">
@@ -157,59 +221,55 @@
               </fieldset>
             </div>
           </div>
+        </div>
 
-          <div
-            v-if="can('manage slices')"
+        <div v-if="can('manage slices')" class="relative flex-shrink-0 px-4 py-4 flex justify-end">
+          <div class="dvs-absolute dvs-bottom-0 dvs-left-0 dvs-mb-5 dvs-ml-4">
+            <toggle :id="randomString(8)" :mini="true" @change="setDevMode"></toggle>
+          </div>
+          <button
+            type="button"
             class="
-              dvs-absolute
-              dvs-bottom-0
-              dvs-left-0
-              dvs-right-0
-              dvs-mb-3
-              dvs-flex
-              dvs-justify-around
-              dvs-items-stretch
-              dvs-p-2
-              dvs-px-8
+              bg-white
+              py-2
+              px-4
+              border border-gray-300
+              rounded-md
+              shadow-sm
+              text-sm
+              font-medium
+              text-gray-700
+              hover:bg-gray-50
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
             "
           >
-            <button
-              class="
-                dvs-btn
-                dvs-btn-sm
-                dvs-btn-primary
-                dvs-w-2/5
-                dvs-mr-2
-                dvs-flex
-                dvs-justify-center
-                dvs-items-center
-              "
-              @click.prevent="requestSavePage()"
-            >
-              <refresh-icon v-if="saving" w="15" h="15" class="dvs-mr-2 dvs-rotate-ccw" />Save Page
-            </button>
-
-            <button
-              class="
-                dvs-btn
-                dvs-btn-sm
-                dvs-btn-secondary
-                dvs-w-3/5
-                dvs-flex
-                dvs-justify-center
-                dvs-items-center
-                dvs-uppercase
-                dvs-font-bold
-                dvs-w-2/5
-              "
-              @click.prevent="requestAddSlice"
-            >
-              Add Slice
-            </button>
-          </div>
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="
+              ml-4
+              inline-flex
+              justify-center
+              py-2
+              px-4
+              border border-transparent
+              shadow-sm
+              text-sm
+              font-medium
+              rounded-md
+              text-white
+              bg-indigo-600
+              hover:bg-indigo-700
+              focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+            "
+            @click.prevent="requestSavePage()"
+          >
+            Save Page
+          </button>
         </div>
       </div>
-    </vue-scrollbar>
+    </div>
   </div>
 </template>
 
@@ -225,17 +285,12 @@ export default {
   name: 'PageEditor',
   components: {
     DatePicker,
-    RefreshIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/RefreshCcwIcon'),
-    draggable: () => import(/* webpackChunkName: "devise-editors" */ 'vuedraggable'),
-    ManageSlice: () => import(/* webpackChunkName: "devise-editors" */ './slices/ManageSlice'),
-    SliceEditor: () => import(/* webpackChunkName: "devise-editors" */ './slices/SliceEditor'),
-    SliceEditorFields: () =>
-      import(/* webpackChunkName: "devise-editors" */ './slices/SliceEditorFields'),
-    Toggle: () => import(/* webpackChunkName: "devise-utilities" */ '../utilities/Toggle'),
-    VueScrollbar: () => import(/* webpackChunkName: "devise-administration" */ 'vue2-scrollbar'),
-    EditIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/EditIcon'),
+    draggable: () => import('vuedraggable'),
+    ManageSlice: () => import('./slices/ManageSlice'),
+    SliceEditor: () => import('./slices/SliceEditor'),
+    SliceEditorFields: () => import('./slices/SliceEditorFields'),
+    Toggle: () => import('../utilities/Toggle'),
+    DeviseSelect: () => import('../utilities/DeviseSelect'),
   },
   mixins: [Strings],
   data() {
@@ -263,6 +318,42 @@ export default {
         }
       }
       return false
+    },
+
+    versionOptions() {
+      const options = []
+
+      this.currentPage.versions.map((version) => {
+        let label = version.name
+        if (version.current) {
+          label += `<span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-indigo-800">
+  Currently Viewing
+</span>`
+        }
+        if (version.is_live) {
+          label += ` <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+  Live
+</span>`
+        }
+
+        options.push({
+          label,
+          value: version.id,
+        })
+      })
+
+      options.push({
+        label: 'Time Travel Preview',
+        value: 'timetravel',
+      })
+
+      return options
+    },
+
+    currentVersion() {
+      return this.currentPage.versions.find((version) => {
+        return version.current
+      })
     },
   },
   mounted() {

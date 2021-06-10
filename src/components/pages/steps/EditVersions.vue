@@ -125,18 +125,14 @@ import { mapActions } from 'vuex'
 export default {
   name: 'DevisePagesEditSettings',
   components: {
-    DatePicker: () =>
-      import(/* webpackChunkName: "devise-utilities" */ '../../utilities/DatePicker'),
-    TrashIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/TrashIcon'),
-    CopyIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/CopyIcon'),
-    CheckmarkIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/CheckIcon'),
+    DatePicker: () => import('../../utilities/DatePicker'),
+    TrashIcon: () => import('vue-feather-icons/icons/TrashIcon'),
+    CopyIcon: () => import('vue-feather-icons/icons/CopyIcon'),
+    CheckmarkIcon: () => import('vue-feather-icons/icons/CheckIcon'),
     Help: () =>
       import(
         // eslint-disable-next-line max-len
-        /* webpackChunkName: "devise-utilities" */ '../../utilities/Help.vue'
+        '../../utilities/Help.vue'
       ),
   },
   props: {

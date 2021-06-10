@@ -240,20 +240,15 @@ const Cookies = require('js-cookie')
 
 export default {
   components: {
-    MediaSelectorOpenFile: () =>
-      import(/* webpackChunkName: "devise-media-selector" */ './media-selector/OpenMediaFile.vue'),
-    MediaSelectorFiles: () =>
-      import(/* webpackChunkName: "devise-media-selector" */ './media-selector/Files.vue'),
-    Breadcrumbs: () => import(/* webpackChunkName: "devise-media" */ './Breadcrumbs.vue'),
-    Uploader: () => import(/* webpackChunkName: "devise-utilities" */ '../utilities/Uploader.vue'),
-    LoadingScreen: () =>
-      import(/* webpackChunkName: "devise-utilities" */ '../utilities/LoadingScreen.vue'),
-    FolderIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/FolderIcon'),
-    TrashIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/TrashIcon'),
-    CloseIcon: () => import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
-    VueScrollbar: () => import(/* webpackChunkName: "devise-administration" */ 'vue2-scrollbar'),
+    MediaSelectorOpenFile: () => import('./media-selector/OpenMediaFile.vue'),
+    MediaSelectorFiles: () => import('./media-selector/Files.vue'),
+    Breadcrumbs: () => import('./Breadcrumbs.vue'),
+    Uploader: () => import('../utilities/Uploader.vue'),
+    LoadingScreen: () => import('../utilities/LoadingScreen.vue'),
+    FolderIcon: () => import('vue-feather-icons/icons/FolderIcon'),
+    TrashIcon: () => import('vue-feather-icons/icons/TrashIcon'),
+    CloseIcon: () => import('vue-feather-icons/icons/XIcon'),
+    VueScrollbar: () => import('vue2-scrollbar'),
   },
   data() {
     return {

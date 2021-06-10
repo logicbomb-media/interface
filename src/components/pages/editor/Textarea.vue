@@ -30,7 +30,7 @@ import Field from '../../../mixins/Field'
 export default {
   name: 'TextAreaEditor',
   components: {
-    FieldEditor: () => import(/* webpackChunkName: "devise-editors" */ './Field'),
+    FieldEditor: () => import('./Field'),
   },
   mixins: [Strings, Field],
   props: {

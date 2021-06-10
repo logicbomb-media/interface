@@ -90,12 +90,11 @@
 export default {
   name: 'MetaForm',
   components: {
-    TrashIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/TrashIcon'),
+    TrashIcon: () => import('vue-feather-icons/icons/TrashIcon'),
     Help: () =>
       import(
         // eslint-disable-next-line max-len
-        /* webpackChunkName: "devise-utilities" */ '../utilities/Help.vue'
+        '../utilities/Help.vue'
       ),
   },
   props: {

@@ -1,43 +1,33 @@
-fieldset.dvs-fieldset {
-  box-sizing:border-box;
-
+#devise-administration {
   label {
-    @apply dvs-block dvs-mb-2 dvs-text-sm dvs-font-bold dvs-normal-case;
-
-    &.dvs-large-label {
-      @apply dvs-text-base dvs-font-normal dvs-normal-case dvs-tracking-normal;
-    }
-
-    &.dvs-small-label {
-      @apply dvs-text-sm dvs-font-normal dvs-normal-case dvs-tracking-normal;
-    }
+    @apply dvs-block dvs-text-sm dvs-font-medium dvs-text-gray-900 #{!important};
   }
 
   textarea,
   select,
-  input[type="text"],
-  input[type="search"],
-  input[type="password"],
-  input[type="date"],
-  input[type="datetime-local"],
-  input[type="number"],
-  input[type="email"],
-  input[type="phone"] {
-    @apply dvs-bg-gray-100 dvs-text-gray-900 dvs-border-0 dvs-px-4 dvs-py-3 dvs-leading-tight dvs-text-sm dvs-rounded dvs-appearance-none dvs-outline-none;
+  input[type='text'],
+  input[type='search'],
+  input[type='password'],
+  input[type='date'],
+  input[type='datetime-local'],
+  input[type='number'],
+  input[type='email'],
+  input[type='phone'] {
+    @apply dvs-block dvs-w-full dvs-shadow-sm sm:dvs-text-sm focus:dvs-ring-indigo-500 focus:dvs-border-indigo-500 dvs-border-gray-300 dvs-rounded-md #{!important};
   }
 
-  input[type="checkbox"] {
-    width:20px;
-    height:20px;
+  input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
   }
 
   textarea {
-    height:8em;
+    height: 8em;
   }
 }
 
 .v-select-wrapper {
-  @apply dvs-bg-gray-300 dvs-text-gray-900 dvs-rounded-sm 
+  @apply dvs-bg-gray-300 dvs-text-gray-900 dvs-rounded-sm;
 }
 
 .dvs-toggle {
@@ -62,20 +52,20 @@ fieldset.dvs-fieldset {
     @apply dvs-cursor-pointer dvs-absolute dvs-inset-0;
 
     background-color: #ccc;
-    transition: .4s;
+    transition: 0.4s;
     border-radius: 34px;
 
     &:before {
       @apply dvs-absolute;
 
-      content: "";
+      content: '';
       background-color: #fff;
       bottom: 4px;
       left: 4px;
       height: 26px;
       width: 26px;
       border-radius: 50%;
-      transition: .4s;
+      transition: 0.4s;
     }
   }
 }
@@ -102,18 +92,18 @@ fieldset.dvs-fieldset {
     @apply dvs-cursor-pointer dvs-absolute dvs-inset-0;
 
     background-color: #ccc;
-    transition: .4s;
+    transition: 0.4s;
 
     &:before {
       @apply dvs-absolute;
 
-      content: "";
+      content: '';
       background-color: #fff;
       bottom: 2px;
       left: 2px;
       height: 6px;
       width: 6px;
-      transition: .4s;
+      transition: 0.4s;
     }
   }
 }
@@ -125,7 +115,8 @@ fieldset.dvs-fieldset {
     width: 50px;
     font-size: 11px;
 
-    &::-webkit-outer-sbottom-0utton, &::-webkit-inner-sbottom-0utton {
+    &::-webkit-outer-sbottom-0utton,
+    &::-webkit-inner-sbottom-0utton {
       @apply dvs-appearance-none dvs-m-0;
     }
   }

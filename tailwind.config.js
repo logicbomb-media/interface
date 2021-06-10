@@ -3,6 +3,7 @@ module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx,vue}'],
   prefix: 'dvs-',
   darkMode: false, // or 'media' or 'class'
+  important: '#devise-administration',
   theme: {
     extend: {
       fontSize: {

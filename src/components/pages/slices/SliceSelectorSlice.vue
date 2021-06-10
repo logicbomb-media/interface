@@ -33,10 +33,8 @@ export default {
   name: 'DeviseSliceSelectorSlice',
 
   components: {
-    CubeIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/BoxIcon'),
-    InformationCircleIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/InfoIcon'),
+    CubeIcon: () => import('vue-feather-icons/icons/BoxIcon'),
+    InformationCircleIcon: () => import('vue-feather-icons/icons/InfoIcon'),
     SliceDiagram,
   },
 

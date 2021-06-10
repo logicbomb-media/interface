@@ -92,10 +92,8 @@
 export default {
   name: 'ImageField',
   components: {
-    ImagesIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/CameraIcon'),
-    SearchIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/SearchIcon'),
+    ImagesIcon: () => import('vue-feather-icons/icons/CameraIcon'),
+    SearchIcon: () => import('vue-feather-icons/icons/SearchIcon'),
   },
   props: {
     value: {

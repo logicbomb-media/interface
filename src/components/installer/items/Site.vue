@@ -87,11 +87,11 @@ import { mapActions, mapState } from 'vuex'
 
 export default {
   components: {
-    DeviseInstallerItem: () => import(/* webpackChunkName: "devise-installer" */ '../Item.vue'),
+    DeviseInstallerItem: () => import('../Item.vue'),
     Help: () =>
       import(
         // eslint-disable-next-line max-len
-        /* webpackChunkName: "devise-utilities" */ '../../utilities/Help.vue'
+        '../../utilities/Help.vue'
       ),
   },
 

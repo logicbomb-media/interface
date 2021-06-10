@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow,no-unused-vars */
 // eslint-disable-next-line no-undef
-const tinycolor = require(/* webpackChunkName: "tinycolor" */ 'tinycolor2')
+const tinycolor = require('tinycolor2')
 
 const getters = {
   breakpoint: (state) => state.breakpoint.breakpoint,

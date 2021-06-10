@@ -33,7 +33,7 @@ import Field from '../../../mixins/Field'
 export default {
   name: 'SelectEditor',
   components: {
-    FieldEditor: () => import(/* webpackChunkName: "devise-editors" */ './Field'),
+    FieldEditor: () => import('./Field'),
   },
   mixins: [Strings, Field],
   props: {

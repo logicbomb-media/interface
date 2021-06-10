@@ -149,8 +149,7 @@
 
 <script>
 // eslint-disable-next-line no-undef
-const Chrome =
-  require(/* webpackChunkName: "vue-color" */ 'vue-color/src/components/Chrome.vue').default
+const Chrome = require('vue-color/src/components/Chrome.vue').default
 
 export default {
   name: 'DeviseSliceSettingsSection',

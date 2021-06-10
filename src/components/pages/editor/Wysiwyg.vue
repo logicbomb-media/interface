@@ -30,8 +30,8 @@ import Field from '../../../mixins/Field'
 export default {
   name: 'WysiwygEditor',
   components: {
-    FieldEditor: () => import(/* webpackChunkName: "devise-editors" */ './Field'),
-    Wysiwyg: () => import(/* webpackChunkName: "devise-wysiwyg" */ '../../utilities/Wysiwyg'),
+    FieldEditor: () => import('./Field'),
+    Wysiwyg: () => import('../../utilities/Wysiwyg'),
   },
   mixins: [Strings, Field],
   props: {

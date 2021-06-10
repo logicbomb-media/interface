@@ -106,11 +106,11 @@ import { mapActions, mapState } from 'vuex'
 export default {
   name: 'DevisePagesEditSettings',
   components: {
-    MetaForm: () => import(/* webpackChunkName: "devise-meta" */ '../../meta/MetaForm'),
+    MetaForm: () => import('../../meta/MetaForm'),
     Help: () =>
       import(
         // eslint-disable-next-line max-len
-        /* webpackChunkName: "devise-utilities" */ '../../utilities/Help.vue'
+        '../../utilities/Help.vue'
       ),
   },
   props: {

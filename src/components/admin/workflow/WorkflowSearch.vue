@@ -100,9 +100,8 @@ export default {
   },
 
   components: {
-    XIcon: () => import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
-    Pagination: () =>
-      import(/* webpackChunkName: "devise-utilities" */ '../../utilities/Pagination.vue'),
+    XIcon: () => import('vue-feather-icons/icons/XIcon'),
+    Pagination: () => import('../../utilities/Pagination.vue'),
   },
 
   props: {

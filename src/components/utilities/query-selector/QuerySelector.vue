@@ -53,10 +53,10 @@ import { mapState } from 'vuex'
 export default {
   name: 'QuerySelector',
   components: {
-    ParamDatetime: () => import(/* webpackChunkName: "devise-query-selector" */ './Datetime.vue'),
-    ParamSearch: () => import(/* webpackChunkName: "devise-query-selector" */ './Search.vue'),
-    ParamSelect: () => import(/* webpackChunkName: "devise-query-selector" */ './Select.vue'),
-    ParamText: () => import(/* webpackChunkName: "devise-query-selector" */ './Text.vue'),
+    ParamDatetime: () => import('./Datetime.vue'),
+    ParamSearch: () => import('./Search.vue'),
+    ParamSelect: () => import('./Select.vue'),
+    ParamText: () => import('./Text.vue'),
   },
   props: {
     value: {

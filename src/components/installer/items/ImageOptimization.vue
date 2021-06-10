@@ -54,7 +54,7 @@
 <script>
 export default {
   components: {
-    DeviseInstallerItem: () => import(/* webpackChunkName: "devise-installer" */ '../Item.vue'),
+    DeviseInstallerItem: () => import('../Item.vue'),
   },
   props: {
     checklist: {

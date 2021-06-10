@@ -10,11 +10,11 @@
 
 <script>
 // eslint-disable-next-line no-undef
-const dayjs = require(/* webpackChunkName: "dayjs" */ 'dayjs')
+const dayjs = require('dayjs')
 
 export default {
   components: {
-    flatPickr: () => import(/* webpackChunkName: "devise-flatpickr" */ 'vue-flatpickr-component'),
+    flatPickr: () => import('vue-flatpickr-component'),
   },
   props: {
     // eslint-disable-next-line vue/require-prop-types

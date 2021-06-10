@@ -129,8 +129,8 @@ import Field from '../../../mixins/Field'
 export default {
   name: 'FieldEditor',
   components: {
-    Panel: () => import(/* webpackChunkName: "devise-utilities" */ '../../utilities/Panel'),
-    Toggle: () => import(/* webpackChunkName: "devise-utilities" */ '../../utilities/Toggle'),
+    Panel: () => import('../../utilities/Panel'),
+    Toggle: () => import('../../utilities/Toggle'),
   },
   mixins: [Strings, Field],
 
@@ -170,34 +170,34 @@ export default {
   },
   methods: {
     toggleShowEditor() {
-      this.showErase = false;
-      this.$emit('toggleShowEditor');
+      this.showErase = false
+      this.$emit('toggleShowEditor')
 
       this.$nextTick(() => {
         if (this.showEditor) {
-          window.deviseSettings.$bus.$emit('devise-showing-field-editor');
+          window.deviseSettings.$bus.$emit('devise-showing-field-editor')
         } else {
-          window.deviseSettings.$bus.$emit('devise-hiding-field-editor');
+          window.deviseSettings.$bus.$emit('devise-hiding-field-editor')
         }
-      });
+      })
     },
     cancel() {
-      this.$emit('cancel');
-      this.toggleShowEditor();
+      this.$emit('cancel')
+      this.toggleShowEditor()
     },
     enabledTip(enabled) {
       if (enabled) {
-        return 'This field is enabled';
+        return 'This field is enabled'
       }
-      return 'This field is not enabled. Edit the field and toggle the enable switch to turn it on.';
+      return 'This field is not enabled. Edit the field and toggle the enable switch to turn it on.'
     },
     toggleEnabled() {
-      this.value.enabled = !this.value.enabled;
+      this.value.enabled = !this.value.enabled
     },
     resetValue() {
-      this.showErase = false;
-      this.$emit('resetvalue');
+      this.showErase = false
+      this.$emit('resetvalue')
     },
   },
-};
+}
 </script>

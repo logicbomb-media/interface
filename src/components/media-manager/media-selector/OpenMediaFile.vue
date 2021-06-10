@@ -117,15 +117,11 @@ import { mapActions } from 'vuex'
 export default {
   name: 'DeviseOpenMediaFile',
   components: {
-    LoadingScreen: () =>
-      import(/* webpackChunkName: "devise-utilities" */ '../../utilities/LoadingScreen.vue'),
-    TrashIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/TrashIcon'),
-    CloseIcon: () => import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
-    LinkIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/LinkIcon'),
-    DownloadIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/DownloadCloudIcon'),
+    LoadingScreen: () => import('../../utilities/LoadingScreen.vue'),
+    TrashIcon: () => import('vue-feather-icons/icons/TrashIcon'),
+    CloseIcon: () => import('vue-feather-icons/icons/XIcon'),
+    LinkIcon: () => import('vue-feather-icons/icons/LinkIcon'),
+    DownloadIcon: () => import('vue-feather-icons/icons/DownloadCloudIcon'),
   },
   props: {
     file: {

@@ -35,9 +35,8 @@ import Field from '../../../mixins/Field'
 export default {
   name: 'FileEditor',
   components: {
-    FieldEditor: () => import(/* webpackChunkName: "devise-editors" */ './Field'),
-    DocumentIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/ClipboardIcon'),
+    FieldEditor: () => import('./Field'),
+    DocumentIcon: () => import('vue-feather-icons/icons/ClipboardIcon'),
   },
   mixins: [Field],
   props: {

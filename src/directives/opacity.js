@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-undef
-const tinycolor = require(/* webpackChunkName: "tinycolor" */ 'tinycolor2')
+const tinycolor = require('tinycolor2')
 
 export default function (el, binding) {
   if (binding.value !== null) {

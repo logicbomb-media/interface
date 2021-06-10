@@ -18,7 +18,7 @@
 export default {
   name: 'DeviseQuerySelectorText',
   components: {
-    DatePicker: () => import(/* webpackChunkName: "devise-editors" */ '../DatePicker'),
+    DatePicker: () => import('../DatePicker'),
   },
   props: {
     value: {

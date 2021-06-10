@@ -19,15 +19,14 @@
 <script>
 import { mapGetters, mapActions } from 'vuex'
 import Strings from '../../mixins/Strings'
-import Slice from './Slice.vue'; // eslint-disable-line
+import Slice from './Slice.vue' // eslint-disable-line
 
 export default {
   /* eslint-disable camelcase */
   name: 'DeviseSlice',
   components: {
     Slice,
-    SettingsIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/SettingsIcon'),
+    SettingsIcon: () => import('vue-feather-icons/icons/SettingsIcon'),
   },
   mixins: [Strings],
   props: {
@@ -278,7 +277,7 @@ export default {
           const storedSize = this.devise[fieldName].media[sizeName]
 
           if (storedSize) {
-            import(/* webpackChunkName: "devise-slice-admin" */ 'query-string')
+            import('query-string')
               .then(({ default: queryString }) => {
                 const paramsIndex = storedSize.indexOf('?')
                 const paramsString = storedSize.substring(paramsIndex)
@@ -319,7 +318,7 @@ export default {
     attemptJumpToSlice(slice) {
       if (this.devise.metadata && slice.metadata) {
         if (this.devise.metadata.instance_id === slice.metadata.instance_id) {
-          import(/* webpackChunkName: "devise-slice-admin" */ 'mezr')
+          import('mezr')
             .then(({ default: mezr }) => {
               try {
                 const offset = mezr.offset(this.sliceEl, 'margin')
@@ -352,7 +351,7 @@ export default {
           markers[0].parentNode.removeChild(markers[0])
         }
 
-        import(/* webpackChunkName: "devise-slice-admin" */ 'mezr').then(({ default: mezr }) => {
+        import('mezr').then(({ default: mezr }) => {
           if (on) {
             try {
               const offset = mezr.offset(this.sliceEl, 'margin')

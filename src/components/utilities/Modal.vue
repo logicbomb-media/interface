@@ -22,7 +22,7 @@ import Panel from './Panel.vue'
 
 export default {
   components: {
-    CloseIcon: () => import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
+    CloseIcon: () => import('vue-feather-icons/icons/XIcon'),
     Panel,
   },
   methods: {

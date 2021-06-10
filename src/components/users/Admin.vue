@@ -6,8 +6,7 @@
 export default {
   name: 'DeviseUserAdmin',
   components: {
-    DeviseWorkflow: () =>
-      import(/* webpackChunkName: "devise-administration" */ '../admin/workflow/Workflow'),
+    DeviseWorkflow: () => import('../admin/workflow/Workflow'),
   },
   data() {
     return {

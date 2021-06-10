@@ -104,41 +104,34 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 
-const Prism = import(/* webpackChunkName: "devise-installer" */ 'prismjs')
+const Prism = import('prismjs')
 
-import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-clike.min')
-import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-markup-templating.min')
-import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-php.min')
-import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-ini.min')
-import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-javascript.min')
-import(/* webpackChunkName: "devise-installer" */ 'prismjs/components/prism-bash.min')
-import(
-  /* webpackChunkName: "devise-installer" */ 'prismjs/plugins/normalize-whitespace/prism-normalize-whitespace'
-)
-import(/* webpackChunkName: "devise-installer" */ 'prismjs/plugins/line-numbers/prism-line-numbers')
+import('prismjs/components/prism-clike.min')
+import('prismjs/components/prism-markup-templating.min')
+import('prismjs/components/prism-php.min')
+import('prismjs/components/prism-ini.min')
+import('prismjs/components/prism-javascript.min')
+import('prismjs/components/prism-bash.min')
+import('prismjs/plugins/normalize-whitespace/prism-normalize-whitespace')
+import('prismjs/plugins/line-numbers/prism-line-numbers')
 
 export default {
   components: {
-    Messages: () => import(/* webpackChunkName: "devise-installer" */ './Messages.vue'),
-    MainMenu: () => import(/* webpackChunkName: "devise-installer" */ './MainMenu.vue'),
-    DeviseLogo: () =>
-      import(/* webpackChunkName: "devise-installer" */ '../utilities/DeviseLogo.vue'),
-    Database: () => import(/* webpackChunkName: "devise-installer" */ './items/Database.vue'),
-    Migrations: () => import(/* webpackChunkName: "devise-installer" */ './items/Migrations.vue'),
-    Auth: () => import(/* webpackChunkName: "devise-installer" */ './items/Auth.vue'),
-    User: () => import(/* webpackChunkName: "devise-installer" */ './items/User.vue'),
-    Site: () => import(/* webpackChunkName: "devise-installer" */ './items/Site.vue'),
-    Slices: () => import(/* webpackChunkName: "devise-installer" */ './items/Slices.vue'),
-    Page: () => import(/* webpackChunkName: "devise-installer" */ './items/Page.vue'),
-    ImageLibrary: () =>
-      import(/* webpackChunkName: "devise-installer" */ './items/ImageLibrary.vue'),
-    ImageOptimization: () =>
-      import(/* webpackChunkName: "devise-installer" */ './items/ImageOptimization.vue'),
-    Config: () => import(/* webpackChunkName: "devise-installer" */ './items/Config.vue'),
-    OptionalExtras: () =>
-      import(/* webpackChunkName: "devise-installer" */ './items/OptionalExtras.vue'),
-    InstallerFinish: () =>
-      import(/* webpackChunkName: "devise-utilities" */ './InstallerFinish.vue'),
+    Messages: () => import('./Messages.vue'),
+    MainMenu: () => import('./MainMenu.vue'),
+    DeviseLogo: () => import('../utilities/DeviseLogo.vue'),
+    Database: () => import('./items/Database.vue'),
+    Migrations: () => import('./items/Migrations.vue'),
+    Auth: () => import('./items/Auth.vue'),
+    User: () => import('./items/User.vue'),
+    Site: () => import('./items/Site.vue'),
+    Slices: () => import('./items/Slices.vue'),
+    Page: () => import('./items/Page.vue'),
+    ImageLibrary: () => import('./items/ImageLibrary.vue'),
+    ImageOptimization: () => import('./items/ImageOptimization.vue'),
+    Config: () => import('./items/Config.vue'),
+    OptionalExtras: () => import('./items/OptionalExtras.vue'),
+    InstallerFinish: () => import('./InstallerFinish.vue'),
   },
   computed: {
     ...mapState('devise', {

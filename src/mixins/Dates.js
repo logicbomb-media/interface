@@ -1,4 +1,4 @@
-const dayjs = require(/* webpackChunkName: "dayjs" */ 'dayjs')
+const dayjs = require('dayjs')
 
 export default {
   methods: {

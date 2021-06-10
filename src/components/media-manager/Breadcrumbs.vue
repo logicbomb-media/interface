@@ -17,8 +17,7 @@
 <script>
 export default {
   components: {
-    ChevronRightIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/ChevronRightIcon'),
+    ChevronRightIcon: () => import('vue-feather-icons/icons/ChevronRightIcon'),
   },
   props: {
     currentDirectory: {

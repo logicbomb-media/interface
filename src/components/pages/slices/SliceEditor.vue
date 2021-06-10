@@ -1,36 +1,25 @@
 <template>
   <!-- eslint-disable vue/valid-v-for -->
   <!-- eslint-disable vue/no-v-html -->
-  <li class="dvs-collapsable dvs-mb-4" :class="{ 'dvs-open': sliceOpen }">
-    <strong
-      class="
-        dvs-block
-        dvs-mb-2
-        dvs-switch-sm
-        dvs-text-sm
-        dvs-flex
-        dvs-justify-between
-        dvs-items-center
-        dvs-w-full
-      "
-    >
-      <div class="dvs-flex dvs-items-center dvs-justify-between dvs-w-full dvs-px-4">
-        <div class="dvs-flex dvs-items-center dvs-w-full">
-          <div class="handle dvs-mr-2 dvs-cursor-move dvs-text-admin-fg dvs-opacity-50">
-            <menu-icon />
-          </div>
-          <div
-            dusk="slice-label"
-            class="dvs-relative dvs-w-full dvs-cursor-pointer dvs-text-admin-fg"
-            :class="{ 'dvs-opacity-75': !sliceHasFieldsOrSlices }"
-            @click="toggleSlice()"
-            @mouseenter="markSlice(true, slice)"
-            @mouseleave="markSlice(false, slice)"
-            v-html="editorLabel"
-          ></div>
-        </div>
+
+  <li
+    class="dvs-collapsable bg-gray-100 dvs-px-4 dvs-py-3 dvs-text-xs dvs-font-medium dvs-rounded-md"
+    :class="{ 'dvs-open': sliceOpen }"
+  >
+    <a href="#" class="text-gray-900 flex items-center" aria-current="page">
+      <div class="handle dvs-mr-2 dvs-cursor-move dvs-opacity-50">
+        <menu-icon />
       </div>
-    </strong>
+      <div
+        dusk="slice-label"
+        class="dvs-relative dvs-w-full dvs-font-xs dvs-cursor-pointer dvs-truncate"
+        :class="{ 'dvs-opacity-75': !sliceHasFieldsOrSlices }"
+        @click="toggleSlice()"
+        @mouseenter="markSlice(true, slice)"
+        @mouseleave="markSlice(false, slice)"
+        v-html="editorLabel"
+      ></div>
+    </a>
 
     <portal to="devise-root">
       <copy-slice-to-page
@@ -323,28 +312,20 @@ import Strings from '../../../mixins/Strings'
 export default {
   name: 'SliceEditor',
   components: {
-    AddIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/PlusCircleIcon'),
-    CogIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/SettingsIcon'),
-    CopyIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/CopyIcon'),
-    CreateIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/Edit3Icon'),
-    draggable: () => import(/* webpackChunkName: "devise-editors" */ 'vuedraggable'),
-    LocateIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/TargetIcon'),
-    LinkIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/LinkIcon'),
-    ManageSlice: () => import(/* webpackChunkName: "devise-editors" */ './ManageSlice'),
-    MenuIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/MenuIcon'),
-    RemoveIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/TrashIcon'),
-    SliceEditor: () => import(/* webpackChunkName: "devise-editors" */ './SliceEditor'),
-    SliceEditorFields: () => import(/* webpackChunkName: "devise-editors" */ './SliceEditorFields'),
-    CopySliceToPage: () => import(/* webpackChunkName: "devise-editors" */ './CopySliceToPage'),
-    Help: () => import(/* webpackChunkName: "devise-utilities" */ '../../utilities/Help'),
+    AddIcon: () => import('vue-feather-icons/icons/PlusCircleIcon'),
+    CogIcon: () => import('vue-feather-icons/icons/SettingsIcon'),
+    CopyIcon: () => import('vue-feather-icons/icons/CopyIcon'),
+    CreateIcon: () => import('vue-feather-icons/icons/Edit3Icon'),
+    draggable: () => import('vuedraggable'),
+    LocateIcon: () => import('vue-feather-icons/icons/TargetIcon'),
+    LinkIcon: () => import('vue-feather-icons/icons/LinkIcon'),
+    ManageSlice: () => import('./ManageSlice'),
+    MenuIcon: () => import('vue-feather-icons/icons/MenuIcon'),
+    RemoveIcon: () => import('vue-feather-icons/icons/TrashIcon'),
+    SliceEditor: () => import('./SliceEditor'),
+    SliceEditorFields: () => import('./SliceEditorFields'),
+    CopySliceToPage: () => import('./CopySliceToPage'),
+    Help: () => import('../../utilities/Help'),
   },
   mixins: [Strings],
   props: {
@@ -508,7 +489,7 @@ export default {
     },
     removeSlice(slice, referringSlice) {
       if (typeof slice === 'undefined') {
-        slice = this.slice; // eslint-disable-line
+        slice = this.slice // eslint-disable-line
       } else if (typeof referringSlice === 'undefined') {
         referringSlice = this.slice
       }

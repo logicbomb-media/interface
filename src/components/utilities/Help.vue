@@ -75,8 +75,7 @@
 export default {
   name: 'DeviseHelp',
   components: {
-    HelpCircleIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/HelpCircleIcon'),
+    HelpCircleIcon: () => import('vue-feather-icons/icons/HelpCircleIcon'),
   },
   props: {
     compact: {

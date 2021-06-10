@@ -60,8 +60,7 @@ import { mapActions, mapState } from 'vuex'
 export default {
   name: 'CopySliceToPage',
   components: {
-    AdminContainer: () =>
-      import(/* webpackChunkName: "devise-administration" */ '../../admin/ui/AdminContainer'),
+    AdminContainer: () => import('../../admin/ui/AdminContainer'),
   },
   props: {
     slice: {

@@ -1,14 +1,11 @@
-const LanguagesManage = () =>
-  import(/* webpackChunkName: "devise-languages" */ '../components/languages/Manage')
-const AdministrationIndex = () =>
-  import(/* webpackChunkName: "devise-administration" */ '../components/admin/Index')
-const MetaManage = () => import(/* webpackChunkName: "devise-meta" */ '../components/meta/Manage')
-const PageEditor = () => import(/* webpackChunkName: "devise-pages" */ '../components/pages/Editor')
-const PagesAdmin = () => import(/* webpackChunkName: "devise-users" */ '../components/pages/Admin')
-const SitesAdmin = () => import(/* webpackChunkName: "devise-sites" */ '../components/sites/Admin')
-const UsersAdmin = () => import(/* webpackChunkName: "devise-users" */ '../components/users/Admin')
-const RedirectsAdmin = () =>
-  import(/* webpackChunkName: "devise-redirects" */ '../components/redirects/Admin')
+const LanguagesManage = () => import('../components/languages/Manage')
+const AdministrationIndex = () => import('../components/admin/Index')
+const MetaManage = () => import('../components/meta/Manage')
+const PageEditor = () => import('../components/pages/Editor')
+const PagesAdmin = () => import('../components/pages/Admin')
+const SitesAdmin = () => import('../components/sites/Admin')
+const UsersAdmin = () => import('../components/users/Admin')
+const RedirectsAdmin = () => import('../components/redirects/Admin')
 
 const routes = [
   {

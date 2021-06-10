@@ -69,10 +69,10 @@ import { mapActions } from 'vuex'
 export default {
   name: 'DeviseMediaEditor',
   components: {
-    MediaControls: () => import(/* webpackChunkName: "devise-media" */ './MediaControls'),
-    MediaThumbnails: () => import(/* webpackChunkName: "devise-media" */ './MediaThumbnails'),
-    MediaEditorPreview: () => import(/* webpackChunkName: "devise-media" */ './MediaEditorPreview'),
-    VueScrollbar: () => import(/* webpackChunkName: "devise-administration" */ 'vue2-scrollbar'),
+    MediaControls: () => import('./MediaControls'),
+    MediaThumbnails: () => import('./MediaThumbnails'),
+    MediaEditorPreview: () => import('./MediaEditorPreview'),
+    VueScrollbar: () => import('vue2-scrollbar'),
   },
   props: {
     defaultImage: {
@@ -177,7 +177,7 @@ export default {
       const img = new Image()
 
       img.onerror = () => {
-        alert(`not a valid file: ${file.type}`); // eslint-disable-line
+        alert(`not a valid file: ${file.type}`) // eslint-disable-line
       }
 
       img.src = file

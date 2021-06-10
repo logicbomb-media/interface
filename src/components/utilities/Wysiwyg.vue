@@ -666,8 +666,7 @@ import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
 
 // eslint-disable-next-line no-undef
-const Chrome =
-  require(/* webpackChunkName: "vue-color" */ 'vue-color/src/components/Chrome.vue').default
+const Chrome = require('vue-color/src/components/Chrome.vue').default
 
 export default {
   components: {
@@ -676,49 +675,31 @@ export default {
     EditorContent,
     BubbleMenu,
 
-    BoldIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/BoldIcon'),
-    ItalicIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/ItalicIcon'),
-    UnderlineIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/UnderlineIcon'),
-    MinusIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/MinusIcon'),
-    CodeIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/CodeIcon'),
-    ListIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/ListIcon'),
-    MenuIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/MenuIcon'),
-    CornerUpLeftIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/CornerUpLeftIcon'),
-    CornerUpRightIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/CornerUpRightIcon'),
-    AlignLeftIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/AlignLeftIcon'),
-    AlignCenterIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/AlignCenterIcon'),
-    AlignRightIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/AlignRightIcon'),
-    ArrowDownCircleIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/ArrowDownCircleIcon'),
-    TypeIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/TypeIcon'),
-    StrikeIcon: () => import(/* webpackChunkName: "devise-icons" */ './icons/StrikeIcon'),
-    LinkIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/LinkIcon'),
-    TableIcon: () => import(/* webpackChunkName: "devise-icons" */ './icons/TableIcon'),
-    DeleteTableIcon: () => import(/* webpackChunkName: "devise-icons" */ './icons/DeleteTableIcon'),
-    AddColAfterIcon: () => import(/* webpackChunkName: "devise-icons" */ './icons/AddColAfterIcon'),
-    AddColBeforeIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ './icons/AddColBeforeIcon'),
-    DeleteColIcon: () => import(/* webpackChunkName: "devise-icons" */ './icons/DeleteColIcon'),
-    AddRowAfterIcon: () => import(/* webpackChunkName: "devise-icons" */ './icons/AddRowAfterIcon'),
-    AddRowBeforeIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ './icons/AddRowBeforeIcon'),
-    DeleteRowIcon: () => import(/* webpackChunkName: "devise-icons" */ './icons/DeleteRowIcon'),
-    CombineCellsIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ './icons/CombineCellsIcon'),
+    BoldIcon: () => import('vue-feather-icons/icons/BoldIcon'),
+    ItalicIcon: () => import('vue-feather-icons/icons/ItalicIcon'),
+    UnderlineIcon: () => import('vue-feather-icons/icons/UnderlineIcon'),
+    MinusIcon: () => import('vue-feather-icons/icons/MinusIcon'),
+    CodeIcon: () => import('vue-feather-icons/icons/CodeIcon'),
+    ListIcon: () => import('vue-feather-icons/icons/ListIcon'),
+    MenuIcon: () => import('vue-feather-icons/icons/MenuIcon'),
+    CornerUpLeftIcon: () => import('vue-feather-icons/icons/CornerUpLeftIcon'),
+    CornerUpRightIcon: () => import('vue-feather-icons/icons/CornerUpRightIcon'),
+    AlignLeftIcon: () => import('vue-feather-icons/icons/AlignLeftIcon'),
+    AlignCenterIcon: () => import('vue-feather-icons/icons/AlignCenterIcon'),
+    AlignRightIcon: () => import('vue-feather-icons/icons/AlignRightIcon'),
+    ArrowDownCircleIcon: () => import('vue-feather-icons/icons/ArrowDownCircleIcon'),
+    TypeIcon: () => import('vue-feather-icons/icons/TypeIcon'),
+    StrikeIcon: () => import('./icons/StrikeIcon'),
+    LinkIcon: () => import('vue-feather-icons/icons/LinkIcon'),
+    TableIcon: () => import('./icons/TableIcon'),
+    DeleteTableIcon: () => import('./icons/DeleteTableIcon'),
+    AddColAfterIcon: () => import('./icons/AddColAfterIcon'),
+    AddColBeforeIcon: () => import('./icons/AddColBeforeIcon'),
+    DeleteColIcon: () => import('./icons/DeleteColIcon'),
+    AddRowAfterIcon: () => import('./icons/AddRowAfterIcon'),
+    AddRowBeforeIcon: () => import('./icons/AddRowBeforeIcon'),
+    DeleteRowIcon: () => import('./icons/DeleteRowIcon'),
+    CombineCellsIcon: () => import('./icons/CombineCellsIcon'),
   },
   props: {
     value: {

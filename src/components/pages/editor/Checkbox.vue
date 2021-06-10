@@ -28,8 +28,8 @@ import Field from '../../../mixins/Field'
 export default {
   name: 'CheckboxEditor',
   components: {
-    FieldEditor: () => import(/* webpackChunkName: "devise-editors" */ './Field'),
-    Toggle: () => import(/* webpackChunkName: "devise-utilities" */ '../../utilities/Toggle'),
+    FieldEditor: () => import('./Field'),
+    Toggle: () => import('../../utilities/Toggle'),
   },
   mixins: [Strings, Field],
   props: {

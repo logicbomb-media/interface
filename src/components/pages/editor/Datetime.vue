@@ -30,7 +30,7 @@ import Field from '../../../mixins/Field'
 export default {
   name: 'DatetimeEditor',
   components: {
-    FieldEditor: () => import(/* webpackChunkName: "devise-editors" */ './Field'),
+    FieldEditor: () => import('./Field'),
     DatePicker,
   },
   mixins: [Field],

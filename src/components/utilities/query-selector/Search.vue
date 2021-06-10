@@ -116,10 +116,9 @@ import { mapActions } from 'vuex'
 export default {
   name: 'DeviseQuerySelectorSearch',
   components: {
-    draggable: () => import(/* webpackChunkName: "devise-editors" */ 'vuedraggable'),
-    XIcon: () => import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
-    MenuIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/MenuIcon'),
+    draggable: () => import('vuedraggable'),
+    XIcon: () => import('vue-feather-icons/icons/XIcon'),
+    MenuIcon: () => import('vue-feather-icons/icons/MenuIcon'),
   },
   props: {
     value: {

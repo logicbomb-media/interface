@@ -143,7 +143,7 @@
 <script>
 export default {
   components: {
-    ItemCheck: () => import(/* webpackChunkName: "devise-installer" */ './ItemCheck.vue'),
+    ItemCheck: () => import('./ItemCheck.vue'),
   },
   props: {
     checklist: {

@@ -164,17 +164,11 @@ export default {
   name: 'ManageSlice',
 
   components: {
-    AdminContainer: () =>
-      import(/* webpackChunkName: "devise-administration" */ '../../admin/ui/AdminContainer'),
-    QuerySelector: () =>
-      import(
-        /* webpackChunkName: "devise-query-selector" */ '../../utilities/query-selector/QuerySelector.vue'
-      ),
-    SliceSelector: () => import(/* webpackChunkName: "devise-slices" */ './SliceSelector.vue'),
-    FileTextIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/FileTextIcon'),
-    DatabaseIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/DatabaseIcon'),
+    AdminContainer: () => import('../../admin/ui/AdminContainer'),
+    QuerySelector: () => import('../../utilities/query-selector/QuerySelector.vue'),
+    SliceSelector: () => import('./SliceSelector.vue'),
+    FileTextIcon: () => import('vue-feather-icons/icons/FileTextIcon'),
+    DatabaseIcon: () => import('vue-feather-icons/icons/DatabaseIcon'),
   },
   mixins: [SlicesMixin],
   props: {

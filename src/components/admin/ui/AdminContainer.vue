@@ -1,5 +1,28 @@
 <template>
-  <div class="dvs-relative dvs-w-full dvs-flex dvs-justify-center dvs-items-start dvs-mt-10">
+  <div
+    class="h-full divide-y divide-gray-200 flex flex-col bg-white shadow-xl dvs-pointer-events-auto"
+  >
+    <div class="flex-1 h-0 overflow-y-auto">
+      <div class="py-6 px-4 bg-indigo-700 sm:px-6">
+        <div class="flex items-center justify-between">
+          <h2 class="dvs-text-lg font-medium text-white" id="slide-over-title">
+            <slot name="title"></slot>
+          </h2>
+        </div>
+        <div class="mt-1">
+          <p class="text-sm text-indigo-300">
+            <slot name="message"></slot>
+          </p>
+        </div>
+      </div>
+      <div class="flex-1 flex flex-col justify-between">
+        <div class="px-4 divide-y divide-gray-200 sm:px-6 w-96">
+          <slot name="content"></slot>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="dvs-relative dvs-w-full dvs-flex dvs-justify-center dvs-items-start dvs-mt-10">
     <div
       class="
         dvs-z-10
@@ -37,9 +60,9 @@
       "
       style="max-height: 70vh; min-width: 800px"
     >
-      <slot name="content"></slot>
+      
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>

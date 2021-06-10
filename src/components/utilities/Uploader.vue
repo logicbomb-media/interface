@@ -101,7 +101,7 @@ const VueUpload = require('vue-upload-component')
 
 export default {
   components: {
-    CloseIcon: () => import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/XIcon'),
+    CloseIcon: () => import('vue-feather-icons/icons/XIcon'),
     VueUpload,
   },
   props: {

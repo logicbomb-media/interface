@@ -28,15 +28,14 @@
 import Field from '../../../mixins/Field'
 
 // eslint-disable-next-line no-undef
-const Chrome =
-  require(/* webpackChunkName: "vue-color" */ 'vue-color/src/components/Chrome.vue').default
+const Chrome = require('vue-color/src/components/Chrome.vue').default
 // eslint-disable-next-line no-undef
-const tinycolor = require(/* webpackChunkName: "tinycolor" */ 'tinycolor2')
+const tinycolor = require('tinycolor2')
 
 export default {
   name: 'ColorEditor',
   components: {
-    FieldEditor: () => import(/* webpackChunkName: "devise-editors" */ './Field'),
+    FieldEditor: () => import('./Field'),
     'color-picker': Chrome,
   },
   mixins: [Field],

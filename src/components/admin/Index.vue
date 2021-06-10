@@ -1,51 +1,39 @@
 <template>
-  <admin-container>
+  <admin-container class="w-96">
+    <template v-slot:title> Application Backend </template>
     <template v-slot:message>
-      Welcome Back!<br />
-      What are you looking to work on?
+      Below you can find all the various sections of your application's backend management.
     </template>
     <template v-slot:content>
-      <ul class="dvs-flex dvs-flex-wrap dvs-justify-between">
-        <li v-for="menuItem in currentMenuItems" :key="menuItem.id" class="dvs-py-6 dvs-mr-8">
-          <div
+      <ul class="dvs-flex dvs-flex-wrap dvs-justify-between dvs-w-full">
+        <li v-for="menuItem in currentMenuItems" :key="menuItem.id" class="dvs-py-6 dvs-w-full">
+          <h4
             v-if="menuItem.routeName"
-            class="
-              dvs-block
-              dvs-switch-sm
-              dvs-flex
-              dvs-justify-between
-              dvs-items-center
-              dvs-cursor-pointer
-            "
+            class="dvs-font-medium dvs-text-gray-900 dvs-cursor-pointer dvs-text-base"
             @click="goToPage(menuItem.routeName, menuItem.parameters)"
           >
             {{ menuItem.label }}
-          </div>
-          <div v-else class="dvs-uppercase dvs-text-xs dvs-text-admin-secondary-fg">
-            {{ menuItem.label }}
-          </div>
-          <ul v-if="menuItem.children" class="dvs-text-sm">
-            <li
+          </h4>
+          <h4 v-else class="dvs-font-medium dvs-text-gray-900">{{ menuItem.label }}</h4>
+
+          <dl
+            v-if="menuItem.children"
+            class="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200 w-full"
+          >
+            <div
               v-for="childMenuItem in filteredMenu(menuItem.children)"
               :key="childMenuItem.id"
-              class="dvs-pt-3"
+              class="dvs-py-2 dvs-flex dvs-justify-between dvs-text-xs dvs-font-medium"
             >
-              <div
+              <dt
                 v-if="childMenuItem.routeName"
-                class="
-                  dvs-block
-                  dvs-switch-sm
-                  dvs-flex
-                  dvs-justify-between
-                  dvs-items-center
-                  dvs-cursor-pointer
-                "
+                class="dvs-text-indigo-600 dvs-cursor-pointer"
                 @click="goToPage(childMenuItem.routeName, childMenuItem.parameters)"
               >
                 {{ childMenuItem.label }}
-              </div>
-            </li>
-          </ul>
+              </dt>
+            </div>
+          </dl>
         </li>
       </ul>
     </template>
@@ -58,8 +46,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'DeviseIndex',
   components: {
-    AdminContainer: () =>
-      import(/* webpackChunkName: "devise-administration" */ './ui/AdminContainer'),
+    AdminContainer: () => import('./ui/AdminContainer'),
   },
 
   computed: {

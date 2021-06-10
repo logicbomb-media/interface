@@ -91,7 +91,7 @@ import Strings from '../../mixins/Strings'
 import SliceSettingsSection from './SliceSettingsSection.vue'
 
 // eslint-disable-next-line no-undef
-const tinycolor = require(/* webpackChunkName: "tinycolor" */ 'tinycolor2')
+const tinycolor = require('tinycolor2')
 
 export default {
   name: 'SliceSettings',

@@ -37,9 +37,7 @@ const DevisePlugin = {
         route.components = {}
       }
       if (!Object.prototype.hasOwnProperty.call(route.components, 'devise')) {
-        const EditPage = import(
-          /* webpackChunkName: "devise-administration" */ './components/pages/Editor.vue'
-        )
+        const EditPage = import('./components/pages/Editor.vue')
         route.components.devise = EditPage
       }
 
@@ -110,97 +108,33 @@ const DevisePlugin = {
     Vue.directive('devise-alert-confirm', alertConfirm)
 
     // Register installer
-    Vue.component('devise-installer', () =>
-      import(/* webpackChunkName: "devise-installer" */ './components/installer/Installer.vue')
-    )
+    Vue.component('devise-installer', () => import('./components/installer/Installer.vue'))
 
     // Users Admin
-    Vue.component('devise-user-create', () =>
-      import(
-        /* webpackChunkName: "devise-administration-users" */ './components/users/steps/Create.vue'
-      )
-    )
-    Vue.component('devise-user-edit', () =>
-      import(
-        /* webpackChunkName: "devise-administration-users" */ './components/users/steps/Edit.vue'
-      )
-    )
-    Vue.component('devise-user-delete', () =>
-      import(
-        /* webpackChunkName: "devise-administration-users" */ './components/users/steps/Delete.vue'
-      )
-    )
+    Vue.component('devise-user-create', () => import('./components/users/steps/Create.vue'))
+    Vue.component('devise-user-edit', () => import('./components/users/steps/Edit.vue'))
+    Vue.component('devise-user-delete', () => import('./components/users/steps/Delete.vue'))
 
     // Pages Admin
-    Vue.component('devise-page-create', () =>
-      import(
-        /* webpackChunkName: "devise-administration-pages" */ './components/pages/steps/Create.vue'
-      )
-    )
-    Vue.component('devise-page-copy', () =>
-      import(
-        /* webpackChunkName: "devise-administration-pages" */ './components/pages/steps/Copy.vue'
-      )
-    )
-    Vue.component('devise-page-translate', () =>
-      import(
-        /* webpackChunkName: "devise-administration-pages" */ './components/pages/steps/Translate.vue'
-      )
-    )
-    Vue.component('devise-page-settings', () =>
-      import(
-        /* webpackChunkName: "devise-administration-pages" */ './components/pages/steps/EditSettings.vue'
-      )
-    )
-    Vue.component('devise-page-versions', () =>
-      import(
-        /* webpackChunkName: "devise-administration-pages" */ './components/pages/steps/EditVersions.vue'
-      )
-    )
-    Vue.component('devise-page-delete', () =>
-      import(
-        /* webpackChunkName: "devise-administration-pages" */ './components/pages/steps/Delete.vue'
-      )
-    )
+    Vue.component('devise-page-create', () => import('./components/pages/steps/Create.vue'))
+    Vue.component('devise-page-copy', () => import('./components/pages/steps/Copy.vue'))
+    Vue.component('devise-page-translate', () => import('./components/pages/steps/Translate.vue'))
+    Vue.component('devise-page-settings', () => import('./components/pages/steps/EditSettings.vue'))
+    Vue.component('devise-page-versions', () => import('./components/pages/steps/EditVersions.vue'))
+    Vue.component('devise-page-delete', () => import('./components/pages/steps/Delete.vue'))
     Vue.component('devise-page-jump-to-edit', () =>
-      import(
-        /* webpackChunkName: "devise-administration-pages" */ './components/pages/steps/JumptoEditPage.vue'
-      )
+      import('./components/pages/steps/JumptoEditPage.vue')
     )
 
     // Sites Admin
-    Vue.component('devise-site-create', () =>
-      import(
-        /* webpackChunkName: "devise-administration-sites" */ './components/sites/steps/Create.vue'
-      )
-    )
-    Vue.component('devise-site-edit', () =>
-      import(
-        /* webpackChunkName: "devise-administration-sites" */ './components/sites/steps/Edit.vue'
-      )
-    )
-    Vue.component('devise-site-delete', () =>
-      import(
-        /* webpackChunkName: "devise-administration-sites" */ './components/sites/steps/Delete.vue'
-      )
-    )
+    Vue.component('devise-site-create', () => import('./components/sites/steps/Create.vue'))
+    Vue.component('devise-site-edit', () => import('./components/sites/steps/Edit.vue'))
+    Vue.component('devise-site-delete', () => import('./components/sites/steps/Delete.vue'))
 
     // Redirect Admin
-    Vue.component('devise-redirect-create', () =>
-      import(
-        /* webpackChunkName: "devise-administration-redirects" */ './components/redirects/steps/Create.vue'
-      )
-    )
-    Vue.component('devise-redirect-edit', () =>
-      import(
-        /* webpackChunkName: "devise-administration-redirects" */ './components/redirects/steps/Edit.vue'
-      )
-    )
-    Vue.component('devise-redirect-delete', () =>
-      import(
-        /* webpackChunkName: "devise-administration-redirects" */ './components/redirects/steps/Delete.vue'
-      )
-    )
+    Vue.component('devise-redirect-create', () => import('./components/redirects/steps/Create.vue'))
+    Vue.component('devise-redirect-edit', () => import('./components/redirects/steps/Edit.vue'))
+    Vue.component('devise-redirect-delete', () => import('./components/redirects/steps/Delete.vue'))
 
     // Vue.component('Sidebar', Sidebar);
 

@@ -24,9 +24,8 @@ export default {
   name: 'MetaManage',
 
   components: {
-    MetaForm: () => import(/* webpackChunkName: "devise-meta" */ './MetaForm'),
-    AdminContainer: () =>
-      import(/* webpackChunkName: "devise-administration" */ '../admin/ui/AdminContainer'),
+    MetaForm: () => import('./MetaForm'),
+    AdminContainer: () => import('../admin/ui/AdminContainer'),
   },
 
   data() {

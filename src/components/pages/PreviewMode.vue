@@ -1,68 +1,60 @@
 <template>
   <div
-    class="
-      dvs-relative
-      dvs-cursor-pointer
-      dvs-border-b
-      dvs-border-admin-secondary-bg
-      dvs-text-admin-fg
-      dvs-transitions-hover-slow
-    "
+    class="dvs-relative dvs-cursor-pointer dvs-transitions-hover-slow"
     @mouseenter="openPreviewSelector"
     @mouseleave="closePreviewSelector"
   >
-    <div v-if="previewMode === 'desktop'" class="dvs-m-4 dvs-cursor-pointer">
-      <desktop-icon w="25" h="25" />
-    </div>
-    <div v-if="previewMode === 'tablet'" class="dvs-m-4 dvs-cursor-pointer">
-      <tablet-icon w="25" h="25" />
-    </div>
-    <div v-if="previewMode === 'mobile-portrait'" class="dvs-m-4 dvs-cursor-pointer">
-      <phone-icon w="25" h="25" />
-    </div>
-    <div
-      v-if="previewMode === 'mobile-landscape'"
-      class="dvs-m-4 dvs-cursor-pointer"
-      style="transform: rotate(90deg)"
-    >
-      <phone-icon w="25" h="25" />
-    </div>
+    <a href="#" class="flex items-center p-4 rounded-lg text-indigo-200 hover:bg-indigo-700">
+      <span v-if="previewMode === 'desktop'">
+        <desktop-icon w="25" h="25" />
+      </span>
+      <span v-if="previewMode === 'tablet'">
+        <tablet-icon w="25" h="25" />
+      </span>
+      <span v-if="previewMode === 'mobile-portrait'">
+        <phone-icon w="25" h="25" />
+      </span>
+      <span v-if="previewMode === 'mobile-landscape'" style="transform: rotate(90deg)">
+        <phone-icon w="25" h="25" />
+      </span>
+    </a>
     <div
       ref="previewSelector"
       class="
         dvs-flex
         dvs-overflow-hidden
         dvs-flex-col
-        dvs-rounded-sm
+        dvs-rounded-lg
         dvs-absolute
         dvs-top-0
         dvs-left-0
         dvs-mt-2
         dvs-ml-10
         dvs-z-10
-        dvs-bg-admin-bg
+        dvs-bg-indigo-900
+        dvs-text-indigo-400
       "
     >
       <div
-        class="dvs-p-3 dvs-cursor-pointer dvs-border-b dvs-border-admin-secondary-bg"
+        class="dvs-p-3 dvs-cursor-pointer hover:dvs-bg-indigo-700"
         @click="setPreviewMode('desktop')"
       >
         <desktop-icon w="20" h="20" />
       </div>
       <div
-        class="dvs-p-3 dvs-cursor-pointer dvs-border-b dvs-border-admin-secondary-bg"
+        class="dvs-p-3 dvs-cursor-pointer hover:dvs-bg-indigo-700"
         @click="setPreviewMode('tablet')"
       >
         <tablet-icon w="20" h="20" />
       </div>
       <div
-        class="dvs-p-3 dvs-cursor-pointer dvs-border-b dvs-border-admin-secondary-bg"
+        class="dvs-p-3 dvs-cursor-pointer hover:dvs-bg-indigo-700"
         @click="setPreviewMode('mobile-portrait')"
       >
         <phone-icon w="20" h="20" />
       </div>
       <div
-        class="dvs-p-3 dvs-cursor-pointer"
+        class="dvs-p-3 dvs-cursor-pointer hover:dvs-bg-indigo-700"
         style="transform: rotate(90deg)"
         @click="setPreviewMode('mobile-landscape')"
       >
@@ -79,12 +71,9 @@ export default {
   name: 'DevisePreviewMode',
 
   components: {
-    DesktopIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/MonitorIcon'),
-    TabletIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/TabletIcon'),
-    PhoneIcon: () =>
-      import(/* webpackChunkName: "devise-icons" */ 'vue-feather-icons/icons/SmartphoneIcon'),
+    DesktopIcon: () => import('vue-feather-icons/icons/MonitorIcon'),
+    TabletIcon: () => import('vue-feather-icons/icons/TabletIcon'),
+    PhoneIcon: () => import('vue-feather-icons/icons/SmartphoneIcon'),
   },
 
   data() {
