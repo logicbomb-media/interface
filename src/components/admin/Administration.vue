@@ -503,7 +503,7 @@
           leave-active-class="transform transition ease-in-out duration-500 sm:duration-700"
           leave-to-class="-translate-x-full opacity-0"
         >
-          <main v-show="showAdmin" class="relative z-0 flex-1 flex overflow-hidden dvs-shadow-2xl">
+          <main v-show="showAdmin" class="relative z-0 flex-1 flex overflow-hidden">
             <div class="flex-1 flex xl:overflow-hidden">
               <!-- Primary column -->
               <section
@@ -519,7 +519,11 @@
                   leave-active-class="transform transition ease-in-out duration-500 sm:duration-700"
                   leave-to-class="-translate-x-full opacity-0"
                 >
-                  <router-view :show-admin="showAdmin" name="devise"></router-view>
+                  <router-view
+                    class="dvs-shadow-2xl"
+                    :show-admin="showAdmin"
+                    name="devise"
+                  ></router-view>
                 </transition>
               </section>
             </div>

@@ -18,7 +18,7 @@
           <div v-if="can('manage slices')" class="dvs-pb-16 dvs-relative">
             <div class="py-6 px-4 bg-indigo-700 sm:px-6 mb-8">
               <div class="flex items-center justify-between">
-                <h2 class="flex dvs-text-lg dvs-font-medium dvs-text-white" id="slide-over-title">
+                <h2 id="slide-over-title" class="flex dvs-text-lg dvs-font-medium dvs-text-white">
                   <svg
                     class="dvs-w-6 dvs-h-6"
                     fill="none"

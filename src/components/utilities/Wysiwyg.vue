@@ -4,7 +4,7 @@
       v-if="editor"
       class="
         dvs-wysiwyg-editor
-        dvs-bg-gray-400
+        dvs-bg-gray-200
         dvs-flex
         dvs-flex-wrap
         dvs-items-center

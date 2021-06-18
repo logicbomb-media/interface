@@ -8,10 +8,14 @@ const actions = {
       payload.config.apiendpoint
     }/?${commonUtils.buildFilterParams(payload.filters)}`
 
+    console.warn(payload)
+
     if (payload.config.app) {
       root = true
       url = `${payload.config.apiendpoint}/?${commonUtils.buildFilterParams(payload.filters)}`
     }
+
+    console.log(context)
 
     return new Promise((resolve) => {
       window.axios

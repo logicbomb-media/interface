@@ -1,23 +1,37 @@
 <template>
   <div
-    class="h-full divide-y divide-gray-200 flex flex-col bg-white shadow-xl dvs-pointer-events-auto"
+    class="
+      h-full
+      divide-y divide-gray-200
+      flex flex-col
+      bg-white
+      shadow-xl
+      dvs-pointer-events-auto
+      w-full
+    "
   >
     <div class="flex-1 h-0 overflow-y-auto">
-      <div class="py-6 px-4 bg-indigo-700 sm:px-6">
-        <div class="flex items-center justify-between">
-          <h2 class="dvs-text-lg font-medium text-white" id="slide-over-title">
-            <slot name="title"></slot>
-          </h2>
+      <div class="dvs-mb-8 py-6 px-4 bg-indigo-700 sm:px-10 dvs-flex dvs-justify-between">
+        <div>
+          <div class="flex items-center justify-between">
+            <h2 id="slide-over-title" class="dvs-text-lg font-medium text-white">
+              <slot name="title"></slot>
+            </h2>
+          </div>
+          <div class="mt-1">
+            <p class="text-sm text-indigo-300">
+              <slot name="message"></slot>
+            </p>
+          </div>
         </div>
-        <div class="mt-1">
-          <p class="text-sm text-indigo-300">
-            <slot name="message"></slot>
-          </p>
+        <div>
+          <slot name="header-right"></slot>
         </div>
       </div>
-      <div class="flex-1 flex flex-col justify-between">
-        <div class="px-4 divide-y divide-gray-200 sm:px-6 w-96">
+      <div class="flex-1 flex flex-col justify-between w-full">
+        <div class="px-4 divide-y divide-gray-200 sm:px-12 pb-12">
           <slot name="content"></slot>
+          <slot></slot>
         </div>
       </div>
     </div>

@@ -10,29 +10,22 @@
           dvs-justify-between
           dvs-items-center
           dvs-w-full
-          dvs-rounded-md
-          dvs-border
-          dvs-border-gray-300
-          dvs-shadow-sm
-          dvs-px-4
-          dvs-py-2
-          dvs-bg-white
           dvs-text-xs
           dvs-font-medium
           dvs-text-gray-700
-          hover:dvs-bg-gray-50
           focus:dvs-outline-none
-          focus:dvs-ring-2
-          focus:dvs-ring-offset-2
-          focus:dvs-ring-offset-gray-100
-          focus:dvs-ring-indigo-500
         "
+        :class="{
+          'dvs-px-4 dvs-py-2 dvs-rounded-md dvs-border dvs-border-gray-300 dvs-shadow-sm dvs-bg-white hover:dvs-bg-gray-50 focus:dvs-outline-none focus:dvs-ring-2 focus:dvs-ring-offset-2 focus:dvs-ring-offset-gray-100 focus:dvs-ring-indigo-500':
+            container,
+        }"
         aria-expanded="true"
         aria-haspopup="true"
         @click="menuOpen = !menuOpen"
       >
         <slot></slot>
         <svg
+          v-if="caret"
           class="-dvs-mr-1 dvs-ml-2 dvs-h-5 dvs-w-5"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
@@ -59,10 +52,8 @@
       <div
         v-if="menuOpen"
         class="
-          dvs-origin-top-right
           dvs-absolute
-          dvs-z-20
-          dvs-right-0
+          dvs-z-9980
           dvs-mt-2
           dvs-w-56
           dvs-rounded-md
@@ -73,6 +64,10 @@
           dvs-ring-opacity-5
           focus:dvs-outline-none
         "
+        :class="{
+          'dvs-origin-top-right dvs-right-0': dropdownPosition === 'left',
+          'dvs-origin-top-left dvs-left-0': dropdownPosition !== 'left',
+        }"
         role="menu"
         aria-orientation="vertical"
         aria-labelledby="menu-button"
@@ -85,7 +80,10 @@
             id="menu-item-0"
             :key="option.value"
             href="#"
-            class="dvs-block dvs-px-4 dvs-py-2 dvs-text-xs"
+            class="
+              dvs-block dvs-px-4 dvs-py-2 dvs-text-xs
+              hover:dvs-no-underline hover:dvs-bg-gray-100 hover:dvs-text-gray-900
+            "
             :class="{
               'dvs-bg-gray-100 dvs-text-gray-900': option.value === selected,
               'dvs-text-gray-700': option.value !== selected,
@@ -115,6 +113,21 @@ export default {
     selected: {
       type: [String, Number],
       default: null,
+    },
+
+    container: {
+      type: Boolean,
+      default: true,
+    },
+
+    caret: {
+      type: Boolean,
+      default: true,
+    },
+
+    dropdownPosition: {
+      type: String,
+      default: 'left',
     },
   },
 

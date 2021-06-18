@@ -35,7 +35,7 @@
   blockquote,
   pre,
   code {
-    @apply dvs-mb-0 #{!important};
+    @apply dvs-mb-0;
     line-height: 1.4em;
   }
 
@@ -53,5 +53,172 @@
 
   .strikethrough {
     text-decoration: dvs-line-through;
+  }
+
+  .ProseMirror {
+    @apply dvs-p-4 dvs-bg-gray-50 #{!important};
+
+    word-wrap: break-word;
+
+    * {
+      caret-color: currentColor;
+    }
+
+    pre {
+      @apply dvs-bg-black dvs-text-white;
+
+      padding: 0.7rem 1rem;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      overflow-x: auto;
+
+      code {
+        display: block;
+      }
+    }
+
+    p code {
+      display: inline-block;
+      padding: 0 0.4rem;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      font-weight: bold;
+      background: rgba(black, 0.1);
+      color: rgba(black, 0.8);
+    }
+
+    p {
+      margin-bottom: 1rem !important;
+    }
+
+    ul,
+    ol {
+      padding-left: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      li {
+        @apply dvs-list-disc;
+      }
+    }
+    ol {
+      li {
+        @apply dvs-list-decimal;
+      }
+    }
+
+    a {
+      color: inherit;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    blockquote {
+      border-left: 3px solid rgba(black, 0.1);
+      color: rgba(black, 0.8);
+      padding-left: 0.8rem;
+      font-style: italic;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      border-radius: 3px;
+    }
+
+    table {
+      border-collapse: collapse;
+      table-layout: fixed;
+      width: 100%;
+      margin: 0;
+      overflow: hidden;
+
+      td,
+      th {
+        @apply dvs-border-2 dvs-border-gray-500;
+
+        min-width: 1em;
+        padding: 3px 5px;
+        vertical-align: top;
+        box-sizing: border-box;
+        position: relative;
+        > * {
+          margin-bottom: 0;
+        }
+      }
+
+      th {
+        font-weight: bold;
+        text-align: left;
+      }
+
+      .selectedCell:after {
+        z-index: 2;
+        position: absolute;
+        content: '';
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: rgba(200, 200, 255, 0.4);
+        pointer-events: none;
+      }
+
+      .column-resize-handle {
+        position: absolute;
+        right: -2px;
+        top: 0;
+        bottom: 0;
+        width: 4px;
+        z-index: 20;
+        background-color: #adf;
+        pointer-events: none;
+      }
+    }
+
+    .tableWrapper {
+      margin: 1em 0;
+      overflow-x: auto;
+    }
+
+    .resize-cursor {
+      cursor: ew-resize;
+      cursor: col-resize;
+    }
+
+    li {
+      @apply dvs-list-disc;
+    }
+  }
+
+  .ProseMirror-focused {
+    @apply dvs-outline-none;
+  }
+
+  .wysiwyg-editor-button {
+    @apply dvs-cursor-pointer dvs-p-3 dvs-text-xs dvs-font-bold dvs-text-gray-900;
+
+    &.active {
+      @apply dvs-bg-admin-highlight-bg dvs-text-admin-highlight-fg;
+    }
+  }
+
+  .editor__floating-menu {
+    position: absolute;
+    left: 10px;
+    margin-top: -0.25rem;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity 0.2s, visibility 0.2s;
+    transition: opacity 0.2s, visibility 0.2s;
+  }
+
+  .editor__floating-menu.is-active {
+    opacity: 1;
+    visibility: visible;
   }
 }
