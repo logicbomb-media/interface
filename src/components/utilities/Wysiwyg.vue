@@ -779,7 +779,7 @@
     />
     <textarea
       v-if="showSource"
-      v-model="value"
+      v-model="localValue"
       class="dvs-h-full dvs-p-8 dvs-w-full dvs-font-mono dvs-text-sm dvs-text-gray-800"
       style="height:300px"
     >
@@ -926,47 +926,29 @@ export default {
     };
   },
 
+  computed: {
+    localValue: {
+      get() {
+        return this.value;
+      },
+      set(value) {
+        this.$emit('input', value);
+      },
+    },
+  },
+
   watch: {
-    value(value) {
-      // HTML
-      const isSame = this.editor.getHTML() === value;
-
-      // JSON
-      // const isSame = this.editor.getJSON().toString() === value.toString()
-
-      if (isSame) {
-        return;
+    showSource(newValue) {
+      if (newValue) {
+        this.editor.destroy();
+      } else {
+        this.createEditor();
       }
-
-      this.editor.commands.setContent(this.value, false);
     },
   },
 
   mounted() {
-    this.editor = new Editor({
-      content: this.value,
-      extensions: [
-        StarterKit,
-        Superscript,
-        Underline,
-        TextStyle,
-        TextAlign,
-        TextColor,
-        Image,
-        Link,
-        Table.configure({
-          resizable: true,
-        }),
-        TableRow,
-        TableHeader,
-        TableCell,
-      ],
-      onUpdate: () => {
-        // HTML
-        this.$emit('input', this.editor.getHTML());
-      },
-      autoFocus: false,
-    });
+    this.createEditor();
   },
 
   beforeDestroy() {
@@ -974,6 +956,33 @@ export default {
   },
 
   methods: {
+    createEditor() {
+      this.editor = new Editor({
+        content: this.value,
+        extensions: [
+          StarterKit,
+          Superscript,
+          Underline,
+          TextStyle,
+          TextAlign,
+          TextColor,
+          Image,
+          Link,
+          Table.configure({
+            resizable: true,
+          }),
+          TableRow,
+          TableHeader,
+          TableCell,
+        ],
+        onUpdate: () => {
+          // HTML
+          this.$emit('input', this.editor.getHTML());
+        },
+        autoFocus: false,
+      });
+    },
+
     launchMediaManager() {
       window.deviseSettings.$bus.$emit('devise-launch-media-manager', {
         callback: this.mediaSelected,
@@ -994,6 +1003,7 @@ export default {
           .run();
       }
     },
+
     applyTextColor() {
       const { r, g, b, a } = this.textColor.rgba;
       this.editor
